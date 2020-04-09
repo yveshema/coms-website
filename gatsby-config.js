@@ -2,10 +2,10 @@ const path = require('path')
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Starter MDX Basic',
+    title: 'Organic Moringa Standard (COMS)',
     description:
-      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
-    author: '@chrisbiscardi',
+      'This website outlines the set of methodologies for an organic moringa standard to allow moringa farmers or businesses to apply for an organic seal that certifies their moringa as "organic". This would be proved by documenting the process involved, following the processes in the moringa guide and submitting the product for testing. For the time being, the website is targeted towards farmers and businesses in the Carribean community.',
+    author: 'COMS developer team',
   },
   plugins: [
     {
@@ -29,20 +29,35 @@ module.exports = {
         path: `${__dirname}/src/pages`
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `fonts`,
+        path: `${__dirname}/src/fonts/`
+      }
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-default-mdx-basic',
-        short_name: 'starter',
+        name: 'organic-moringa-standard',
+        short_name: 'coms',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#53AB34',
+        theme_color: '#53AB34',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
-      },
+        icon: 'src/images/moringa-icon.png', // This path is relative to the root of the site.
+      },      
     },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+        omitGoogleFont: true,
+      }
+    },
+    'gatsby-plugin-styled-components',    
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
