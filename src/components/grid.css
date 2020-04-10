@@ -1,3 +1,7 @@
+body {
+    background-color: #F8F8F8;    
+}
+
 .row {
     display: flex;
     justify-content: space-between;    
@@ -75,9 +79,21 @@
 }
 
 .link {
-    color: #244229;
-    font-size: 18px;
+    color: #070706;
+    font-size: 20px;
+    font-weight: 500;    
     font-family: inherit;
     text-decoration: none;    
 }
+
+.link:hover {
+    color: #3A722E;
+    border-bottom: 1px solid #3A722E;
+}
+
+footer {
+    background-color: #2F5926;
+}
+
+
 
