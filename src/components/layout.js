@@ -3,25 +3,27 @@ import PropTypes from 'prop-types'
 
 import Navbar from './navbar'
 import Hero from './hero'
-//import './layout.css'
+import './grid.css'
 
 const Layout = ({ children, pageContext }) => {
   const {title} = pageContext.frontmatter;
 
   return (  
     <div>
+      <header>
       <Navbar />
       <Hero title={title}/>
-      <div
-        style={{
-          margin: '0 auto',
-          maxWidth: 960,
-          padding: '0px 1.0875rem 1.45rem',
-          paddingTop: 20,          
-        }}
-      >            
-        {children}          
-      </div>        
+      </header>
+      <div className="container">            
+        <div className="row">
+          <div className="col-8 centre">
+            {children}
+          </div>
+        </div>          
+      </div>
+      <footer>
+        <div className="container">Footer goes here...</div>
+      </footer>        
     </div>    
   )
 } 

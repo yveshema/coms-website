@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Container = styled.div`
@@ -10,22 +10,12 @@ position: fixed;
 top: 0;
 left: 0;
 right: 0;
-display: flex;
-flex-direction: row;
 z-index: 9;
 `
 
-const Logo = styled.div`
-width: 150px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-`
 const Nav = styled.nav`
 display: flex;
-flex-direction: column;
-justify-content: center;
-margin: 0 auto;
+justify-content: space-between;
 `
 
 const Navbar = () => {
@@ -33,13 +23,23 @@ const Navbar = () => {
 
     return (
         <Container>
-            <Logo>
-                <Img            
-                    fluid={data.file.childImageSharp.fluid}
-                    alt="primary logo"
-                />
-            </Logo>
-            <Nav><span>This is the navigation bar</span></Nav>
+            <div className="container row">
+                <div className="col-2">
+                    <Img            
+                        fluid={data.file.childImageSharp.fluid}
+                        alt="primary logo"
+                    />               
+                </div>
+                <div className="col-10 align-bottom">
+                    <Nav>
+                    <Link to="/" className="link">Home</Link>
+                    <Link to="/" className="link">About Moringa</Link>
+                    <Link to="/" className="link">Grow Organic Moringa</Link>
+                    <Link to="/" className="link">Get Organic Certification</Link>
+                    <Link to="/" className="link">Partners</Link>
+                    </Nav>
+                </div>
+            </div>
         </Container>
 );
 }
