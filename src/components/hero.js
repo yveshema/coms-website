@@ -10,6 +10,8 @@ margin-top: 120px;
 
 const Title = styled.div`
 position: absolute;
+width: 50%;
+margin: 0 auto;
 color: white;
 top: 0;
 left: 0;
@@ -17,14 +19,12 @@ right: 0;
 bottom: 0;
 display: flex;
 flex-direction: row;
-justify-content: center;
 align-items: center;
 `
 
 const Hero = ({title}) => {
     const data = useStaticQuery(query);
-    console.log(title);
-
+    
     return (
         <Container>            
             <Img            

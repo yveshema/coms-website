@@ -1,20 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 
 import Navbar from './navbar'
 import Hero from './hero'
 //import './layout.css'
 
-const Layout = ({children}) => {
-  const data = useStaticQuery(pageQuery);
-
-  //console.log(data);
+const Layout = ({ children, pageContext }) => {
+  const {title} = pageContext.frontmatter;
 
   return (  
     <div>
       <Navbar />
-      <Hero title={data.mdx.frontmatter.title}/>
+      <Hero title={title}/>
       <div
         style={{
           margin: '0 auto',
@@ -33,13 +30,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export const pageQuery = graphql`
-query {
-  mdx {
-    frontmatter {
-      title
-    }
-  }
-}
-`
 export default Layout
