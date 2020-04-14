@@ -22,7 +22,7 @@ const Navbar = () => {
     const data = useStaticQuery(query);
 
     return (
-        <Container>
+        <Container><div className="wrapper">
             <div className="container row">
                 <div className="col-2">
                     <Img            
@@ -37,9 +37,10 @@ const Navbar = () => {
                     <Link to="/" className="link">Grow Organic Moringa</Link>
                     <Link to="/" className="link">Get Organic Certification</Link>
                     <Link to="/" className="link">Partners</Link>
+		    <Link to="/" className="link">Contact</Link>
                     </Nav>
                 </div>
-            </div>
+            </div></div>
         </Container>
 );
 }

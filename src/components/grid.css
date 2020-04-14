@@ -2,6 +2,10 @@ body {
     background-color: #F8F8F8;    
 }
 
+.wrapper {
+    margin: 0 100px;
+}
+
 .row {
     display: flex;
     justify-content: space-between;    
@@ -80,7 +84,7 @@ body {
 
 .link {
     color: #070706;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 500;    
     font-family: inherit;
     text-decoration: none;    
@@ -93,7 +97,19 @@ body {
 
 footer {
     background-color: #2F5926;
+    height: 200px;
 }
 
+.align-vert {    
+    display: flex;
+    justify-content: space-around;    
+    padding:50px 0;    
+}
 
-
+.copyright {
+    color: white;
+    font-size: .8em;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 2em;
+}

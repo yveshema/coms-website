@@ -2,7 +2,7 @@ import Typography from 'typography';
 
 const typography = new Typography({
     title: 'organic-moringa-theme',
-    baseFontSize: "18px",
+    baseFontSize: "16px",
     baseLineHeight: 1.5,
     headerFontFamily: ["Rubik","Roboto"],
     headerWeight: 500,
