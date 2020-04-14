@@ -41,7 +41,7 @@ const Hero = ({title}) => {
 const query = graphql`
     query {
         file(relativePath: { 
-            eq: "heros/homepage-hero.jpg"
+            eq: "heros/homepage_hero_img.jpg"
         }) {
             childImageSharp {
                 fluid {                    
