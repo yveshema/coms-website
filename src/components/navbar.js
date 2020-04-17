@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
@@ -18,45 +18,69 @@ display: flex;
 justify-content: space-between;
 `
 
+const logo = graphql`
+query {
+    mobile: file(relativePath: { eq: "logos/secondary logo dark green.png" })
+    {
+        childImageSharp {
+            fluid {                    
+                ...GatsbyImageSharpFluid
+            }
+        }
+    }
+    desktop: file(relativePath: { eq: "logos/primary logo dark green.png" })
+    {
+        childImageSharp {
+            fluid {                    
+                ...GatsbyImageSharpFluid
+            }
+        }
+    }
+}
+`
+
 const Navbar = () => {
-    const data = useStaticQuery(query);
+    const [windowSize, changeWindowSize] = useState({ desktop: window.matchMedia("(min-width: 768px)").matches });
+    
+    // Checks if the current window size is desktop or mobile
+    useEffect(() => {
+        function handleWindowChange() {
+            changeWindowSize({
+                desktop: window.matchMedia("(min-width: 768px)").matches
+            });
+        }
+        window.addEventListener('resize', handleWindowChange);
+        return _ => {
+            window.removeEventListener('resize', handleWindowChange);
+        }
+    }
+    )
+
+    const data = useStaticQuery(logo);
 
     return (
         <Container><div className="wrapper">
             <div className="container row">
                 <div className="col-2">
-                    <Img            
-                        fluid={data.file.childImageSharp.fluid}
+                    <Img
+                        // Image is dynamically selected depending on current window size
+                        fluid={windowSize.desktop ? data.desktop.childImageSharp.fluid : data.mobile.childImageSharp.fluid}
                         alt="primary logo"
-                    />               
+                    />
                 </div>
                 <div className="col-10 align-bottom">
                     <Nav>
-                    <Link to="/" className="link">Home</Link>
-                    <Link to="/" className="link">About Moringa</Link>
-                    <Link to="/" className="link">Grow Organic Moringa</Link>
-                    <Link to="/" className="link">Get Organic Certification</Link>
-                    <Link to="/" className="link">Partners</Link>
-		    <Link to="/" className="link">Contact</Link>
+                        <Link to="/" className="link">Home</Link>
+                        <Link to="/about" className="link">About Moringa</Link>
+                        <Link to="/grow-moringa" className="link">Grow Organic Moringa</Link>
+                        <Link to="/certification" className="link">Get Organic Certification</Link>
+                        <Link to="/partners" className="link">Partners</Link>
+                        <Link to="/contact" className="link">Contact</Link>
                     </Nav>
                 </div>
             </div></div>
         </Container>
-);
+    );
 }
-
-const query = graphql`
-    query {
-        file(relativePath: { 
-            eq: "logos/primary logo dark green.png"
-        }) {
-            childImageSharp {
-                fluid {                    
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-    }
-`
 
 export default Navbar;
