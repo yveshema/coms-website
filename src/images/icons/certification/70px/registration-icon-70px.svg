@@ -1,0 +1,14 @@
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35 70C54.33 70 70 54.33 70 35C70 15.67 54.33 0 35 0C15.67 0 0 15.67 0 35C0 54.33 15.67 70 35 70Z" fill="white"/>
+<path d="M35 69.5C54.0538 69.5 69.5 54.0538 69.5 35C69.5 15.9462 54.0538 0.5 35 0.5C15.9462 0.5 0.5 15.9462 0.5 35C0.5 54.0538 15.9462 69.5 35 69.5Z" stroke="black" stroke-miterlimit="10"/>
+<path d="M42.1695 43.5874C42.2451 47.6741 42.9158 51.5864 44.2143 55.5H19.3795C17.7735 49.5212 18.5343 44.0479 19.2904 38.6463L19.2945 38.6169C19.8285 34.8022 20.3425 31.1307 19.9958 27.3812C19.8075 25.3437 19.3815 23.4713 18.6924 21.6615C18.1439 20.2211 17.4401 18.8467 16.5607 17.5H41.1334C44.4963 21.9946 43.8742 26.68 43.0244 32.8705L43.0227 32.8828C42.5909 36.028 42.0962 39.6313 42.1695 43.5874Z" fill="#E6E6E6" stroke="black"/>
+<path d="M48.1695 40.5874C48.2451 44.6741 48.9158 48.5864 50.2143 52.5H25.3795C23.7735 46.5212 24.5343 41.0479 25.2904 35.6463L25.2945 35.6169C25.8285 31.8022 26.3425 28.1307 25.9958 24.3812C25.8075 22.3437 25.3815 20.4713 24.6924 18.6615C24.1439 17.2211 23.4401 15.8467 22.5607 14.5H47.1334C50.4963 18.9946 49.8742 23.68 49.0244 29.8705L49.0227 29.8828C48.5909 33.028 48.0962 36.6313 48.1695 40.5874Z" fill="#FFFBE9" stroke="black"/>
+<path d="M30.123 19H45.123" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M31.623 23.834H46.623" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M31.623 28.667H46.623" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M29.623 33.5H42.123" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M28.623 38.334H38.123" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M28.623 43.167H36.123" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M29.623 48H44.623" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M44.5282 42.925L40.2852 44.339L41.6992 40.0961L56.5482 25.2471L59.3762 28.0751L44.5282 42.925Z" fill="#53AB34" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+</svg>

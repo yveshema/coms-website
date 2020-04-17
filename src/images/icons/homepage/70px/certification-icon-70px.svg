@@ -1,0 +1,15 @@
+<svg width="71" height="70" viewBox="0 0 71 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35.002 70C54.3319 70 70.002 54.33 70.002 35C70.002 15.67 54.3319 0 35.002 0C15.672 0 0.00195312 15.67 0.00195312 35C0.00195312 54.33 15.672 70 35.002 70Z" fill="white"/>
+<path d="M35.002 69.5C54.0558 69.5 69.502 54.0538 69.502 35C69.502 15.9462 54.0558 0.5 35.002 0.5C15.9481 0.5 0.501953 15.9462 0.501953 35C0.501953 54.0538 15.9481 69.5 35.002 69.5Z" stroke="black" stroke-miterlimit="10"/>
+<path d="M23.5166 20.6246L23.0493 20.8025L23.5166 20.6246C22.9681 19.1841 22.2644 17.8097 21.385 16.4629H45.9576C49.3205 20.9575 48.6984 25.643 47.8486 31.8334L47.847 31.8452C47.4152 34.9903 46.9204 38.594 46.9937 42.5503C47.0693 46.637 47.74 50.5494 49.0385 54.4629H24.2038C22.5977 48.4846 23.3585 43.0112 24.1146 37.6098L23.6194 37.5405L24.1146 37.6098L24.1188 37.5801C24.6528 33.7653 25.1667 30.0938 24.8201 26.3444L24.3222 26.3904L24.8201 26.3444C24.6317 24.3068 24.2057 22.4343 23.5166 20.6246Z" fill="#FFFBE9" stroke="black"/>
+<path d="M28.9473 20.9629H43.9473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M30.4473 25.7969H45.4473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M30.4473 30.6299H45.4473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M28.4473 35.4629H40.9473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M27.4473 40.2969H36.9473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M27.4473 45.1299H34.9473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M28.4473 49.9629H43.4473" stroke="black" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M32.002 58.9971L30.002 56.9971L28.002 58.9971V50.9971H32.002V58.9971Z" fill="#53AB34" stroke="black" stroke-width="0.5" stroke-miterlimit="10"/>
+<path d="M30.002 52C32.2111 52 34.002 50.2091 34.002 48C34.002 45.7909 32.2111 44 30.002 44C27.7928 44 26.002 45.7909 26.002 48C26.002 50.2091 27.7928 52 30.002 52Z" fill="#3A722E" stroke="black" stroke-width="0.5" stroke-miterlimit="10"/>
+<path d="M30.002 50.5C31.3827 50.5 32.502 49.3807 32.502 48C32.502 46.6193 31.3827 45.5 30.002 45.5C28.6212 45.5 27.502 46.6193 27.502 48C27.502 49.3807 28.6212 50.5 30.002 50.5Z" fill="#53AB34" stroke="black" stroke-width="0.5" stroke-miterlimit="10"/>
+</svg>
