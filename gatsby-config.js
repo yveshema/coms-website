@@ -21,7 +21,7 @@ module.exports = {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
-    },
+    },    
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -40,7 +40,7 @@ module.exports = {
         background_color: '#53AB34',
         theme_color: '#53AB34',
         display: 'minimal-ui',
-        icon: 'src/images/moringa-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/icons/moringa-icon.png', // This path is relative to the root of the site.
       },      
     },
     {

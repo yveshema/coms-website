@@ -1,0 +1,14 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 48.001C37.2548 48.001 48 37.2558 48 24.001C48 10.7461 37.2548 0.000976562 24 0.000976562C10.7452 0.000976562 0 10.7461 0 24.001C0 37.2558 10.7452 48.001 24 48.001Z" fill="white"/>
+<path d="M24 47.501C36.9787 47.501 47.5 36.9797 47.5 24.001C47.5 11.0223 36.9787 0.500977 24 0.500977C11.0213 0.500977 0.5 11.0223 0.5 24.001C0.5 36.9797 11.0213 47.501 24 47.501Z" stroke="black" stroke-miterlimit="10"/>
+<path d="M28.8518 29.8896C28.9032 32.6689 29.3552 35.3311 30.2293 37.9924H13.3384C12.2576 33.9249 12.7754 30.1957 13.2914 26.5091L13.2966 26.4724C13.9691 21.668 14.6268 16.9696 11.4739 12.0645H28.1732C30.4406 15.1161 30.0191 18.3033 29.4386 22.5313L29.4372 22.5417C29.1411 24.6988 28.8015 27.1725 28.8518 29.8896Z" fill="#E6E6E6" stroke="black" stroke-width="0.75"/>
+<path d="M32.9651 27.833C33.0165 30.6123 33.4684 33.2744 34.3426 35.9358H17.4516C16.3709 31.8682 16.8887 28.1391 17.4047 24.4525L17.4098 24.4158C18.0824 19.6113 18.74 14.913 15.5872 10.0078H32.2865C34.5539 13.0595 34.1323 16.2467 33.5519 20.4746L33.5505 20.485C33.2543 22.6421 32.9148 25.1159 32.9651 27.833Z" fill="#FFFBE9" stroke="black" stroke-width="0.75"/>
+<path d="M20.6543 13.0293H30.9403" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M21.6836 16.3428H31.9696" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M21.6836 19.6582H31.9696" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M20.3125 22.9717H28.8835" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M19.627 26.2861H26.141" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M19.627 29.5996H24.77" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M20.3125 32.915H30.5985" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30.532 29.4335L27.623 30.4034L28.593 27.4945L38.775 17.3125L40.715 19.2515L30.532 29.4335Z" fill="#53AB34" stroke="black" stroke-width="0.75" stroke-miterlimit="10" stroke-linecap="round"/>
+</svg>

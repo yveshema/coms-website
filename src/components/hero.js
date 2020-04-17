@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import {Image }  from 'react-bootstrap';
+import hero from '../images/heros/homepage_hero_img.jpg';
 
 const Container = styled.div`
 position: relative;
@@ -25,31 +25,13 @@ align-items: center;
 `
 
 const Hero = ({title}) => {
-    const data = useStaticQuery(query);
-    
+       
     return (
-        <Container>            
-            <Img            
-                fluid={data.file.childImageSharp.fluid}
-                alt="primary logo"
-            />  
-            <Title><span>{title}</span></Title>         
+        <Container>          
+	        <Image src={hero} fluid/>	
+            <Title><span>{title}</span></Title>        
         </Container>
 );
 }
-
-const query = graphql`
-    query {
-        file(relativePath: { 
-            eq: "heros/homepage_hero_img.jpg"
-        }) {
-            childImageSharp {
-                fluid {                    
-                    ...GatsbyImageSharpFluid
-                }
-            }
-        }
-    }
-`
 
 export default Hero;

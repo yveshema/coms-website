@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Icon from '../images/ui-icons/call-48.png';
+import Icon from '../images/icons/ui-icons/phone-icon.svg';
 
 const Wrapper = styled.div`
 display: flex;
