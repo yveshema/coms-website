@@ -88,11 +88,6 @@ body {
     margin-top: -25%;
 }
 
-.navItems {
-    display: flex;
-    justify-content: space-around;
-}
-
 .centre {
     margin: 0 auto;
     
@@ -110,7 +105,11 @@ body {
     font-weight: 500;    
     font-family: inherit;
     text-decoration: none;
+    text-align: center;
     border-bottom: 1px solid rgba(0,0,0,0);
+    height: max-content;
+    position: relative;
+    top: calc(100% - 50px);
 }
 
 .link:hover {
@@ -137,6 +136,12 @@ footer {
     padding-bottom: 2em;
 }
 
+@media only screen and (max-width: 1300px) {
+    .link {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .wrapper {
         margin: 0 75px;
@@ -146,9 +151,6 @@ footer {
     }
     .navImg {
         top: 63%;
-    }
-    .link {
-        display: none;
     }
     .col-2 {
         width: 100%;
