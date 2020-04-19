@@ -84,6 +84,13 @@ body {
 
 .navImg {
     height: 100%;
+    top: 50%;
+    margin-top: -25%;
+}
+
+.navItems {
+    display: flex;
+    justify-content: space-around;
 }
 
 .centre {
@@ -136,6 +143,9 @@ footer {
     }
     .navContainer {
         height: 75px;
+    }
+    .navImg {
+        top: 63%;
     }
     .link {
         display: none;
