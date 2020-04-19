@@ -33,11 +33,11 @@ const Navbar = () => {
                 <div className="col-10 align-bottom">
                     <Nav>
                     <Link to="/" className="link">Home</Link>
-                    <Link to="/" className="link">About Moringa</Link>
-                    <Link to="/" className="link">Grow Organic Moringa</Link>
-                    <Link to="/" className="link">Get Organic Certification</Link>
-                    <Link to="/" className="link">Partners</Link>
-		    <Link to="/" className="link">Contact</Link>
+                    <Link to="/about" className="link">About Moringa</Link>
+                    <Link to="/cultivation" className="link">Grow Organic Moringa</Link>
+                    <Link to="/certification" className="link">Get Organic Certification</Link>
+                    <Link to="/partners" className="link">Partners</Link>
+		            <Link to="/contact" className="link">Contact</Link>
                     </Nav>
                 </div>
             </div></div>
