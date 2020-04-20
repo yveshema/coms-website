@@ -7,7 +7,7 @@ const Nav = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-left: 10px;
+    margin-left: 50px;
 `
 
 const logo = graphql`
@@ -71,8 +71,8 @@ const Navmenu = () => {
     const data = useStaticQuery(logo);
 
     return (
-        <div className="navContainer" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div className="wrapper">
+        <div className="navContainer">
+        <div className="navWrapper">
             <div className="row" style={{height: '100%'}}>
                 <div style={{width:"170px"}}>
                     <Img
@@ -83,12 +83,12 @@ const Navmenu = () => {
                     />
                 </div>
                 <Nav style={!windowSize.navBurger ? {justifyContent: "flex-end"} : {}}>
-                    <Link to="/" className={windowSize.navBurger ? "link" : "link mobile"}>Home</Link>
-                    <Link to="/about" className="link">About Moringa</Link>
-                    <Link to="/cultivation" className="link">Grow Organic Moringa</Link>
-                    <Link to="/certification" className="link">Get Organic Certification</Link>
-                    <Link to="/partners" className="link">Partners</Link>
-                    <Link to="/contact" className="link">Contact</Link>
+                    <Link to="/" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Home</Link>
+                    <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
+                    <Link to="/cultivation" className="link" activeClassName="linkActive">Grow Organic Moringa</Link>
+                    <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
+                    <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
+                    <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
                     <button className="hamburgBtn">
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
