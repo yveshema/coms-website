@@ -100,12 +100,12 @@ const Navmenu = () => {
                         />
                     </div>
                     <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile` : `navHidden` : {}}>
-                        <Link to="/" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Home</Link>
-                        <Link to="/about" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">About Moringa</Link>
-                        <Link to="/cultivation" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Grow Organic Moringa</Link>
-                        <Link to="/certification" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Get Organic Certification</Link>
-                        <Link to="/partners" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Partners</Link>
-                        <Link to="/contact" className={windowSize.navBurger ? "link" : "link mobile"} activeClassName="linkActive">Contact</Link>
+                        <Link to="/" className="link" activeClassName="linkActive">Home</Link>
+                        <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
+                        <Link to="/cultivation" className="link" activeClassName="linkActive">Grow Organic Moringa</Link>
+                        <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
+                        <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
+                        <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
                         <div className="mobileNavBg">
                             <button className="closeNavBtn" onClick={changeNavState}>
 
