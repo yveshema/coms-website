@@ -55,11 +55,12 @@ query {
 }
 `
 
-const Navmenu = () => {
+const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
         desktop: window.matchMedia("(min-width: 768px)").matches,
         navBurger: window.matchMedia("(min-width: 1280px)").matches,
-        mobileNavActive: false
+        mobileNavActive: false,
+        enableSubMenu: (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing"))
     });
 
     // Checks if the current window size is desktop or mobile
@@ -78,14 +79,14 @@ const Navmenu = () => {
     }
     )
 
+    const data = useStaticQuery(logo);
+
     const changeNavState = () => {
         changeWindowSize({
             ...windowSize,
             mobileNavActive: !windowSize.mobileNavActive
         })
     }
-
-    const data = useStaticQuery(logo);
 
     return (
         <div className="navContainer">
@@ -99,10 +100,20 @@ const Navmenu = () => {
                             className="navImg"
                         />
                     </div>
+
+                    {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
                     <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile` : `navHidden` : {}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className="link" activeClassName="linkActive">Grow Organic Moringa</Link>
+                        {/* Conditionally render submenu if currently on a url that uses it */}
+                        {windowSize.enableSubMenu &&
+                        <div className="subNavContainer">
+                            <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
+                            <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
+                            <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
+                        </div>
+                        }
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
                         <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
                         <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
@@ -114,16 +125,20 @@ const Navmenu = () => {
                                 />
                             </button>
                         </div>
+
+                        {/* This div darkens content below the nav while active and can be clicked to close the menu */}
                         <div className="mobileNavOverlay" onClick={changeNavState}>
                         </div>
                     </Nav>
+
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
                             alt="hamburger"
                         />
                     </button>
-                </div></div>
+                </div>
+            </div>
         </div>
     );
 }
