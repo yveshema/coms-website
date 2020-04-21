@@ -138,18 +138,15 @@ const Navmenu = (props) => {
                         <button className={windowSize.mobileSubMenuToggle ? "mobileCollapse mobileCollapseActive" : "mobileCollapse"} onClick={expandSubNav}>
                             Grow Organic Moringa  <FontAwesomeIcon icon={windowSize.mobileSubMenuToggle ? faChevronUp : faChevronDown} />
                         </button>
-                        {/* Conditionally render submenu if currently on a url that uses it */}
-                        {windowSize.enableSubMenu &&
-                            <div className="subNavContainer">
-                                <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
-                                <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
-                                <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
-                            </div>
-                        }
 
                         {/* Always render these options specifically for the mobile format */}
                         <div className={!windowSize.navBurger ? windowSize.openMobileSubMenu ? "subNavContainer showSubNav" : "subNavContainer" : "navHidden"}>
-                            <button className={windowSize.openCultivationSubMenu ? "sublink subMenuCollapse" : "sublink" } onClick={expandCultivationMenu}>Cultivation <FontAwesomeIcon icon={windowSize.openCultivationSubMenu ? faChevronUp : faChevronDown} /></button>
+                            <button
+                                className={windowSize.openCultivationSubMenu ? "sublink subMenuCollapse" : "sublink"}
+                                style={{ paddingTop: '20px' }}
+                                onClick={expandCultivationMenu}>
+                                Cultivation <FontAwesomeIcon icon={windowSize.openCultivationSubMenu ? faChevronUp : faChevronDown} />
+                            </button>
                             <div className={windowSize.openCultivationSubMenu ? "growingSubMenu" : "navHidden"}>
                                 <Link to="/cultivation#site-selection" className={props.location.hash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
                                 <Link to="/cultivation#soil-preparation" className={props.location.hash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
@@ -159,7 +156,12 @@ const Navmenu = (props) => {
                                 <Link to="/cultivation#pests-and-diseases" className={props.location.hash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
                             </div>
                             <Link to="/transportation" className="sublink" activeClassName="linkActive">Transportation</Link>
-                            <button className={windowSize.openProcessingSubMenu ? "sublink subMenuCollapse" : "sublink" } onClick={expandProcessingMenu}>Processing <FontAwesomeIcon icon={windowSize.openProcessingSubMenu ? faChevronUp : faChevronDown} /></button>
+                            <button
+                                className={windowSize.openProcessingSubMenu ? "sublink subMenuCollapse" : "sublink"}
+                                style={{ paddingBottom: '20px' }}
+                                onClick={expandProcessingMenu}>
+                                Processing <FontAwesomeIcon icon={windowSize.openProcessingSubMenu ? faChevronUp : faChevronDown} />
+                            </button>
                             <div className={windowSize.openProcessingSubMenu ? "growingSubMenu" : "navHidden"}>
                                 <Link to="/processing#leaves" className={props.location.hash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
                                 <Link to="/processing#drying" className={props.location.hash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
@@ -183,6 +185,15 @@ const Navmenu = (props) => {
                         <div className="mobileNavOverlay" onClick={changeNavState}>
                         </div>
                     </Nav>
+
+                    {/* Conditionally render submenu if currently on a url that uses it */}
+                    {windowSize.enableSubMenu &&
+                        <div className="extraNavOptionContainer">
+                            <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Cultivation</Link>
+                            <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
+                            <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">Processing</Link>
+                        </div>
+                    }
 
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
