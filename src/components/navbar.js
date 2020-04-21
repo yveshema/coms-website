@@ -28,10 +28,10 @@ query {
             }
         }
     }
-    closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close32.png" })
+    closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close-48.png" })
     {
         childImageSharp {
-            fixed (height: 48) {
+            fixed (height: 32) {
                 ...GatsbyImageSharpFixed
             }
         }
@@ -108,7 +108,10 @@ const Navmenu = () => {
                         <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
                         <div className="mobileNavBg">
                             <button className="closeNavBtn" onClick={changeNavState}>
-
+                                <Img
+                                    fixed={data.closeNavIcon.childImageSharp.fixed}
+                                    alt="close navigation"
+                                />
                             </button>
                         </div>
                         <div className="mobileNavOverlay" onClick={changeNavState}>
