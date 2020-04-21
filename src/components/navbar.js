@@ -60,7 +60,9 @@ const Navmenu = (props) => {
         desktop: window.matchMedia("(min-width: 768px)").matches,
         navBurger: window.matchMedia("(min-width: 1280px)").matches,
         mobileNavActive: false,
-        enableSubMenu: (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing"))
+        enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
+        mobileSubMenuToggle: "mobileCollapse",
+        openMobileSubMenu: "subNavContainer"
     });
 
     // Checks if the current window size is desktop or mobile
@@ -88,6 +90,16 @@ const Navmenu = (props) => {
         })
     }
 
+    const expandSubNav = () => {
+        let newToggleList = windowSize.mobileSubMenuToggle.includes("mobileCollapseActive") ? "mobileCollapse" : "mobileCollapse mobileCollapseActive";
+        let newVisibleList = windowSize.openMobileSubMenu.includes("showSubNav") ? "subNavContainer" : "subNavContainer showSubNav";
+        changeWindowSize({
+            ...windowSize,
+            mobileSubMenuToggle: newToggleList,
+            openMobileSubMenu: newVisibleList
+        })
+    }
+
     return (
         <div className="navContainer">
             <div className="navWrapper">
@@ -105,7 +117,8 @@ const Navmenu = (props) => {
                     <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile` : `navHidden` : {}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
-                        <Link to="/cultivation" className="link" activeClassName="linkActive">Grow Organic Moringa</Link>
+                        <Link to="/cultivation" className="link" activeClassName="linkActive" style={!windowSize.navBurger ? {display:"none"}: {}}>Grow Organic Moringa</Link>
+                        <button className={windowSize.mobileSubMenuToggle} onClick={expandSubNav}>Grow Organic Moringa</button>
                         {/* Conditionally render submenu if currently on a url that uses it */}
                         {windowSize.enableSubMenu &&
                         <div className="subNavContainer">
@@ -114,6 +127,14 @@ const Navmenu = (props) => {
                             <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
                         </div>
                         }
+
+                        {/* Always render these options specifically for the mobile format */}
+                        <div className={!windowSize.navBurger ? windowSize.openMobileSubMenu : "navHidden"}>
+                            <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
+                            <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
+                            <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
+                        </div>
+
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
                         <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
                         <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
