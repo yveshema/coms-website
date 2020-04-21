@@ -1,3 +1,26 @@
+.bookmarkLink {
+    color: #626262;
+    margin: 0 12% 0 12%;
+    padding: 3px 0;
+    font-size: 18px;
+    font-weight: 400;    
+    font-family: inherit;
+    text-decoration: none;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0);
+    z-index: 2;
+}
+
+.bookmarkActive {
+    color: #3A722E;
+}
+
+.growingSubMenu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .hamburgBtn {
     display: none;
     background-color: transparent;
@@ -53,6 +76,7 @@
 
 .sublink {
     margin: 0 20px;
+    cursor: pointer;
 }
 
 .navMobile {
@@ -120,9 +144,12 @@
     border-bottom: 1px solid #626262;
 }
 
+.subMenuCollapse { 
+    padding-bottom: 15px !important;
+}
+
 .mobileCollapseActive {
-    color: black;
-    font-weight: 600;
+    color: #3A722E;
     border-bottom: 1px solid transparent;
 }
 
@@ -138,7 +165,7 @@
     margin-top: -25%;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1279px) {
     .subNavContainer {
         display: none;
     }
@@ -159,28 +186,25 @@
     .link:last-of-type:not(.mobileCollapse) {
         border-bottom: none;
     }
-    .link:hover, .mobileCollapse:hover {
-        color: black;
-        font-weight: 600;
+    .link:hover, .mobileCollapse:hover, .sublink:hover {
+        color: #3A722E;
     }
     .linkActive {
-        color: black;
-        font-weight: 600;
+        color: #3A722E;
     }
     .sublink {
+        z-index: 2;
         font-size: 18px;
+        color: #626262;
+        font-weight: 500;    
+        font-family: inherit;
+        text-decoration: none;
+        text-align: left;
         width: 100%;
         background-color: #eeeeee;
         border: none;
         padding: 2px 12% 2px 12%;
         margin: 0;
-    }
-    .sublink:first-of-type {
-        padding-top: 20px;
-        margin-top: 0;
-    }
-    .sublink:last-of-type {
-        padding-bottom: 20px;
     }
     .sublink:hover {
         border: none;
