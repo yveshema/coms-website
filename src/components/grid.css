@@ -141,6 +141,31 @@ body {
     z-index: 0;
 }
 
+.mobileCollapse {
+    color: #626262;
+    font-size: 20px;
+    font-weight: 500;    
+    font-family: inherit;
+    text-decoration: none;
+    text-align: center;
+    display: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 2;
+    width: 76%;
+    margin: 0 12% 0 12%;
+    padding: 13px 0;
+    text-align: left;
+    border-bottom: 1px solid #626262;
+}
+
+.mobileCollapseActive {
+    color: black;
+    font-weight: 600;
+    border-bottom: 1px solid transparent;
+}
+
 .navWrapper {
     max-width: 1280px;
     margin: auto;
@@ -218,6 +243,12 @@ footer {
 }
 
 @media only screen and (max-width: 1280px) {
+    .subNavContainer {
+        display: none;
+    }
+    .showSubNav {
+        display: contents;
+    }
     .link {
         z-index: 2;
         width: 76%;
@@ -229,10 +260,10 @@ footer {
     .link:first-of-type {
         margin-top: 60px;
     }
-    .link:last-of-type {
+    .link:last-of-type:not(.mobileCollapse) {
         border-bottom: none;
     }
-    .link:hover {
+    .link:hover, .mobileCollapse:hover {
         color: black;
         font-weight: 600;
     }
@@ -240,11 +271,32 @@ footer {
         color: black;
         font-weight: 600;
     }
+    .sublink {
+        font-size: 18px;
+        width: 100%;
+        background-color: #eeeeee;
+        border: none;
+        padding: 2px 12% 2px 12%;
+        margin: 0;
+    }
+    .sublink:first-of-type {
+        padding-top: 20px;
+        margin-top: 0;
+    }
+    .sublink:last-of-type {
+        padding-bottom: 20px;
+    }
+    .sublink:hover {
+        border: none;
+    }
     .navWrapper {
         padding: 0 30px;
     }
-    .mobileNavBg, .mobileNavOverlay {
+    .mobileNavBg, .mobileNavOverlay, .mobileCollapse {
         display: block;
+    }
+    .collapseActive {
+        border: none;
     }
     .hamburgBtn {
         display: block;
