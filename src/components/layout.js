@@ -11,8 +11,8 @@ import Phone from './contact-phone';
 import Separator from './separator'
 
 
-const Layout = ({ children, pageContext }) => {
-  const {title} = pageContext.frontmatter;
+const Layout = ({ children, pageContext={} }) => {
+  const {title} = pageContext.frontmatter ? pageContext.frontmatter : '';
 
   return (  
     <div>
