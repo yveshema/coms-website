@@ -72,28 +72,6 @@ body {
     margin: 0 auto;    
 }
 
-.navContainer {
-    height: 120px;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 9;
-}
-
-.navWrapper {
-    max-width: 1280px;
-    margin: auto;
-    height: 100%;
-}
-
-.navImg {
-    height: 100%;
-    top: 50%;
-    margin-top: -25%;
-}
-
 .centre {
     margin: 0 auto;
     
@@ -103,36 +81,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-}
-
-.hamburgBtn {
-    display: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.link {
-    color: #626262;
-    font-size: 20px;
-    font-weight: 500;    
-    font-family: inherit;
-    text-decoration: none;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0);
-    height: max-content;
-    position: relative;
-    top: calc(100% - 50px);
-}
-
-.linkActive {
-    color: #3A722E;
-    border-bottom: 1px solid #3A722E;
-}
-
-.link:hover {
-    color: #3A722E;
-    border-bottom: 1px solid #3A722E;
 }
 
 footer {
@@ -152,28 +100,4 @@ footer {
     text-align: center;
     margin: 0;
     padding-bottom: 2em;
-}
-
-@media only screen and (max-width: 1280px) {
-    .link {
-        display: none;
-    }
-    .navWrapper {
-        padding: 0 30px;
-    }
-    .hamburgBtn {
-        display: block;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .navContainer {
-        height: 75px;
-    }
-    .navImg {
-        top: 63%;
-    }
-    .col-2 {
-        width: 100%;
-    }
 }

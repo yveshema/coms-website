@@ -11,13 +11,13 @@ import Phone from './contact-phone';
 import Separator from './separator';
 
 
-const Layout = ({ children, pageContext={} }) => {
+const Layout = ({ location, children, pageContext={} }) => {
   const {tagline, title } = pageContext.frontmatter ? pageContext.frontmatter : {tagline:'', title:''};
 
   return (  
     <div>
       <header>
-      <Navbar />
+      <Navbar location={location}/>
       {tagline && title && <Hero tagline={tagline} path={title} /> }
       </header>
       <div className="wrapper">            
