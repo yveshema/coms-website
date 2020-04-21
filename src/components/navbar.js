@@ -3,6 +3,8 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 const Nav = styled.div`
     display: flex;
@@ -62,8 +64,10 @@ const Navmenu = (props) => {
         navBurger: window.matchMedia("(min-width: 1280px)").matches,
         mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
-        mobileSubMenuToggle: "mobileCollapse",
-        openMobileSubMenu: "subNavContainer"
+        mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
+        openMobileSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
+        openCultivationSubMenu: props.location ? props.location.pathname.includes("cultivation") : false,
+        openProcessingSubMenu: props.location ? props.location.pathname.includes("processing") : false
     });
 
     // Checks if the current window size is desktop or mobile
@@ -92,12 +96,24 @@ const Navmenu = (props) => {
     }
 
     const expandSubNav = () => {
-        let newToggleList = windowSize.mobileSubMenuToggle.includes("mobileCollapseActive") ? "mobileCollapse" : "mobileCollapse mobileCollapseActive";
-        let newVisibleList = windowSize.openMobileSubMenu.includes("showSubNav") ? "subNavContainer" : "subNavContainer showSubNav";
         changeWindowSize({
             ...windowSize,
-            mobileSubMenuToggle: newToggleList,
-            openMobileSubMenu: newVisibleList
+            mobileSubMenuToggle: !windowSize.mobileSubMenuToggle,
+            openMobileSubMenu: !windowSize.openMobileSubMenu
+        })
+    }
+
+    const expandCultivationMenu = () => {
+        changeWindowSize({
+            ...windowSize,
+            openCultivationSubMenu: !windowSize.openCultivationSubMenu,
+        })
+    }
+
+    const expandProcessingMenu = () => {
+        changeWindowSize({
+            ...windowSize,
+            openProcessingSubMenu: !windowSize.openProcessingSubMenu,
         })
     }
 
@@ -118,22 +134,37 @@ const Navmenu = (props) => {
                     <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile` : `navHidden` : {}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
-                        <Link to="/cultivation" className="link" activeClassName="linkActive" style={!windowSize.navBurger ? {display:"none"}: {}}>Grow Organic Moringa</Link>
-                        <button className={windowSize.mobileSubMenuToggle} onClick={expandSubNav}>Grow Organic Moringa</button>
+                        <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>Grow Organic Moringa</Link>
+                        <button className={windowSize.mobileSubMenuToggle ? "mobileCollapse mobileCollapseActive" : "mobileCollapse"} onClick={expandSubNav}>
+                            Grow Organic Moringa  <FontAwesomeIcon icon={windowSize.mobileSubMenuToggle ? faChevronUp : faChevronDown} />
+                        </button>
                         {/* Conditionally render submenu if currently on a url that uses it */}
                         {windowSize.enableSubMenu &&
-                        <div className="subNavContainer">
-                            <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
-                            <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
-                            <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
-                        </div>
+                            <div className="subNavContainer">
+                                <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
+                                <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
+                                <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
+                            </div>
                         }
 
                         {/* Always render these options specifically for the mobile format */}
-                        <div className={!windowSize.navBurger ? windowSize.openMobileSubMenu : "navHidden"}>
-                            <Link to="/cultivation" className="link sublink" activeClassName="linkActive">Cultivation</Link>
-                            <Link to="/transportation" className="link sublink" activeClassName="linkActive">Transportation</Link>
-                            <Link to="/processing" className="link sublink" activeClassName="linkActive">Processing</Link>
+                        <div className={!windowSize.navBurger ? windowSize.openMobileSubMenu ? "subNavContainer showSubNav" : "subNavContainer" : "navHidden"}>
+                            <button className={windowSize.openCultivationSubMenu ? "sublink subMenuCollapse" : "sublink" } onClick={expandCultivationMenu}>Cultivation <FontAwesomeIcon icon={windowSize.openCultivationSubMenu ? faChevronUp : faChevronDown} /></button>
+                            <div className={windowSize.openCultivationSubMenu ? "growingSubMenu" : "navHidden"}>
+                                <Link to="/cultivation#site-selection" className={props.location.hash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
+                                <Link to="/cultivation#soil-preparation" className={props.location.hash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
+                                <Link to="/cultivation#propagation" className={props.location.hash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
+                                <Link to="/cultivation#planting" className={props.location.hash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
+                                <Link to="/cultivation#care" className={props.location.hash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
+                                <Link to="/cultivation#pests-and-diseases" className={props.location.hash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                            </div>
+                            <Link to="/transportation" className="sublink" activeClassName="linkActive">Transportation</Link>
+                            <button className={windowSize.openProcessingSubMenu ? "sublink subMenuCollapse" : "sublink" } onClick={expandProcessingMenu}>Processing <FontAwesomeIcon icon={windowSize.openProcessingSubMenu ? faChevronUp : faChevronDown} /></button>
+                            <div className={windowSize.openProcessingSubMenu ? "growingSubMenu" : "navHidden"}>
+                                <Link to="/processing#leaves" className={props.location.hash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
+                                <Link to="/processing#drying" className={props.location.hash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
+                                <Link to="/processing#packaging" className={props.location.hash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                            </div>
                         </div>
 
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
