@@ -8,17 +8,17 @@ import './grid.css'
 import ContactEmail from './contact-email';
 import Location from './contact-location';
 import Phone from './contact-phone';
-import Separator from './separator'
+import Separator from './separator';
 
 
 const Layout = ({ children, pageContext={} }) => {
-  const {title} = pageContext.frontmatter ? pageContext.frontmatter : '';
+  const {tagline, title } = pageContext.frontmatter ? pageContext.frontmatter : {tagline:'', title:''};
 
   return (  
     <div>
       <header>
       <Navbar />
-      <Hero title={title}/>
+      {tagline && title && <Hero tagline={tagline} path={title} /> }
       </header>
       <div className="wrapper">            
         <div className="row">
