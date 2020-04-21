@@ -1,3 +1,16 @@
+.growingSubMenu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburgBtn {
+    display: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .bookmarkLink {
     color: #626262;
     margin: 0 12% 0 12%;
@@ -15,20 +28,7 @@
     color: #3A722E;
 }
 
-.growingSubMenu {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.hamburgBtn {
-    display: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.link {
+.link, .extraNavLink {
     color: #626262;
     font-size: 20px;
     font-weight: 500;    
@@ -41,12 +41,7 @@
     top: calc(100% - 50px);
 }
 
-.linkActive {
-    color: #3A722E;
-    border-bottom: 1px solid #3A722E;
-}
-
-.link:hover {
+.linkActive, .link:hover {
     color: #3A722E;
     border-bottom: 1px solid #3A722E;
 }
@@ -62,7 +57,7 @@
     box-shadow: 0 0 5px lightslategray;
 }
 
-.subNavContainer {
+.subNavContainer, .extraNavOptionContainer {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -74,7 +69,7 @@
     left: 0;
 }
 
-.sublink {
+.sublink, .extraNavOptions {
     margin: 0 20px;
     cursor: pointer;
 }
@@ -186,12 +181,10 @@
     .link:last-of-type:not(.mobileCollapse) {
         border-bottom: none;
     }
-    .link:hover, .mobileCollapse:hover, .sublink:hover {
+    .linkActive, .link:hover, .mobileCollapse:hover, .sublink:hover {
         color: #3A722E;
     }
-    .linkActive {
-        color: #3A722E;
-    }
+
     .sublink {
         z-index: 2;
         font-size: 18px;
@@ -203,34 +196,38 @@
         width: 100%;
         background-color: #eeeeee;
         border: none;
-        padding: 2px 12% 2px 12%;
+        padding: 5px 12%;
         margin: 0;
     }
-    .sublink:hover {
-        border: none;
-    }
+
     .navWrapper {
         padding: 0 30px;
     }
-    .mobileNavBg, .mobileNavOverlay, .mobileCollapse {
+    .hamburgBtn, .mobileNavBg, .mobileNavOverlay, .mobileCollapse {
         display: block;
     }
-    .collapseActive {
+    .sublink:hover, .collapseActive {
         border: none;
-    }
-    .hamburgBtn {
-        display: block;
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
     .navContainer {
         height: 75px;
+    }
+    .extraNavOptionContainer {
+        top: 75px;
     }
     .navImg {
         top: 63%;
     }
     .col-2 {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .extraNavOptionContainer {
+        display: none;
     }
 }
