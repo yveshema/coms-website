@@ -61,8 +61,8 @@ query {
 
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
-        desktop: window.matchMedia("(min-width: 768px)").matches,
-        navBurger: window.matchMedia("(min-width: 1280px)").matches,
+        desktop: window.matchMedia("(min-width: 769px)").matches,
+        navBurger: window.matchMedia("(min-width: 1281px)").matches,
         mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
@@ -76,8 +76,8 @@ const Navmenu = (props) => {
         function handleWindowChange() {
             changeWindowSize({
                 ...windowSize,
-                desktop: window.matchMedia("(min-width: 768px)").matches,
-                navBurger: window.matchMedia("(min-width: 1280px)").matches
+                desktop: window.matchMedia("(min-width: 769px)").matches,
+                navBurger: window.matchMedia("(min-width: 1281px)").matches
             });
         }
         window.addEventListener('resize', handleWindowChange);
@@ -214,7 +214,7 @@ const Navmenu = (props) => {
                         </div>
                     }
 
-                    <SearchBar />
+                    <SearchBar currWidth={windowSize.desktop}/>
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
