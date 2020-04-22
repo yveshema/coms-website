@@ -192,9 +192,13 @@
 
 #search {
     position: relative;
-    right: -35px;
+    left: 35px;
     width: 100%;
-    max-width: 300px;
+    max-width: 350px;
+    border-radius: 0.2rem;
+    border: 2px solid lightgray;
+    color: #626262;
+    padding: 1px 11px;
     z-index: 0;
 }
 
@@ -208,11 +212,31 @@
 
 .languageBtn {
     padding-right: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    min-width: 60px;
+    margin-left: 20px;
+}
+
+.languageOptionBtn {
+    display: inline-block;
+    border: none;
+    margin: 0;
+    text-decoration: none;
+    background: transparent;
+    color: #626262;
+    cursor: pointer;
+}
+
+.languageOptionBtn:first-of-type {
+    margin-bottom: 10px;
 }
 
 .searchOpenBtn {
     position: relative;
-    top: 0;
+    top: 3px;
+    right: 5px;
+    overflow: visible;
 }
 
 @media only screen and (max-width: 1279px) {
@@ -265,8 +289,15 @@
         border: none;
     }
 
+    .searchDiv {
+        top: 4%;
+    }
+
     .languageBtn {
         margin-right: 140px;
+    }
+    .languageOptionDiv { 
+        right: 120px;
     }
 }
 
@@ -287,12 +318,37 @@
         margin-right: 120px;
     }
     #search {
-        margin-left: 180px;
+        margin-left: 140px;
+    }
+    .searchDiv {
+        top: 2%;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    #search {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        margin-left: 0;
+        max-width: 100%;
+    }
+    .languageBtn {
+        margin-left: 0;
     }
 }
 
 @media only screen and (max-width: 524px) {
     .extraNavOptionContainer {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .navWrapper {
+        padding: 0 10px;
+    }
+    .languageBtn {
+        margin-right: 65px;
     }
 }
