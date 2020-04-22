@@ -241,7 +241,7 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 524px) {
     .extraNavOptionContainer {
         display: none;
     }
