@@ -5,6 +5,7 @@ import styled from "styled-components"
 import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import SearchBar from './search-bar';
 
 const Nav = styled.div`
     display: flex;
@@ -212,13 +213,15 @@ const Navmenu = (props) => {
                             </Link>
                         </div>
                     }
-
+                    
+                    <SearchBar />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
                             alt="hamburger"
                         />
                     </button>
+
                 </div>
             </div>
         </div>
