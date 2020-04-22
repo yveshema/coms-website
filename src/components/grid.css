@@ -1,15 +1,40 @@
+/* Set up responsive font sizing 
+WORK IN PROGRESS */
+html {
+    font-size: 16px;
+}
+
+@media screen and (min-width: 320px) {
+    html {
+        font-size: calc(16px + 6 * ((100vw - 320) / 680));
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    html {
+        font-size: 18px;
+    }
+}
+
 body {
     background-color: #F8F8F8;    
 }
 
+.pagewrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .wrapper {
-    margin: 0 100px;
-    height: 100%;
+    margin: 0 100px;   
+    flex: 1;
 }
 
 .row {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between; 
+    padding: 50px 0;   
 }
 
 .col-1{
@@ -84,8 +109,9 @@ body {
 }
 
 footer {
+    /* display:flex; */
     background-color: #2F5926;
-    height: 200px;
+    height: 200px;      
 }
 
 .align-vert {    
