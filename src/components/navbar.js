@@ -5,6 +5,7 @@ import styled from "styled-components"
 import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import SearchBar from './search-bar';
 
 const Nav = styled.div`
     display: flex;
@@ -87,6 +88,7 @@ const Navmenu = (props) => {
     )
 
     const data = useStaticQuery(logo);
+    const currPathHash = props.location ? props.location.hash : "undefined";
 
     const changeNavState = () => {
         changeWindowSize({
@@ -120,7 +122,7 @@ const Navmenu = (props) => {
     return (
         <div className="navContainer">
             <div className="navWrapper">
-                <div className="row" style={{ height: '100%' }}>
+                <div className="row" style={{ height: '100%', padding: '0' }}>
                     <div style={{ width: "170px" }}>
                         <Img
                             // Image is dynamically selected depending on current window size
@@ -148,12 +150,12 @@ const Navmenu = (props) => {
                                 Cultivation <FontAwesomeIcon icon={windowSize.openCultivationSubMenu ? faChevronUp : faChevronDown} />
                             </button>
                             <div className={windowSize.openCultivationSubMenu ? "growingSubMenu" : "navHidden"}>
-                                <Link to="/cultivation#site-selection" className={props.location.hash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
-                                <Link to="/cultivation#soil-preparation" className={props.location.hash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
-                                <Link to="/cultivation#propagation" className={props.location.hash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
-                                <Link to="/cultivation#planting" className={props.location.hash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
-                                <Link to="/cultivation#care" className={props.location.hash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
-                                <Link to="/cultivation#pests-and-diseases" className={props.location.hash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
+                                <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
+                                <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
+                                <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
+                                <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
+                                <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
                             </div>
                             <Link to="/transportation" className="sublink" activeClassName="linkActive">Transportation</Link>
                             <button
@@ -163,9 +165,9 @@ const Navmenu = (props) => {
                                 Processing <FontAwesomeIcon icon={windowSize.openProcessingSubMenu ? faChevronUp : faChevronDown} />
                             </button>
                             <div className={windowSize.openProcessingSubMenu ? "growingSubMenu" : "navHidden"}>
-                                <Link to="/processing#leaves" className={props.location.hash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
-                                <Link to="/processing#drying" className={props.location.hash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
-                                <Link to="/processing#packaging" className={props.location.hash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
+                                <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
+                                <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
                             </div>
                         </div>
 
@@ -192,32 +194,34 @@ const Navmenu = (props) => {
                             <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
                                 Cultivation <FontAwesomeIcon icon={faChevronDown} />
                                 <div className="dropdownSubMenu">            
-                                    <Link to="/cultivation#site-selection" className={props.location.hash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
-                                    <Link to="/cultivation#soil-preparation" className={props.location.hash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
-                                    <Link to="/cultivation#propagation" className={props.location.hash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
-                                    <Link to="/cultivation#planting" className={props.location.hash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
-                                    <Link to="/cultivation#care" className={props.location.hash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
-                                    <Link to="/cultivation#pests-and-diseases" className={props.location.hash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                    <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
+                                    <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
+                                    <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
+                                    <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
+                                    <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
+                                    <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
                                 </div>
                             </Link>
                             <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
                             <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">
                                 Processing <FontAwesomeIcon icon={faChevronDown} />
                                 <div className="dropdownSubMenu">
-                                    <Link to="/processing#leaves" className={props.location.hash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
-                                    <Link to="/processing#drying" className={props.location.hash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
-                                    <Link to="/processing#packaging" className={props.location.hash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                    <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
+                                    <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
+                                    <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
                                 </div>
                             </Link>
                         </div>
                     }
 
+                    <SearchBar />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
                             alt="hamburger"
                         />
                     </button>
+
                 </div>
             </div>
         </div>
