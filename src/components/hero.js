@@ -13,8 +13,8 @@ const images = {
 
 const Container = styled.div`
 position: relative;
-margin-top: 120px;
-margin-bottom: 100px;
+// margin-top: 120px;
+// margin-bottom: 100px;
 `
 
 const Tagline = styled.div`
