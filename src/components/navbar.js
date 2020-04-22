@@ -189,9 +189,26 @@ const Navmenu = (props) => {
                     {/* Conditionally render submenu if currently on a url that uses it */}
                     {windowSize.enableSubMenu &&
                         <div className="extraNavOptionContainer">
-                            <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Cultivation</Link>
+                            <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
+                                Cultivation <FontAwesomeIcon icon={faChevronDown} />
+                                <div className="dropdownSubMenu">            
+                                    <Link to="/cultivation#site-selection" className={props.location.hash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
+                                    <Link to="/cultivation#soil-preparation" className={props.location.hash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
+                                    <Link to="/cultivation#propagation" className={props.location.hash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
+                                    <Link to="/cultivation#planting" className={props.location.hash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
+                                    <Link to="/cultivation#care" className={props.location.hash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
+                                    <Link to="/cultivation#pests-and-diseases" className={props.location.hash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                </div>
+                            </Link>
                             <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
-                            <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">Processing</Link>
+                            <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">
+                                Processing <FontAwesomeIcon icon={faChevronDown} />
+                                <div className="dropdownSubMenu">
+                                    <Link to="/processing#leaves" className={props.location.hash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
+                                    <Link to="/processing#drying" className={props.location.hash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
+                                    <Link to="/processing#packaging" className={props.location.hash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                </div>
+                            </Link>
                         </div>
                     }
 
