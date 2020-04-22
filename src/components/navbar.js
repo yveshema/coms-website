@@ -122,7 +122,7 @@ const Navmenu = (props) => {
     return (
         <div className="navContainer">
             <div className="navWrapper">
-                <div className="row" style={{ height: '100%' }}>
+                <div className="row" style={{ height: '100%', padding: '0' }}>
                     <div style={{ width: "170px" }}>
                         <Img
                             // Image is dynamically selected depending on current window size
@@ -213,7 +213,7 @@ const Navmenu = (props) => {
                             </Link>
                         </div>
                     }
-                    
+
                     <SearchBar />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
