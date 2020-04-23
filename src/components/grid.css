@@ -111,13 +111,14 @@ body {
 footer {
     /* display:flex; */
     background-color: #2F5926;
-    height: 200px;      
+    height: max-content;      
 }
 
 .align-vert {    
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;    
-    padding:50px 0;    
+    padding:50px 0;
 }
 
 .copyright {
@@ -125,5 +126,23 @@ footer {
     font-size: .8em;
     text-align: center;
     margin: 0;
-    padding-bottom: 2em;
+    padding-bottom: 1.5em;
+}
+
+@media only screen and (max-width: 1280px) {
+    .align-vert {
+        max-width: max-content;
+        padding-bottom:25px;
+    }
+}
+
+@media only screen and (max-width: 675px) {
+    .align-vert {
+        justify-content: flex-start;
+        padding-top:25px;
+    }
+    .wrapper {
+        margin: 0 20px;
+        padding:10px 0;
+    }
 }
