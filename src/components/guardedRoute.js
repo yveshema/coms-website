@@ -16,12 +16,6 @@ align-items: center;
 
 const GuardedRoute = ({children}) => {
     
-    // useEffect(() => {
-    //     if (!isLoggedIn()){    
-    //         navigate("/login");                                 
-    //     }
-    // }); 
-    
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
