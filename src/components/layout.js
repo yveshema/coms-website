@@ -6,10 +6,12 @@ import Navbar from './navbar';
 import Hero from './hero';
 import './grid.css';
 
-import ContactEmail from './contact-email';
-import Location from './contact-location';
-import Phone from './contact-phone';
+import Contact from './contact-component';
 import Separator from './separator';
+
+import ContactEnvelope from '../images/icons/ui-icons/envelope.svg';
+import ContactLocation from '../images/icons/ui-icons/location-icon.svg';
+import ContactPhone from '../images/icons/ui-icons/phone-icon.svg';
 
 // The navbar is fixed positioned, which would cause it to
 // overlap content below it. Apply a top margin to the content
@@ -43,12 +45,13 @@ const Layout = ({ location, children, pageContext={} }) => {
         </div>          
       </div>
       <footer>
-        <div className="wrapper"><div className="container align-vert">
-          <ContactEmail />
+        <div className="wrapper">
+          <div className="container align-vert">
+          <Contact icon={ContactEnvelope} content='Contactemail@email.com' />
           <Separator />
-          <Location />
+          <Contact icon={ContactLocation} content='Suit 111 Street Name, Zip 333 333, City Name, Country Name' />
           <Separator />
-          <Phone />
+          <Contact icon={ContactPhone} content='+1(123) 456 7890' />
         </div>
         <div>
           <p className="copyright">Copyrights | Terms and Conditions</p>
