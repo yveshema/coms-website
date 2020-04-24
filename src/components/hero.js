@@ -15,27 +15,37 @@ const Container = styled.div`
 position: relative;
 // margin-top: 120px;
 // margin-bottom: 100px;
+@media only screen and (max-width: 524px) {
+    margin-top: 0 !important;
+}
 `
 
 const Tagline = styled.div`
 position: absolute;
-width: 55%;
+max-width: 768px;
+width: 100%;
 margin: 0 auto;
 color: white;
-font-size: 20px;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-display: flex;
-flex-direction: row;
-align-items: center;
+font-size: 48px;
+line-height: normal;
+text-shadow: 3px 3px 2px black;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+@media only screen and (max-width: 769px) {
+    padding: 0 30px;
+    font-size: 24px;
+    max-width: 100%;
+}
+@media only screen and (max-width: 400px) {
+    display: none;
+}
 `
 
 const Hero = ({tagline, path}) => {
     return (
-        <Container>          
-	        <Image src={images[path]} fluid/>	
+        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "65px"} : {}}>          
+	        <Image src={images[path]} className="hero-img"/>	
             <Tagline><span>{tagline}</span></Tagline>        
         </Container>
 );
