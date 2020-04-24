@@ -61,9 +61,9 @@ query {
 
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
-        desktop: window.matchMedia("(min-width: 769px)").matches,
-        navBurger: window.matchMedia("(min-width: 1281px)").matches,
-        mobileNavActive: false,
+        desktop: null,
+        navBurger: null, 
+        mobileNavActive: false,        
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         openMobileSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
