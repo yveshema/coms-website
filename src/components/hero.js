@@ -27,6 +27,7 @@ width: 100%;
 margin: 0 auto;
 color: white;
 font-size: 48px;
+font-weight: 500;
 line-height: normal;
 text-shadow: 3px 3px 2px black;
 top: 50%;
