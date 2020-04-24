@@ -239,7 +239,7 @@
     overflow: visible;
 }
 
-@media only screen and (max-width: 1279px) {
+@media only screen and (max-width: 1280px) {
     .subNavContainer {
         display: none;
     }
@@ -301,7 +301,7 @@
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 769px) {
     .navContainer {
         height: 75px;
     }
