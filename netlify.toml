@@ -1,0 +1,23 @@
+# Build configuration file for deploying on Netlify
+# Support for multi-environment builds, as needed
+# "base" is the directory where the build script is run from
+# "publish" is the directory to publish
+# "command" is the build command
+
+[build]
+    base    = ""
+    publish = "build"
+    command = "REACT_APP_STAGE=dev npm run build"
+
+# Production context: New commits to the main
+# repo will be deployed with these settings
+[context.production]
+    command = "REACT_APP_STAGE=prod npm run build"
+
+# Deploy Preview context: Allow deploy previews
+[context.deploy-preview]
+    command = "REACT_APP_STAGE=dev npm run build"
+
+# Branch Deploy context: Commits pushed to other branches.
+[context.branch-deploy]
+    command = "REACT_APP_STAGE=dev npm run build"
