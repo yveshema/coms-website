@@ -63,7 +63,7 @@ const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
         desktop: null,
         navBurger: null, 
-        mobileNavActive: false,        
+        mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         openMobileSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
@@ -71,24 +71,30 @@ const Navmenu = (props) => {
         openProcessingSubMenu: props.location ? props.location.pathname.includes("processing") : false
     });
 
-    // Checks if the current window size is desktop or mobile
+    // Performs new check on window size every time the window size is changed
     useEffect(() => {
-        function handleWindowChange() {
-            changeWindowSize({
-                ...windowSize,
-                desktop: window.matchMedia("(min-width: 769px)").matches,
-                navBurger: window.matchMedia("(min-width: 1281px)").matches
-            });
-        }
         window.addEventListener('resize', handleWindowChange);
         return _ => {
             window.removeEventListener('resize', handleWindowChange);
         }
-    }
-    )
+    })
+
+    // Run once after component mounts to determine current window size
+    useEffect(() => {
+        handleWindowChange();
+    }, [])
 
     const data = useStaticQuery(logo);
     const currPathHash = props.location ? props.location.hash : "undefined";
+
+    // Checks if the current window size is desktop or mobile
+    const handleWindowChange = () => {
+        changeWindowSize({
+            ...windowSize,
+            desktop: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 769px)").matches : null,
+            navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1281px)").matches : null
+        });
+    }
 
     const changeNavState = () => {
         changeWindowSize({
