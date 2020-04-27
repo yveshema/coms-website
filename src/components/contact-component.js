@@ -6,17 +6,18 @@ display: flex;
 flex-direction: column;
 align-items: center;
 color: white;
-font-size: 20px;
+font-size: 18px;
+font-weight: 300;
 margin: auto;
 img {
-    height: 1em;    
+    height: 1em;
+    margin-bottom: 1rem;
 }
 span {
     margin-top: -1em; 
 }
 
 @media only screen and (max-width: 1280px) {
-    font-size: 18px;
     flex-direction: row;
     :first-of-type { 
         order: 1;
@@ -30,7 +31,7 @@ span {
     img {
         margin-right: 5px;
         height: 30px;
-        min-width: 30px;
+        max-width: 30px;
     }
 }
 
