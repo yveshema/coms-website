@@ -187,7 +187,7 @@
     max-width: 1280px;
     display: flex;
     justify-content: flex-end;
-    top: 3%;
+    top: 25px;
 }
 
 #search {
@@ -291,7 +291,7 @@
     }
 
     .searchDiv {
-        top: 4%;
+        top: 45px;
     }
 
     .languageBtn {
@@ -302,7 +302,7 @@
     }
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 768px) {
     .navContainer {
         height: 75px;
     }
@@ -322,7 +322,7 @@
         margin-left: 140px;
     }
     .searchDiv {
-        top: 2%;
+        top: 24px;
     }
 }
 
