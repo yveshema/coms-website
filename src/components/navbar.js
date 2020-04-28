@@ -92,7 +92,7 @@ const Navmenu = (props) => {
         changeWindowSize({
             ...windowSize,
             desktop: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 769px)").matches : null,
-            navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1281px)").matches : null
+            navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1051px)").matches : null
         });
     }
 
