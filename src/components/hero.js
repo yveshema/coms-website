@@ -29,7 +29,7 @@ color: white;
 font-size: 48px;
 font-weight: 500;
 line-height: normal;
-text-shadow: 3px 3px 2px black;
+text-shadow: 0 3px 6px rgba(0, 0, 0, 0.502);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
