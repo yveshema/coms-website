@@ -3,9 +3,12 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './search-bar';
+
+import DesktopLogo from '../images/logos/COMS_desktop_logo.svg';
+import MobileLogo from '../images/logos/COMS_mobile_logo.svg';
 
 const Nav = styled.div`
     display: flex;
@@ -16,22 +19,6 @@ const Nav = styled.div`
 
 const logo = graphql`
 query {
-    mobile: file(relativePath: { eq: "logos/secondary logo dark green.png" })
-    {
-        childImageSharp {
-            fixed (height: 50) {
-                ...GatsbyImageSharpFixed
-            }
-        }
-    }
-    desktop: file(relativePath: { eq: "logos/primary logo dark green.png" })
-    {
-        childImageSharp {
-            fixed (height: 75) {
-                ...GatsbyImageSharpFixed
-            }
-        }
-    }
     closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close-48.png" })
     {
         childImageSharp {
@@ -51,7 +38,7 @@ query {
     hamburgerMobile: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
     {
         childImageSharp {
-            fixed (height: 32) {
+            fixed (height: 30) {
                 ...GatsbyImageSharpFixed
             }
         }
@@ -129,13 +116,8 @@ const Navmenu = (props) => {
         <div className="navContainer">
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
-                    <div style={{ width: "170px" }}>
-                        <Img
-                            // Image is dynamically selected depending on current window size
-                            fixed={windowSize.desktop ? data.desktop.childImageSharp.fixed : data.mobile.childImageSharp.fixed}
-                            alt="primary logo"
-                            className="navImg"
-                        />
+                    <div style={{ minWidth: "170px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{width: "170px", marginBottom: '0'}}/>
                     </div>
 
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
