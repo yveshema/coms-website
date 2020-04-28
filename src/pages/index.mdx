@@ -4,8 +4,11 @@ and export quality."
 title: home
 ---
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import ActionCard from '../components/action-card';
+import ActionList from '../components/action-list';
+import data from '../data/home-actions';
 
 <SEO title="Home" keywords={['moringa', 'organic', 'standard']} />
 
@@ -31,44 +34,9 @@ Enterprise (CDE), CROSQ and CARDI, as well as financial support from the IADB.
 <!-- content within this section will eventuall be replaced
      by card components whenever available -->
 <section>
-<div>
-<p>COMS is on a mission 
-to improve moringa leaf
-farming and processing
-in order to meet sanitary 
-and nutritional standards.</p>
-
-<p>Apply for your 
-certification today.</p>
-
-<button>Get certified organic</button>
-</div>
-
-<div>
-<p>Moringa Oleifera is an 
-exceptional resource for 
-developing countries.</p> 
-
-<p>This “Superfood” is a 
-nutritionally rich 
-vegetable available in 
-nations with tropical 
-and subtropical climate.</p>
-
-<button>Learn more</button>
-</div>
-
-<div>
-<p>Moringa leaves were 
-ranked top vegetable by
-the World Vegetable Center</p> 
-
-<p>(AVRDC)The moringa leaf is a
-new promising source
-of income, sustainable
-agriculture and 
-business growth.</p>
-
-<button>Invest in moringa</button>
-</div>
+<ActionList>
+     <ActionCard content={data.certification} />
+     <ActionCard content={data.learn} />
+     <ActionCard content={data.invest} />
+</ActionList>
 </section>
