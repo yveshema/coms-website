@@ -45,7 +45,7 @@ transform: translate(-50%, -50%);
 
 const Hero = ({tagline, path}) => {
     return (
-        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "65px"} : {}}>          
+        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>          
 	        <Image src={images[path]} className="hero-img"/>	
             <Tagline><span>{tagline}</span></Tagline>        
         </Container>
