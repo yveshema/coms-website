@@ -1,6 +1,6 @@
 import { Amplify } from "aws-amplify";
 
-import GuardedRoute from "./src/components/guardedRoute";
+// import GuardedRoute from "./src/components/guardedRoute";
 import config from "./src/config";
 
 Amplify.configure({
@@ -12,4 +12,4 @@ Amplify.configure({
     }
 });
 
-export const wrapRootElement = GuardedRoute;
+// export const wrapRootElement = GuardedRoute;
