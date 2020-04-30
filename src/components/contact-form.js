@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Button from "./generic-button";
+import Success from "./success";
 
 const Row = styled.div`
 width: 100%;
@@ -67,7 +68,7 @@ color: #fff;
 `;
 
 
-const ContactForm = () => {
+const ContactForm = ({ onSuccess }) => {
     const [inputs, setInputs] = useState({
         fname: "",
         lname: "",
@@ -95,7 +96,6 @@ const ContactForm = () => {
         msg: "Invalid message body",
     }
 
-    
     // Returns true if all input values are valid
     // Returns false otherwise
     const validateInputs = () => {
@@ -105,11 +105,11 @@ const ContactForm = () => {
         
         // Define a minimal set of rules to validate inputs against
         const rules = {
-            fname: /\w{2,}/,
+            fname: /\w{2,}/,    // disallow less than 2 characters in the name
             lname: /\w{2,}/,
-            email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/,
-            tel: /^(\d{3}-\d{3}-\d{4})?$/,
-            subj: /\w{4,}/,
+            email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
+            tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
+            subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
             msg: /\w{4,}/,
         };
         
@@ -151,9 +151,11 @@ const ContactForm = () => {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();        
-        const validated = validateInputs()? true : false;        
-        return validated;
+        e.preventDefault();
+        let status;        
+        if ( status = validateInputs()) 
+            onSuccess(true);
+        return status;
     }
 
     return (
