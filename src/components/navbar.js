@@ -101,14 +101,14 @@ const Navmenu = (props) => {
     const expandCultivationMenu = () => {
         changeWindowSize({
             ...windowSize,
-            openCultivationSubMenu: !windowSize.openCultivationSubMenu,
+            openCultivationSubMenu: !windowSize.openCultivationSubMenu
         })
     }
 
     const expandProcessingMenu = () => {
         changeWindowSize({
             ...windowSize,
-            openProcessingSubMenu: !windowSize.openProcessingSubMenu,
+            openProcessingSubMenu: !windowSize.openProcessingSubMenu
         })
     }
 
@@ -184,7 +184,7 @@ const Navmenu = (props) => {
                     {windowSize.enableSubMenu &&
                         <div className="extraNavOptionContainer">
                             <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
-                                Cultivation <FontAwesomeIcon icon={faChevronDown} />
+                                Cultivation <FontAwesomeIcon icon={faChevronDown}/>
                                 <div className="dropdownSubMenu">            
                                     <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
                                     <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
@@ -206,7 +206,7 @@ const Navmenu = (props) => {
                         </div>
                     }
 
-                    <SearchBar currWidth={windowSize.desktop}/>
+                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
