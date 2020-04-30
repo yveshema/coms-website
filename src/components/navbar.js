@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import AnimateHeight from 'react-animate-height';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './search-bar';
+
+import DesktopLogo from '../images/logos/COMS_desktop_logo.svg';
+import MobileLogo from '../images/logos/COMS_mobile_logo.svg';
 
 const Nav = styled.div`
     display: flex;
@@ -16,22 +20,6 @@ const Nav = styled.div`
 
 const logo = graphql`
 query {
-    mobile: file(relativePath: { eq: "logos/secondary logo dark green.png" })
-    {
-        childImageSharp {
-            fixed (height: 50) {
-                ...GatsbyImageSharpFixed
-            }
-        }
-    }
-    desktop: file(relativePath: { eq: "logos/primary logo dark green.png" })
-    {
-        childImageSharp {
-            fixed (height: 75) {
-                ...GatsbyImageSharpFixed
-            }
-        }
-    }
     closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close-48.png" })
     {
         childImageSharp {
@@ -51,7 +39,7 @@ query {
     hamburgerMobile: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
     {
         childImageSharp {
-            fixed (height: 32) {
+            fixed (height: 30) {
                 ...GatsbyImageSharpFixed
             }
         }
@@ -66,7 +54,6 @@ const Navmenu = (props) => {
         mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
-        openMobileSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         openCultivationSubMenu: props.location ? props.location.pathname.includes("cultivation") : false,
         openProcessingSubMenu: props.location ? props.location.pathname.includes("processing") : false
     });
@@ -92,7 +79,7 @@ const Navmenu = (props) => {
         changeWindowSize({
             ...windowSize,
             desktop: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 769px)").matches : null,
-            navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1281px)").matches : null
+            navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1051px)").matches : null
         });
     }
 
@@ -106,8 +93,7 @@ const Navmenu = (props) => {
     const expandSubNav = () => {
         changeWindowSize({
             ...windowSize,
-            mobileSubMenuToggle: !windowSize.mobileSubMenuToggle,
-            openMobileSubMenu: !windowSize.openMobileSubMenu
+            mobileSubMenuToggle: !windowSize.mobileSubMenuToggle
         })
     }
 
@@ -129,17 +115,12 @@ const Navmenu = (props) => {
         <div className="navContainer">
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
-                    <div style={{ width: "170px" }}>
-                        <Img
-                            // Image is dynamically selected depending on current window size
-                            fixed={windowSize.desktop ? data.desktop.childImageSharp.fixed : data.mobile.childImageSharp.fixed}
-                            alt="primary logo"
-                            className="navImg"
-                        />
+                    <div style={{ minWidth: "170px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{width: "170px", marginBottom: '0'}}/>
                     </div>
 
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile` : `navHidden` : {}}>
+                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : `navMobile navSlideOut` : {}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>Grow Organic Moringa</Link>
@@ -148,21 +129,23 @@ const Navmenu = (props) => {
                         </button>
 
                         {/* Always render these options specifically for the mobile format */}
-                        <div className={!windowSize.navBurger ? windowSize.openMobileSubMenu ? "subNavContainer showSubNav" : "subNavContainer" : "navHidden"}>
+                        <AnimateHeight duration={300} height={windowSize.mobileSubMenuToggle ? "auto" : 0} className={!windowSize.navBurger ? "subNavContainer" : "navHidden"}>
                             <button
                                 className={windowSize.openCultivationSubMenu ? "sublink subMenuCollapse" : "sublink"}
                                 style={{ paddingTop: '20px' }}
                                 onClick={expandCultivationMenu}>
                                 Cultivation <FontAwesomeIcon icon={windowSize.openCultivationSubMenu ? faChevronUp : faChevronDown} />
                             </button>
-                            <div className={windowSize.openCultivationSubMenu ? "growingSubMenu" : "navHidden"}>
-                                <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
-                                <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
-                                <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
-                                <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
-                                <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
-                                <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
-                            </div>
+                            <AnimateHeight duration={300} height={windowSize.openCultivationSubMenu ? "auto" : 0}>
+                                <div className="growingSubMenu">
+                                    <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
+                                    <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
+                                    <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
+                                    <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
+                                    <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
+                                    <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                </div>
+                            </AnimateHeight>
                             <Link to="/transportation" className="sublink" activeClassName="linkActive">Transportation</Link>
                             <button
                                 className={windowSize.openProcessingSubMenu ? "sublink subMenuCollapse" : "sublink"}
@@ -170,12 +153,14 @@ const Navmenu = (props) => {
                                 onClick={expandProcessingMenu}>
                                 Processing <FontAwesomeIcon icon={windowSize.openProcessingSubMenu ? faChevronUp : faChevronDown} />
                             </button>
-                            <div className={windowSize.openProcessingSubMenu ? "growingSubMenu" : "navHidden"}>
-                                <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
-                                <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
-                                <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
-                            </div>
-                        </div>
+                            <AnimateHeight duration={300} height={windowSize.openProcessingSubMenu ? "auto" : 0}>
+                                <div className="growingSubMenu">
+                                    <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
+                                    <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
+                                    <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                </div>
+                            </AnimateHeight>
+                        </AnimateHeight>
 
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
                         <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
@@ -190,7 +175,7 @@ const Navmenu = (props) => {
                         </div>
 
                         {/* This div darkens content below the nav while active and can be clicked to close the menu */}
-                        <div className="mobileNavOverlay" onClick={changeNavState}>
+                        <div className={windowSize.mobileNavActive ? "mobileNavOverlay overlayShow" : "mobileNavOverlay"} onClick={changeNavState}>
                         </div>
                     </Nav>
 
