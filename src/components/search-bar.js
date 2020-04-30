@@ -55,11 +55,11 @@ const SearchBar = (props) => {
                 />
             </button>
             <button className="languageBtn" onClick={openLanguageOptions}>
-                ENG <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
+                {props.currLang === 'EN' ? 'ENG' : 'FRA'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
             </button>
             <div className="dropdownSubMenu languageOptionDiv" style={searchState.languageDropdownVisible ? {display: "block", maxWidth: "100px", top: "30px"} : {display: "none"}}>
-                <button className="languageOptionBtn">English</button>
-                <button className="languageOptionBtn">Fran&ccedil;ais</button>
+                <button className={props.currLang === 'EN' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='EN'>English</button>
+                <button className={props.currLang === 'FR' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='FR'>Fran&ccedil;ais</button>
             </div>
         </div>
     )
