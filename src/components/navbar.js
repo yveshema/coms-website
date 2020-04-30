@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnimateHeight from 'react-animate-height';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
@@ -138,12 +139,12 @@ const Navmenu = (props) => {
                             </button>
                             <AnimateHeight duration={300} height={windowSize.openCultivationSubMenu ? "auto" : 0}>
                                 <div className="growingSubMenu">
-                                    <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
-                                    <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
-                                    <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
-                                    <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
-                                    <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
-                                    <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                    <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
+                                    <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
+                                    <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
+                                    <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
+                                    <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
+                                    <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
                                 </div>
                             </AnimateHeight>
                             <Link to="/transportation" className="sublink" activeClassName="linkActive">Transportation</Link>
@@ -155,9 +156,9 @@ const Navmenu = (props) => {
                             </button>
                             <AnimateHeight duration={300} height={windowSize.openProcessingSubMenu ? "auto" : 0}>
                                 <div className="growingSubMenu">
-                                    <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
-                                    <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
-                                    <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                    <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
+                                    <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
+                                    <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
                                 </div>
                             </AnimateHeight>
                         </AnimateHeight>
@@ -185,21 +186,21 @@ const Navmenu = (props) => {
                             <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
                                 Cultivation <FontAwesomeIcon icon={faChevronDown} />
                                 <div className="dropdownSubMenu">            
-                                    <Link to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</Link>
-                                    <Link to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</Link>
-                                    <Link to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</Link>
-                                    <Link to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</Link>
-                                    <Link to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</Link>
-                                    <Link to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</Link>
+                                    <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
+                                    <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
+                                    <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
+                                    <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
+                                    <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
+                                    <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
                                 </div>
                             </Link>
                             <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
                             <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">
                                 Processing <FontAwesomeIcon icon={faChevronDown} />
                                 <div className="dropdownSubMenu">
-                                    <Link to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</Link>
-                                    <Link to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</Link>
-                                    <Link to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</Link>
+                                    <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
+                                    <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
+                                    <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
                                 </div>
                             </Link>
                         </div>
