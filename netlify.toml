@@ -3,6 +3,7 @@
 # "base" is the directory where the build script is run from
 # "publish" is the directory to publish
 # "command" is the build command
+# change from using react env to gatsby env
 
 [build]
     base    = ""
