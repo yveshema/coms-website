@@ -84,7 +84,7 @@
 }
 
 .dropdownSubMenu, .desktopDropdown, .desktopSubDropdown { 
-    width: 220px;
+    width: 250px;
     position: absolute;
     display: flex;
     padding: 0;
