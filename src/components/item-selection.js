@@ -24,6 +24,7 @@ border-radius: 3px;
 const Control = styled.div`
 display: flex;
 // line-height: 1;
+margin: 1em 0;
 `
 
 const Label = styled.div`
@@ -31,6 +32,7 @@ margin: 0 1em;
 display:block;
 text-align: left;
 font-size: .8em;
+line-height: 1.2;
 `
 
 const StyledInput = styled(Input)`
@@ -55,6 +57,7 @@ const Icon = styled.svg`
 fill: none;
 stroke: white;
 stroke-width: 3px;
+outline: 0;
 `
 
 const StyledCheckbox = styled.button`
@@ -78,6 +81,7 @@ ${Icon} {
 const CheckboxWrapper = styled.div`
 display: inline-block;
 vertical-align: middle;
+line-height: .8;
 `
 
 const Checkbox = ({ className, ...props}) => {
