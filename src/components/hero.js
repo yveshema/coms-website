@@ -29,7 +29,7 @@ color: white;
 font-size: 48px;
 font-weight: 500;
 line-height: normal;
-text-shadow: 0 3px 6px rgba(0, 0, 0, 0.502);
+text-shadow: 3px 3px 2px black;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
@@ -45,7 +45,7 @@ transform: translate(-50%, -50%);
 
 const Hero = ({tagline, path}) => {
     return (
-        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>          
+        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "65px"} : {}}>          
 	        <Image src={images[path]} className="hero-img"/>	
             <Tagline><span>{tagline}</span></Tagline>        
         </Container>

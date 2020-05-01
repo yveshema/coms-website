@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -27,46 +27,19 @@ height: 120px;
 
 
 const Layout = ({ location, children, pageContext={} }) => {
-  const [currLang, changeLanguage] = useState({
-    language: typeof(Storage) !== "undefined" ? localStorage.getItem('language') : 'EN'
-  });
-
   const {tagline, title } = pageContext.frontmatter ? pageContext.frontmatter : {tagline:'', title:''};
-  
-  const selectLanguage = (event) => {
-    switch (event.target.value) {
-      case 'EN':
-        if (currLang.language === 'EN') { break; }
-        changeLanguage({
-          ...currLang, 
-          language: 'EN'
-        })
-        if (typeof(Storage) !== "undefined") { localStorage.setItem('language', 'EN') }
-        break;
-      case 'FR':
-        if (currLang.language === 'FR') { break; }
-        changeLanguage({
-          ...currLang,
-          language: 'FR'
-        })
-        if (typeof(Storage) !== "undefined") { localStorage.setItem('language', 'FR') }
-        break;
-      default:
-        break;
-    }
-  }
 
   return (  
     <div className="pagewrapper">
       <header>
       <PadNav>
-      <Navbar location={location} currLang={currLang.language} selectLanguage={selectLanguage}/>
+      <Navbar location={location}/>
       </PadNav>
       {tagline && title && <Hero tagline={tagline} path={title} /> }
       </header>
       <div className="wrapper">            
         <div className="row">
-          <div className="col-8 centre col-s">
+          <div className="col-8 centre">
             {children}
           </div>
         </div>          
