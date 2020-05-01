@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Button from "./generic-button";
-import Success from "./success";
+
 
 const Row = styled.div`
 width: 100%;
