@@ -66,7 +66,7 @@ const Layout = ({ location, children, pageContext={} }) => {
       </header>
       <div className="wrapper">            
         <div className="row">
-          <div className="col-8 centre">
+          <div className="col-8 centre col-s">
             {children}
           </div>
         </div>          

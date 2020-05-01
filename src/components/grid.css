@@ -29,6 +29,9 @@ body {
 .wrapper {
     margin: 0 100px;   
     flex: 1;
+    line-height: 1.8;    
+
+    
 }
 
 .row {
@@ -90,6 +93,17 @@ body {
     padding: 10px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 769px){
+    .wrapper {
+        flex:1;
+        margin: 0;
+        padding: 0 5em;
+    }
+    .col-s{
+        width: 100%;
+    }
 }
 
 .container {
