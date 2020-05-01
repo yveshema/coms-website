@@ -83,7 +83,7 @@
     cursor: pointer;
 }
 
-.dropdownSubMenu { 
+.dropdownSubMenu, .desktopDropdown, .desktopSubDropdown { 
     width: 220px;
     position: absolute;
     display: flex;
@@ -101,7 +101,27 @@
     visibility: hidden;
 }
 
+.desktopSubDropdown {
+    position: fixed;
+    margin-left: 192px;
+    margin-top: -45px;
+}
+
 .extraNavLink:hover .dropdownSubMenu {
+    visibility: visible;
+    width: 255px;
+    padding: 15px 2px;
+    max-height: 500px;
+}
+
+.link:hover .desktopDropdown {
+    visibility: visible;
+    width: 220px;
+    padding: 15px 2px;
+    max-height: 500px;
+}
+
+.bookmarkLink:hover .desktopSubDropdown {
     visibility: visible;
     width: 255px;
     padding: 15px 2px;
