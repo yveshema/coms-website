@@ -6,6 +6,8 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
+import ItemSelectionForm from "../components/item-selection";
+
 <SEO title="Certification" keywords={['moringa', 'organic', 'standard','safety','transparency','sustainability','scalability']} />
 
 # Benefits of an Organic Certificate
@@ -87,8 +89,10 @@ To maintain the status of an organic product, you will need to annually renew yo
 **Our online payment system only accepts credit card. To pay via bank/wire transfer please** <Link to="/contact">contact us for details</Link>. 
 
 * * *
-_Payment form starts here_
+<ItemSelectionForm />
 
-**Download documents**:
+<div style={{ marginTop: 100, paddingTop:20, paddingBottom: 20}}>
+<h4>Download documents:</h4>
 <Link>Application form</Link> <br />
 <Link>Registration form</Link>
+</div>
