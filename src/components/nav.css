@@ -83,19 +83,49 @@
     cursor: pointer;
 }
 
-.dropdownSubMenu { 
-    width: 255px;
+.dropdownSubMenu, .desktopDropdown, .desktopSubDropdown { 
+    width: 250px;
     position: absolute;
-    display: none;
-    padding: 15px 2px;
-    border: 1px solid lightslategray;
+    display: flex;
+    padding: 0;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
     flex-direction: column;
     background-color: white;
     z-index: 1;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    max-height: 0px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.desktopSubDropdown {
+    position: fixed;
+    margin-left: 192px;
+    margin-top: -45px;
 }
 
 .extraNavLink:hover .dropdownSubMenu {
-    display: flex;
+    visibility: visible;
+    width: 255px;
+    padding: 15px 2px;
+    max-height: 500px;
+}
+
+.link:hover .desktopDropdown {
+    visibility: visible;
+    width: 220px;
+    padding: 15px 2px;
+    max-height: 500px;
+}
+
+.bookmarkLink:hover .desktopSubDropdown {
+    visibility: visible;
+    width: 255px;
+    padding: 15px 2px;
+    max-height: 500px;
 }
 
 .navMobile {
@@ -218,6 +248,32 @@
     z-index: 0;
 }
 
+.languageDropDown {
+    width: 100px;
+    position: absolute;
+    display: flex;
+    padding: 0;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
+    flex-direction: column;
+    background-color: white;
+    z-index: 1;
+    top: 30px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    max-height: 0px;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.languageDropDown.languageDropDownOpen {
+    visibility: visible;
+    width: 220px;
+    padding: 13px 2px;
+    max-height: 500px;
+}
+
 .languageBtn, .searchOpenBtn {
     background-color: transparent;
     color: #626262;
@@ -235,13 +291,16 @@
 }
 
 .languageOptionBtn {
-    display: inline-block;
+    display: flex;
     border: none;
     margin: 0;
     text-decoration: none;
+    text-align: left;
     background: transparent;
     color: #626262;
     cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .languageOptionBtn:first-of-type {
@@ -253,6 +312,11 @@
     top: 3px;
     right: 5px;
     overflow: visible;
+}
+
+/* Remove default outline on focus */
+.languageBtn:focus, .languageOptionBtn:focus, .searchOpenBtn:focus, .hamburgBtn:focus, .closeNavBtn:focus, .link:focus, .mobileCollapse:focus, .sublink:focus, .bookmarkLink:focus {
+    outline: none;
 }
 
 @media only screen and (max-width: 1050px) {
