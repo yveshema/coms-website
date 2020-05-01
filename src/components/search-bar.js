@@ -17,7 +17,7 @@ query {
     check: file(relativePath: { eq: "icons/ui-icons/checkmark-48.png" })
     {
         childImageSharp {
-            fixed (height: 14) {
+            fixed (height: 20) {
                 ...GatsbyImageSharpFixed
             }
         }
@@ -45,7 +45,6 @@ const SearchBar = (props) => {
     }
 
     const data = useStaticQuery(icon);
-
     return (
         <div className="searchDiv">
             <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"/>
@@ -56,16 +55,11 @@ const SearchBar = (props) => {
                 />
             </button>
             <button className="languageBtn" onClick={openLanguageOptions}>
-                {props.currLang === 'EN' ? 'ENG' : 'FRA'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
+                ENG <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
             </button>
-            <div className={searchState.languageDropdownVisible ? "languageDropDown languageDropDownOpen languageOptionDiv": "languageDropDown languageOptionDiv"}>
-                <button className={props.currLang === 'EN' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='EN'>
-                    English {props.currLang === 'EN' ? <Img fixed={data.check.childImageSharp.fixed} alt="checked"/> : ''}
-                </button>
-                <p style={{border: '1px solid #E8E8E8', marginBottom: '12px'}}></p>
-                <button className={props.currLang === 'FR' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='FR'>
-                    Fran&ccedil;ais {props.currLang === 'FR' ? <Img fixed={data.check.childImageSharp.fixed} alt="checked"/> : ''}
-                </button>
+            <div className="dropdownSubMenu languageOptionDiv" style={searchState.languageDropdownVisible ? {display: "block", maxWidth: "100px", top: "30px"} : {display: "none"}}>
+                <button className="languageOptionBtn">English</button>
+                <button className="languageOptionBtn">Fran&ccedil;ais</button>
             </div>
         </div>
     )

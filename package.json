@@ -1,8 +1,8 @@
 {
-  "name": "organic-moringa-standard-site",
-  "description": "Organic Moringa Standards (COMS) website",
+  "name": "gatsby-starter-mdx-basic",
+  "description": "Gatsby starter MDX basic",
   "version": "1.0.0",
-  "author": "COMS team",
+  "author": "Chris Biscardi <chris@christopherbiscardi.com>",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
@@ -14,7 +14,6 @@
     "bootstrap": "^4.4.1",
     "gatsby": "^2.13.50",
     "gatsby-image": "^2.2.8",
-    "gatsby-plugin-anchor-links": "^1.1.1",
     "gatsby-plugin-manifest": "^2.2.4",
     "gatsby-plugin-mdx": "^1.0.0",
     "gatsby-plugin-offline": "^2.2.4",
@@ -26,7 +25,6 @@
     "gatsby-transformer-sharp": "^2.2.5",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-animate-height": "^2.0.21",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
@@ -35,13 +33,7 @@
     "typography": "^0.16.19"
   },
   "keywords": [
-    "organic",
-    "moringa",
-    "standard",
-    "nutrition",
-    "invest",
-    "certification",
-    "cultivation"
+    "gatsby"
   ],
   "license": "MIT",
   "scripts": {
@@ -57,6 +49,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/organicmoringa/website"
+    "url": "https://github.com/christopherbiscardi/gatsby-starter-mdx-basic"
   }
 }

@@ -31,7 +31,6 @@ span {
     img {
         margin-right: 5px;
         height: 30px;
-        min-width: 30px;
         max-width: 30px;
     }
 }
