@@ -8,17 +8,17 @@
 [build]
     base    = ""
     publish = "public/"
-    command = "REACT_APP_STAGE=dev npm run build"
+    command = "GATSBY_ACTIVE_ENV=dev npm run build"
 
 # Production context: New commits to the main
 # repo will be deployed with these settings
 [context.production]
-    command = "REACT_APP_STAGE=prod npm run build"
+    command = "GATSBY_ACTIVE_ENV=prod npm run build"
 
 # Deploy Preview context: Allow deploy previews
 [context.deploy-preview]
-    command = "REACT_APP_STAGE=dev npm run build"
+    command = "GATSBY_ACTIVE_ENV=dev npm run build"
 
 # Branch Deploy context: Commits pushed to other branches.
 [context.branch-deploy]
-    command = "REACT_APP_STAGE=dev npm run build"
+    command = "GATSBY_ACTIVE_ENV=dev npm run build"
