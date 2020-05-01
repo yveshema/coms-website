@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import { navigate } from "@reach/router";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Auth } from "aws-amplify";
@@ -19,7 +18,7 @@ align-items: center;
 // Because this wraps the root element, no session management is required to
 // persist state. 
 
-const GuardedRoute = ({children}) => {
+const GuardedRoute = ({children, stage}) => {
 
     const [credentials, setCredentials] = useState({
         username: '',
@@ -30,12 +29,7 @@ const GuardedRoute = ({children}) => {
     
     const [ loggedIn, setLoggedIn ] = useState(false);
 
-    // useEffect(() => {
-    //     if (loggedIn){
-    //         navigate("/");
-    //     }
-    // }, [done,loggedIn]);
-    
+        
     const handleUpdate = event => {
         setCredentials({...credentials, [event.target.name]:event.target.value});
     }
@@ -50,10 +44,9 @@ const GuardedRoute = ({children}) => {
         } catch (e) {
             alert(e.message);
         }             
-    }
-
-        
-    if (!loggedIn){
+    }    
+            
+    if (stage === "prod" && !loggedIn){
         return (
             <LoginContainer>
                 <Helmet>
@@ -92,7 +85,7 @@ const GuardedRoute = ({children}) => {
 }
 
 export default ({element}) => (    
-    <GuardedRoute>
+    <GuardedRoute stage={process.env.GATSBY_ACTIVE_ENV}>
         {element}
     </GuardedRoute>    
 );
