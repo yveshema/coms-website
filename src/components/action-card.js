@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import { navigate } from "@reach/router";
+import { autoShowTooltip } from "aws-amplify";
 
 const Container = styled.div`
-display: flex;
+display: inline-block;
 flex-direction: column;
 justify-content: space-around;
 align-items: center;
 padding: 10px;
 background-color: #fff;
-margin: 0 10px;
-box-shadow: 2px 2px 2px #555;
+margin: 0 20px;
+box-shadow: 3px 3px 3px #bfbababa;
+
+
 
 @media only screen and (max-width: 1224px) {
     margin: 20px 0;
@@ -40,26 +43,35 @@ box-shadow: 2px 2px 2px #555;
 `;
 
 const Action = styled.button`
-width: 12em;
+width: 100%;
 border: 1px solid #fd6927;
-border-radius: 1px;
+border-radius: 3px;
 background-color: #fd6927;
-font-size: 1em;
+font-size: 18px;
 text-align: center;
-padding: 3px;
+padding: 7px 5px;
 color: #fff;
 margin: 1em 0;
 cursor: pointer;
+line-height:21px;
+
 `;
+
+
 
 const Text = styled.p`
 text-align: center;
-font-size: .8em;
+font-size: 16px;
+line-height:24px;
+
 @media only screen and (min-width: 769px) and (max-width: 1224px){
     text-align: left;
     margin-bottom: 0;
 }
+
+
 `;
+
 
 
 
@@ -71,8 +83,8 @@ const ActionCard = ({content}) => {
 
     return (
         <Container>
-            <div><img src={content.icon} /></div>
-            <div>{content.text.map((text) => <Text>{text}</Text>)}</div>
+            <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} /></div>
+            <div className="fixHeight">{content.text.map((text) => <Text>{text}</Text>)}</div>
             <Action onClick={handleClick}>{content.action}</Action>       
         </Container>
     )

@@ -25,6 +25,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+**{
+    font-weight: 400;
+}
 
 .wrapper {
     margin: 0 100px;   
@@ -36,6 +39,24 @@ body {
     justify-content: space-between; 
     padding: 50px 0;   
 }
+
+.parafont{
+    font-size: 38px;
+    line-height: 45px;
+}
+
+caption {
+    font-size: 23px;
+    text-align: left;
+    line-height: 32px;
+    color: #3A722E;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+
+
+
 
 .col-1{
     width: calc(100% /12 - 16px);
@@ -71,7 +92,27 @@ body {
 
 .col-8 {
     width: calc(100% * 8 / 12 - 16px);
+    
 }
+
+@media (min-width: 360px)  and (max-width: 767px){
+    .col-8 {
+        width: 100%;
+        
+    }
+
+}
+
+@media (min-width: 414px)  and (max-width: 767px){
+    .paraheight{
+        height: auto;
+    }
+
+    
+}
+
+
+
 
 .col-9 {
     width: calc(100% * 9 / 12 - 16px);
@@ -114,6 +155,14 @@ footer {
     height: max-content;      
 }
 
+footer img{
+    margin-bottom: 1.6rem!important;
+    width: 50px;
+    margin-right: 12px;
+    
+}
+
+
 .align-vert {    
     display: flex;
     flex-wrap: wrap;
@@ -135,6 +184,86 @@ footer {
     object-fit: cover;
     margin-bottom: 0;
 }
+h1{
+    font-size: 48px;
+    line-height: 57px;
+}
+
+.fixHeight{
+    min-height: 245px;
+}
+
+@media only screen and (max-width: 767px){
+    .fixHeight{
+        min-height: auto;
+    }
+    h1{
+        font-size: 32px;
+        line-height: 38px;
+    }
+    .parafont{
+        font-size: 26px;
+        line-height: 38px;
+    }
+    h2{
+        font-size: 24px;
+        line-height: 28px;
+        margin-top: 35px;
+    }
+}
+
+p{
+    font-size: 20px;
+    line-height: 35px;
+    color: #070706;
+    text-align: justify;
+}
+
+figure{
+    text-align: center;
+}
+.listLine{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.certificateLine{
+    font-size: 38px;
+    line-height: 45px;
+}
+.feeDesign p{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.aline{
+    margin-top: 55px;
+}
+.feeDesign tr:nth-child(odd){
+    background-color: #E8E8E8;
+}
+.feeDesign tr:nth-child(even){
+    background-color: #ffffff;
+}
+.captionName{
+    font-size: 23px;
+    text-align: left;
+    line-height: 32px;
+    color: #3A722E;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.parabold{
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 30px;
+    font-style: italic;
+    margin-top: 45px;
+    line-height: 38px;
+}
+
+
 
 @media only screen and (max-width: 1280px) {
     .align-vert {
@@ -164,4 +293,38 @@ footer {
     .hero-img {
         min-height: 115px;
     }
+}
+
+
+.tdesign{
+    box-shadow: 3px 3px 3px #bfbababa;
+    margin-bottom: 58px;
+    
+}
+.tdesig td, .tdesig th {
+    border: 2px solid #dddddd;
+    padding: 10px;
+    padding-left: 18px!important;
+    font-size: 20px;
+}
+
+.tdesign tr:nth-child(even){background-color: #F8F8F8; color:#000000 ;}
+
+.tdesign tr:hover {background-color: #dddddd;}
+.tdesign th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    
+    background-color: #E8E8E8;
+    color: #000000;
+  }
+
+  th:first-child, td:first-child {
+    padding-left: 18px;
+}
+
+.hdesign{
+    font-style: italic;
+    font-size: 30px;
+    line-height: 38px;
 }
