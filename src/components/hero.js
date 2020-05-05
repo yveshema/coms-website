@@ -22,8 +22,8 @@ position: relative;
 
 const Tagline = styled.div`
 position: absolute;
-max-width: 1200px;
-width: calc(100% * 8 / 12 - 133px);
+max-width: 768px;
+width: 100%;
 margin: 0 auto;
 color: white;
 font-size: 48px;
@@ -38,21 +38,8 @@ transform: translate(-50%, -50%);
     font-size: 24px;
     max-width: 100%;
 }
-@media only screen and (max-width: 411px) {
+@media only screen and (max-width: 400px) {
     display: none;
-}
-@media (min-width: 414px)  and (max-width: 767px) {
-    padding: 0;
-    width: initial;
-    left: 36%;
-    font-size: 21px;
-    line-height: 28px;
-    font-weight:400;
-}
-
-
-@media (min-width: 1160px)  and (max-width: 1200px) {
-    max-width: 1200px;
 }
 `
 
