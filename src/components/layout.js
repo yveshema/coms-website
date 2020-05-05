@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Navbar from './navbar';
 import Hero from './hero';
 import './grid.css';
+import Container from "./content-container";
 
 import Contact from './contact-component';
 import Separator from './separator';
@@ -64,13 +65,26 @@ const Layout = ({ location, children, pageContext={} }) => {
       </PadNav>
       {tagline && title && <Hero tagline={tagline} path={title} /> }
       </header>
-      <div className="wrapper">            
+      <Container>
+        {React.Children.map(children, (child, i) => {
+          if (child.props.fullwidth){
+            return (
+              <section className="stretch">
+                {child}
+              </section>
+            )
+          } else {
+            return child;
+          }
+        })}
+      </Container>
+      {/* <div className="wrapper">            
         <div className="row">
           <div className="col-8 centre col-s">
             {children}
           </div>
         </div>          
-      </div>
+      </div> */}
       <footer>
         <div className="wrapper">
           <div className="container align-vert">
