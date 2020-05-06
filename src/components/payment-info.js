@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { loadStripe } from "@stripe/stripe-js";
+import {
+    Elements, 
+    useStripe,
+    useElements,
+    CardNumberElement,
+    CardCvcElement,
+    CardExpiryElement 
+} from "@stripe/react-stripe-js";
 
 const Form = styled.form`
     width: 100%;
-    label, input {
+    label, input, .stripeInput {
         width: 100%;
     }
 
@@ -11,10 +20,12 @@ const Form = styled.form`
         margin: 0;
     }
 
-    input {
+    input, .stripeInput {
         border: 1px solid #C1C1C1;
         border-radius: 0.25rem;
         padding: 5px 12px;
+        background-color: white;
+        font-family: inherit;
     }
 
     .expiration-align {
@@ -43,15 +54,46 @@ const Form = styled.form`
     }
 `
 
-const PaymentInfo = (props) => {
+// Custom fonts currently don't seem to be working with Stripe. Needs some looking into.
+const stripeStyle = {
+    style: {
+        base: {
+            fontSize: '18px',
+            fontFamily: 'Rubik, Roboto, Sans-Serif',
+            lineHeight: '1.8'
+        },
+        invalid: {
+
+        }
+    }
+}
+
+const PaymentForm = () => {
     const [billingInfo, changeInfo] = useState({
         fullName: '',
-        emailAddress: '',
-        cardNum: '',
-        expMonth: '',
-        expYear: '',
-        ccvNum: ''
+        emailAddress: ''
     })
+
+    const [error, setError] = useState(null);
+
+    const stripe = useStripe();
+    const elements = useElements();
+  
+    const handleSubmit = async event => {
+      event.preventDefault();
+  
+      if (!stripe || !elements) {
+        // Stripe.js has not loaded yet. Make sure to disable
+        // form submission until Stripe.js has loaded.
+        return;
+      }
+  
+      const payload = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardNumberElement)
+      });
+      console.log("[PaymentMethod]", payload);
+    };
 
     const handleInputChange = (event) => {
         event.preventDefault();
@@ -61,14 +103,22 @@ const PaymentInfo = (props) => {
             fullName: currTarget === 'fullName' ? event.target.value : billingInfo.fullName,
             emailAddress: currTarget === 'email' ? event.target.value : billingInfo.emailAddress,
             cardNum: currTarget === 'card' ? event.target.value : billingInfo.cardNum,
-            expMonth: currTarget === 'month' ? event.target.value : billingInfo.expMonth,
-            expYear: currTarget === 'year' ? event.target.value : billingInfo.expYear,
+            expMonth: currTarget === 'expiry' ? event.target.value : billingInfo.expiry,
             ccvNum: currTarget === 'ccv' ? event.target.value : billingInfo.ccvNum
         })
     }
 
+    const handleStripeChange = (event) => {
+        console.log(event.value)
+        if (event.error) {
+            setError(event.error.message);
+        } else {
+            setError(null);
+        }
+    }
+
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <div className="form-align">
                 <label for="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
@@ -79,24 +129,44 @@ const PaymentInfo = (props) => {
             </div>
 
             <div className="form-align">
-                <label for="cardInput">Card Number
-                    <input onChange={handleInputChange} id="cardInput" name='card' />
-                </label>
+            <label>
+                Card number
+                <CardNumberElement
+                className="stripeInput"
+                options={stripeStyle}
+                onChange={handleStripeChange}
+                />
+            </label>
                 <div className="form-align-last">
-                    <label for="monthInput">Expiration
-                        <div className="expiration-align">
-                            <input onChange={handleInputChange} id="monthInput" name='month' placeholder="MM"/>
-                            <input onChange={handleInputChange} id="yearInput" name='year' placeholder="YY"/>
-                        </div>
+                    <label>
+                        Expiry
+                        <CardExpiryElement
+                        className="stripeInput"
+                        options={stripeStyle}
+                        />
                     </label>
-                    <label for="ccvInput">CCV
-                        <input onChange={handleInputChange} id="ccvInput" name='ccv' />
+                    <label>
+                        CCV
+                        <CardCvcElement
+                        className="stripeInput"
+                        options={stripeStyle}
+                        />
                     </label>
                 </div>
             </div>
             <button>Back</button>
-            <button>Review and Confirm</button>
+            <button disabled={!stripe}>Review and Confirm</button>
         </Form>
+    )
+}
+
+const stripePromise = loadStripe("pk_test_xnFaHOBqDv0NhsCEPQtTLj9c0025sSw7c3");
+
+const PaymentInfo = (props) => {
+    return (
+        <Elements stripe={stripePromise} >
+            <PaymentForm />
+        </Elements>
     )
 }
 
