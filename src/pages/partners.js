@@ -11,6 +11,9 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 flex-wrap: wrap;
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    display:inline-block;
+}
 `;
 
 const Button = styled.button`
@@ -28,6 +31,9 @@ cursor: pointer;
 
 const Title = styled.h3`
 text-align: center;
+@media only screen and (max-width: 767px){
+    font-size: 32px;
+}
 `;
 
 const Partners = () => {

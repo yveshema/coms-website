@@ -18,11 +18,12 @@ position: relative;
 @media only screen and (max-width: 524px) {
     margin-top: 0 !important;
 }
+
 `
 
 const Tagline = styled.div`
 position: absolute;
-max-width: 1200px;
+max-width: 768px;
 width: calc(100% * 8 / 12 - 133px);
 margin: 0 auto;
 color: white;
@@ -33,21 +34,29 @@ text-shadow: 0 3px 6px rgba(0, 0, 0, 0.502);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 768px) {
     padding: 0 30px;
     font-size: 24px;
     max-width: 100%;
+}
+@media only screen and (width:1024px){
+   width:100%;
+}
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    width: 100%;
+    padding: 0 70px;
+    line-height:35px;
 }
 @media only screen and (max-width: 411px) {
     display: none;
 }
 @media (min-width: 414px)  and (max-width: 767px) {
-    padding: 0;
-    width: initial;
-    left: 36%;
+    width: 100%;
     font-size: 21px;
     line-height: 28px;
-    font-weight:400;
+    font-weight: 400;
+    padding: 0 20px;
+    display:none;
 }
 
 

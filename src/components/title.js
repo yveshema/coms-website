@@ -10,6 +10,12 @@ const TitleStyle = styled.div`
     text-rendering: optimizeLegibility;
     font-size: 2rem;
     margin-bottom: 1.5rem;
+    margin-top: 50px;
+    @media only screen and (max-width: 767px){
+        font-size: 26px;
+        line-height: 31px;
+        margin-top: 30px;
+    }
 
     img {
         margin-bottom: 0;

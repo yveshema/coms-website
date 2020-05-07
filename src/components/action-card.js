@@ -15,6 +15,7 @@ box-shadow: 3px 3px 3px #bfbababa;
 
 
 
+
 @media only screen and (max-width: 1224px) {
     margin: 20px 0;
 }
@@ -43,7 +44,7 @@ box-shadow: 3px 3px 3px #bfbababa;
 `;
 
 const Action = styled.button`
-width: 100%;
+width: 183px;
 border: 1px solid #fd6927;
 border-radius: 3px;
 background-color: #fd6927;
@@ -82,10 +83,10 @@ const ActionCard = ({content}) => {
     }
 
     return (
-        <Container>
+        <Container className="homeContainer">
             <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} /></div>
             <div className="fixHeight">{content.text.map((text) => <Text>{text}</Text>)}</div>
-            <Action onClick={handleClick}>{content.action}</Action>       
+            <div className="buttonClass"><Action onClick={handleClick}>{content.action}</Action></div>     
         </Container>
     )
 };
