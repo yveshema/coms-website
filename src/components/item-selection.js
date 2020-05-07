@@ -119,16 +119,16 @@ const ItemSelectionForm = () => (
         </Control>
         <Control>
             <Checkbox />
-            <Label>NCD 350 for crops below 2 acres</Label>
+            <Label>NCD 350 for crops <b>below</b> 2 acres</Label>
         </Control>
         <Control>
             <Checkbox />
-            <Label>NCD 550 for crops above 2 acres</Label>
+            <Label>NCD 550 for crops <b>above</b> 2 acres</Label>
         </Control>
         <hr />
         <Row>
             <Label>Total amount to be paid: </Label>
-            <StyledInput type="text" value="940" />
+            <StyledInput type="text" value="NCD" />
         </Row>
         <Row><SubmitButton>Next-payment information</SubmitButton></Row>            
     </form>

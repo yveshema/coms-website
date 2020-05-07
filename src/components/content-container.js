@@ -15,7 +15,17 @@ import styled, { css } from "styled-components";
   To interpolate additional styles (such as the textStyles above,
   use the ${/**} notation */
 const Container = styled.article`
-    padding: 0 20px;
+    padding: 0 0px;
+    margin-top:75px;
+
+    @media only screen and (max-width: 767px){
+        padding:0px;
+        margin: 35px 0px;
+    }
+
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+       padding: 0px 70px;
+    }
 
     /* Center everything inside */
     > * {
@@ -29,7 +39,8 @@ const Container = styled.article`
 
         @media only screen and (max-width: 768px){
             width: 100%;
-            margin: auto 20px;
+            
+            max-width:100%
         }
     }
 
