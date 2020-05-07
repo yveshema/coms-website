@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { loadStripe } from "@stripe/stripe-js";
 import {
-    Elements, 
+    Elements,
     useStripe,
     useElements,
     CardNumberElement,
     CardCvcElement,
-    CardExpiryElement 
+    CardExpiryElement
 } from "@stripe/react-stripe-js";
 
 const Form = styled.form`
@@ -68,7 +68,7 @@ const stripeStyle = {
     }
 }
 
-const PaymentForm = () => {
+const PaymentForm = (props) => {
     const [billingInfo, changeInfo] = useState({
         fullName: '',
         emailAddress: ''
@@ -78,38 +78,41 @@ const PaymentForm = () => {
 
     const stripe = useStripe();
     const elements = useElements();
-  
+
     const handleSubmit = async event => {
-      event.preventDefault();
-  
-      if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
-        return;
-      }
-  
-      const payload = await stripe.createPaymentMethod({
-        type: "card",
-        card: elements.getElement(CardNumberElement)
-      });
-      console.log("[PaymentMethod]", payload);
+        event.preventDefault();
+
+        if (!stripe || !elements) {
+            // Stripe.js has not loaded yet. Make sure to disable
+            // form submission until Stripe.js has loaded.
+            return;
+        }
+
+        const payload = await stripe.createPaymentMethod({
+            billing_details: {
+                name: billingInfo.fullName,
+                email: billingInfo.emailAddress
+            },
+            type: "card",
+            card: elements.getElement(CardNumberElement)
+        });
+        props.handleCardInfo(payload)
     };
 
+    // Saves customer name and email to state
     const handleInputChange = (event) => {
         event.preventDefault();
         const currTarget = event.target.name;
         changeInfo({
             ...billingInfo,
             fullName: currTarget === 'fullName' ? event.target.value : billingInfo.fullName,
-            emailAddress: currTarget === 'email' ? event.target.value : billingInfo.emailAddress,
-            cardNum: currTarget === 'card' ? event.target.value : billingInfo.cardNum,
-            expMonth: currTarget === 'expiry' ? event.target.value : billingInfo.expiry,
-            ccvNum: currTarget === 'ccv' ? event.target.value : billingInfo.ccvNum
+            emailAddress: currTarget === 'email' ? event.target.value : billingInfo.emailAddress
         })
     }
 
+    // Client side function to validate card number, expiry date, and ccv.
+    // Card number error handling uses the Luhn Algorithm for validation
     const handleStripeChange = (event) => {
-        console.log(event.value)
         if (event.error) {
             setError(event.error.message);
         } else {
@@ -129,33 +132,36 @@ const PaymentForm = () => {
             </div>
 
             <div className="form-align">
-            <label>
-                Card number
+                <label for="cardNumInput">
+                    Card number
                 <CardNumberElement
-                className="stripeInput"
-                options={stripeStyle}
-                onChange={handleStripeChange}
-                />
-            </label>
+                        className="stripeInput"
+                        options={stripeStyle}
+                        onChange={handleStripeChange}
+                        id="cardNumInput"
+                    />
+                </label>
                 <div className="form-align-last">
-                    <label>
+                    <label for="expiryInput">
                         Expiry
                         <CardExpiryElement
-                        className="stripeInput"
-                        options={stripeStyle}
+                            className="stripeInput"
+                            options={stripeStyle}
+                            id="expiryInput"
                         />
                     </label>
-                    <label>
-                        CCV
+                    <label for="cvcInput">
+                        CVC
                         <CardCvcElement
-                        className="stripeInput"
-                        options={stripeStyle}
+                            className="stripeInput"
+                            options={stripeStyle}
+                            id="cvcInput"
                         />
                     </label>
                 </div>
             </div>
             <button>Back</button>
-            <button disabled={!stripe}>Review and Confirm</button>
+            <button type="submit" disabled={!stripe}>Review and Confirm</button>
         </Form>
     )
 }
@@ -165,7 +171,7 @@ const stripePromise = loadStripe("pk_test_xnFaHOBqDv0NhsCEPQtTLj9c0025sSw7c3");
 const PaymentInfo = (props) => {
     return (
         <Elements stripe={stripePromise} >
-            <PaymentForm />
+            <PaymentForm handleCardInfo={props.handleCardInfo} />
         </Elements>
     )
 }
