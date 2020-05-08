@@ -179,9 +179,10 @@ const ContactForm = ({ onSuccess }) => {
         e.preventDefault();
         let validated = validateInputs();
         if (validated) {
-            let email, name, content, data, url;
+            let email, name, subject, content, data, url;
             email = inputs.email;
             name = `${inputs.fname} ${inputs.lname}`;
+            subject = inputs.subj;
             content = inputs.msg;
             url = "https://ztfgyay7nh.execute-api.us-west-2.amazonaws.com/dev/email/send";
 
@@ -189,6 +190,7 @@ const ContactForm = ({ onSuccess }) => {
                 url,
                 email,
                 name,
+                subject,
                 content
             };
             
