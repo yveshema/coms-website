@@ -55,7 +55,21 @@ module.exports = {
         offset: -200
       }
     },
-    'gatsby-plugin-styled-components',    
+    'gatsby-plugin-styled-components',
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [`id`,`title`,`excerpt`,`content`],
+        resolvers: {
+          Mdx: {
+            id: node => node.id,
+            title: node => node.frontmatter.title,
+            content: node => node.internal.content,
+            excerpt: node => node.excerpt            
+          },
+        },
+      },
+    }    
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
