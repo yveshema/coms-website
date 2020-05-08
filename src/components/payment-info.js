@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { loadStripe } from "@stripe/stripe-js";
 import {
     Elements,
     useStripe,
@@ -166,11 +165,9 @@ const PaymentForm = (props) => {
     )
 }
 
-const stripePromise = loadStripe("pk_test_xnFaHOBqDv0NhsCEPQtTLj9c0025sSw7c3");
-
 const PaymentInfo = (props) => {
     return (
-        <Elements stripe={stripePromise} >
+        <Elements stripe={props.stripePubKey} >
             <PaymentForm handleCardInfo={props.handleCardInfo} />
         </Elements>
     )
