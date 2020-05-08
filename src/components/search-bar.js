@@ -33,6 +33,9 @@ const SearchBar = (props) => {
         languageDropdownVisible: false
     })
 
+    // Search param
+    const [query, setQuery] = useState("");
+
     const openSearchBar = () => {
         changeSearch({
             ...searchState,
@@ -49,16 +52,23 @@ const SearchBar = (props) => {
 
     const data = useStaticQuery(icon);
 
+    const handleChange = (e) => {
+        setQuery(e.target.value);
+    }
+
     const handleSearch = (e) => {
+        
         if (e.key === "Enter") {
-            navigate("/search");
+            navigate(`/search?q=${query}`);
         }        
     }
 
     return (
         <div className="searchDiv">
             <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"
-            onKeyPress={handleSearch} />
+            onKeyPress={handleSearch} 
+            onChange={handleChange}
+            value={query} />
             <button className="searchOpenBtn" onClick={openSearchBar}>
                 <Img 
                     fixed={data.search.childImageSharp.fixed}
