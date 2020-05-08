@@ -25,6 +25,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+**{
+    font-weight: 400;
+}
 
 .wrapper {
     margin: 0 100px;   
@@ -39,6 +42,27 @@ body {
     justify-content: space-between; 
     padding: 50px 0;   
 }
+
+.parafont{
+    font-size: 38px;
+    line-height: 45px;
+}
+
+caption {
+    font-size: 23px;
+    text-align: left;
+    line-height: 32px;
+    color: #3A722E;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+p.upspace{
+    padding: 50px 0px;
+}
+
+
+
+
 
 .col-1{
     width: calc(100% /12 - 16px);
@@ -74,7 +98,27 @@ body {
 
 .col-8 {
     width: calc(100% * 8 / 12 - 16px);
+    
 }
+
+@media (min-width: 360px)  and (max-width: 767px){
+    .col-8 {
+        width: 100%;
+        
+    }
+
+}
+
+@media (min-width: 414px)  and (max-width: 767px){
+    .paraheight{
+        height: auto;
+    }
+
+    
+}
+
+
+
 
 .col-9 {
     width: calc(100% * 9 / 12 - 16px);
@@ -128,19 +172,41 @@ footer {
     height: max-content;      
 }
 
+footer img{
+    margin-bottom: 1.6rem!important;
+    width: 50px;
+    margin-right: 12px;
+    
+}
+figure img {
+    margin: 35px 0px;
+}
+
+
 .align-vert {    
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;    
-    padding:30px 0;
+    padding:22px 0;
 }
 
 .copyright {
     color: white;
-    font-size: .8em;
+    font-size: 14px;
     text-align: center;
     margin: 0;
     padding-bottom: 10px;
+    line-height: 17px;
+}
+.homeContainer{
+    width: 33.33%;
+ }
+ .homeContainer:first-child{
+     margin-left: 0px;
+ }
+
+ .homeContainer:last-child{
+    margin-right: 0px;
 }
 
 .hero-img {
@@ -149,6 +215,146 @@ footer {
     object-fit: cover;
     margin-bottom: 0;
 }
+h1{
+    font-size: 48px;
+    line-height: 50px;
+    margin-bottom: 24px!important;
+}
+
+.fixHeight{
+    min-height: 245px;
+    padding: 0 5px;
+}
+.benefit{
+    font-size: 46px;
+    line-height: 55px
+}
+a {
+    color: #626262;
+    
+}
+
+table.feeDesign td{
+    border-bottom: 0px;
+    border-right: 0px;
+}
+p.desaLine{
+    margin: 35px auto;
+}
+
+@media only screen and (max-width: 767px){
+    .fixHeight{
+        min-height: auto;
+    }
+    h1{
+        font-size: 32px;
+        line-height: 38px;
+        margin-bottom: 10px!important;
+    }
+    .parafont{
+        font-size: 26px;
+        line-height: 28px;
+    }
+    h2{
+        font-size: 24px!important;
+        line-height: 28px!important;
+        margin-top: 35px;
+    }
+    .homeContainer{
+        width: 100%;
+        
+        
+    }
+    section .homeContainer{
+        padding: 25px;
+
+    }
+    .container.align-vert span {
+        margin-left: 12px;
+    }
+    figure {
+        padding: 0px!important;
+    }
+    caption {
+        font-size: 20px;
+        line-height: 28px;
+        padding: 10px;
+    }
+    p.upspace {
+        padding: 35px 10px;
+    }
+    h4 {
+        font-size: 20px;
+        line-height: 28px;
+        
+    }
+    h1.benefit {
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
+
+p{
+    font-size: 20px;
+    line-height: 35px;
+    color: #626262;
+    
+}
+
+figure{
+    text-align: center;
+}
+.listLine{
+    margin-top: 20px;
+    
+}
+.certificateLine{
+    font-size: 38px;
+    line-height: 45px;
+}
+.feeDesign p{
+    text-align: left;
+    margin: auto;
+    width: 415px;
+}
+ h1.parafont.aline{
+    margin-top: 30px;
+}
+.feeDesign tr:nth-child(odd){
+    background-color: #E8E8E8;
+}
+.feeDesign tr:nth-child(even){
+    background-color: #ffffff;
+}
+.captionName{
+    font-size: 20px;
+    text-align: left;
+    line-height: 32px;
+    color: #3A722E;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.parabold{
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 30px;
+    font-style: italic;
+    margin-top: 45px!important;
+    line-height: 38px;
+}
+.buttonClass{
+    width: 100%;
+    text-align: center;
+}
+
+strong {
+    font-weight: 500;
+}
+
+
 
 @media only screen and (max-width: 1280px) {
     .align-vert {
@@ -157,10 +363,27 @@ footer {
     }
 }
 
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 768px) {
     .hero-img {
         min-height: 200px;
     }
+    p{
+        font-size: 18px;
+        line-height: 30px;
+       
+    }
+
+    .fixHeight p {
+        font-size: 16px;
+        line-height: 22px;
+        color: #000000;
+        
+    }
+    .feeDesign p{
+        width:100%;
+    }
+    
+   
 }
 
 @media only screen and (max-width: 675px) {
@@ -178,4 +401,113 @@ footer {
     .hero-img {
         min-height: 115px;
     }
+
+}
+
+
+.tdesign{
+    box-shadow: 3px 3px 3px #bfbababa;
+    margin-bottom: 58px;
+    
+}
+.tdesig td, .tdesig th {
+    border: 1px solid #C1C1C1;
+    padding: 10px;
+    padding-left: 18px!important;
+    font-size: 20px;
+}
+
+.tdesign tr:nth-child(even){background-color: #F4F4F4; color:#000000 ;}
+
+.tdesign tr:hover {background-color: #dddddd;}
+.tdesign th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: 500;
+    background-color: #E8E8E8;
+    color: #000000;
+  }
+
+  th:first-child, td:first-child {
+    padding-left: 18px;
+    border-right: 1px solid #C1C1C1;
+}
+
+.hdesign{
+    font-style: italic;
+    font-size: 30px;
+    line-height: 38px;
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    .homeContainer {
+        width: 100%;
+        float: left;
+        padding: 20px!important;
+    }
+    .homeContainer img{
+        width: 12%;
+        float: left;
+    }
+    .fixHeight {
+        min-height: auto;
+        width: 80%;
+        float: left;
+    }
+    .fixHeight p{
+        text-align: left;
+        padding: 2px 0px 0px 20px;
+    }
+    .buttonClass {
+        width: 100%;
+        float: left;
+        text-align: left;
+    }
+    .align-vert{
+        padding: 18px 38px;
+        padding-bottom: 5px;
+    }
+    .align-vert img{
+        margin-right: 12px;
+    }
+    h1{
+        line-height: 55px;
+    }
+}
+
+@media only screen and (width:1024px){
+    .homeContainer {
+        width: 100%;
+        padding: 25px!important;
+    }
+    .fixHeight {
+        min-height: auto;
+    }
+    .buttonClass {
+        text-align: left;
+    }
+    .align-vert{
+        padding: 22px 100px;
+        padding-bottom: 10px;
+    }
+    
+}
+
+.titledesign{
+   font-size: 30px;
+   font-style: italic;
+   margin-top: 45px!important;
+   line-height: 38px; 
+}
+
+.tdesign th{
+    color: #626262;
+}
+
+.tdesign td{
+    color: #626262;
+}
+
+b {
+    color: #626262;
 }
