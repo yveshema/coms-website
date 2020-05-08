@@ -18,6 +18,7 @@ position: relative;
 @media only screen and (max-width: 524px) {
     margin-top: 0 !important;
 }
+
 `
 
 const Tagline = styled.div`
@@ -33,7 +34,7 @@ text-shadow: 0 3px 6px rgba(0, 0, 0, 0.502);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-@media only screen and (max-width: 769px) {
+@media only screen and (max-width: 768px) {
     padding: 0 30px;
     font-size: 24px;
     max-width: 100%;

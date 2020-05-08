@@ -150,14 +150,64 @@ const ContactForm = ({ onSuccess }) => {
         clearError(key);        
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let status;        
-        if ( status = validateInputs()) 
-            onSuccess(true);
-        return status;
+    const post = async (data) => {
+        const {url} = data;
+
+        delete data.url;
+
+        const params = {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        const response = await fetch(url, params);
+
+        if (response.status < 200 && response.status >= 300) {
+            const res = await response.json();
+
+            throw new Error(res);
+        }
+
+        return response.json();
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let validated = validateInputs();
+        if (validated) {
+            let email, name, subject, content, data, url;
+            email = inputs.email;
+            name = `${inputs.fname} ${inputs.lname}`;
+            subject = inputs.subj;
+            content = inputs.msg;
+            url = "https://ztfgyay7nh.execute-api.us-west-2.amazonaws.com/dev/email/send";
+
+            data = {
+                url,
+                email,
+                name,
+                subject,
+                content
+            };
+            
+
+            post(data)
+                .then((res) => {
+                    console.log(res);
+                    alert("Message Sent!");
+                    onSuccess(true);
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }        
+    }
+
+    
     return (
         <Form onSubmit={handleSubmit}>
             <Row>

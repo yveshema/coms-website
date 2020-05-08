@@ -10,6 +10,15 @@ display: flex;
 justify-content: space-between;
 padding: 3em;
 background: #fff;
+margin: 40px auto;
+box-shadow: 3px 3px 3px #bfbababa;
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    display:none;
+}
+@media only screen and (max-width: 767px){
+    display:none;
+
+}
 `
 
 const Container = styled.div`
