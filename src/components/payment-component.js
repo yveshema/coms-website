@@ -48,7 +48,7 @@ const PaymentComponent = () => {
     const calcCost = () => {
         changeForm({
             ...formStates,
-            totalCost: ('NCD ' + ((formStates.sysControl * 185) + (formStates.fileManage * 55) + (formStates.recertFee * 700) + (formStates.underTwoAcres * 350) + (formStates.overTwoAcres * 550)))
+            totalCost: ((formStates.sysControl * 185) + (formStates.fileManage * 55) + (formStates.recertFee * 700) + (formStates.underTwoAcres * 350) + (formStates.overTwoAcres * 550))
         })
     }
 
@@ -69,6 +69,7 @@ const PaymentComponent = () => {
     const submitTotal = (event) => {
         event.preventDefault();
         console.log(event.target)
+
     }
 
     return (
