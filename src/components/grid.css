@@ -230,7 +230,7 @@ h1{
     line-height: 55px
 }
 a {
-    color: #070706;
+    color: #626262;
     
 }
 
@@ -498,4 +498,16 @@ strong {
    font-style: italic;
    margin-top: 45px!important;
    line-height: 38px; 
+}
+
+.tdesign th{
+    color: #626262;
+}
+
+.tdesign td{
+    color: #626262;
+}
+
+b {
+    color: #626262;
 }
