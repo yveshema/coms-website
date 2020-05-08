@@ -4,6 +4,9 @@ import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
+/** The search input should lead to the search results page */
+import { navigate } from "@reach/router";
+
 const icon = graphql`
 query {
     search: file(relativePath: { eq: "icons/ui-icons/search-48.png" })
@@ -46,9 +49,16 @@ const SearchBar = (props) => {
 
     const data = useStaticQuery(icon);
 
+    const handleSearch = (e) => {
+        if (e.key === "Enter") {
+            navigate("/search");
+        }        
+    }
+
     return (
         <div className="searchDiv">
-            <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"/>
+            <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"
+            onKeyPress={handleSearch} />
             <button className="searchOpenBtn" onClick={openSearchBar}>
                 <Img 
                     fixed={data.search.childImageSharp.fixed}
