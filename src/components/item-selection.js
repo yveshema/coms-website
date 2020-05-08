@@ -129,7 +129,7 @@ const ItemSelectionForm = (props) => {
             <hr />
             <Row>
                 <Label>Total amount to be paid: </Label>
-                <StyledInput type="text" value={props.totalCost} />
+                <StyledInput type="text" value={'NCD ' + props.totalCost} />
             </Row>
             <Row><SubmitButton>Next-payment information</SubmitButton></Row>
         </form>
