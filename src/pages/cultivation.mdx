@@ -18,6 +18,15 @@ import mulching from '../images/Illustrations/desktop/cultivation/Mulching.svg';
 import caterpillarDamage from '../images/Illustrations/desktop/cultivation/caterpillar-damage.svg';
 import termiteDamage from '../images/Illustrations/desktop/cultivation/termite-damage.svg';
 import fungiDamage from '../images/Illustrations/desktop/cultivation/fungi-damage.svg';
+
+import agroforestryMobile from '../images/Illustrations/Mobile/cultivation/agroforestry.svg';
+import caterpillarDamageMobile from '../images/Illustrations/Mobile/cultivation/caterpillar-damage.svg';
+import fungiDamageMobile from '../images/Illustrations/Mobile/cultivation/fungi-damage.svg';
+import intensiveProductionMobile from '../images/Illustrations/Mobile/cultivation/intensive-production.svg';
+import mulchingMobile from '../images/Illustrations/Mobile/cultivation/mulching.svg';
+import propagationByCuttingMobile from '../images/Illustrations/Mobile/cultivation/propagation.svg';
+import semiIntensiveProductionMobile from '../images/Illustrations/Mobile/cultivation/semi-intensive-production.svg';
+
 import cultivationIcon from '../images/icons/cultivation/70px/cultivation-icon-70px.svg';
 import siteSelectionIcon from '../images/icons/cultivation/70px/site-selection-icon-70px.svg';
 import soilPrepIcon from '../images/icons/cultivation/70px/Soil-preparation-icon-70px.svg';
@@ -171,7 +180,10 @@ the polybag to serve as drains to avoid water logging. Water the seed every 2 to
 Hard woodcuttings of one meter long and at least 4 to 5 cm in  diameter can also be used for propagation. When planted, one third of the stem must be buried in the soil. Plants produced with cuttings will not have a deep root system and will be more sensitive to wind and drought. Cuttings are also more sensitive to termite attacks.
 
 <figure>
-    <img src={propagationByCutting} alt="propagation by cutting" />
+<picture>
+    <source media="(min-width: 767px)" srcset={propagationByCutting} alt="propagation by cutting"/>
+    <img src={propagationByCuttingMobile} alt="propagation by cutting" />
+</picture>
 </figure>
 
 
@@ -187,7 +199,10 @@ The spacing of plants should be 15 x 15 cm or 20 x 10 cm, with conveniently spac
 Another option is to space the seeding lines 45 cm apart and to sow every 5 cm on those lines. One can also space the lines only 30 cm apart and sow at a larger distance on the lines (10 to 20 cm). These intensive systems are appropriate for commercial production but require careful management. Weeding, manuring and disease prevention require more skill because of the high density.
 
 <figure>
-    <img src={intensiveProduction} alt="intensive production" />
+<picture>
+    <source media="(min-width: 767px)" srcset={intensiveProduction} alt="intensive production"/>
+    <img src={intensiveProductionMobile} alt="intensive production" />
+</picture>
 </figure>
 
 ## Semi-intensive Production
@@ -195,7 +210,10 @@ Another option is to space the seeding lines 45 cm apart and to sow every 5 cm o
 Plants are spaced 50 cm to 1 m apart. This is more appropriate for  small-scale farmers and gives good results with less maintenance.
 
 <figure>
-    <img src={semiIntensiveProduction} alt="semi intensive production" />
+<picture>
+    <source media="(min-width: 767px)" srcset={semiIntensiveProduction} alt="semi intensive production"/>
+    <img src={semiIntensiveProductionMobile} alt="semi intensive production" />
+</picture>
 </figure>
 
 ## Agroforestry
@@ -209,7 +227,10 @@ Moringa trees can be sown in alleys and associated with other crops.   The dista
 associate crops that can enrich the soil in minerals, especially in nitrogen like leguminous plants such as groundnut, soy or beans.
 
 <figure>
-    <img src={agroforestry} alt="agroforestry" />
+<picture>
+    <source media="(min-width: 767px)" srcset={agroforestry} alt="agroforestry"/>
+    <img src={agroforestryMobile} alt="agroforestry" />
+</picture>
 </figure>
 
 ## Seed Production
@@ -254,7 +275,10 @@ If fruits and seeds are present, weeds must be removed from the field.</p>
 Mulching consists in covering the soil with crop or weed residue to reduce the loss of soil moisture and to minimize irrigation needs during the dry months. This also reduces weed growth.
 
 <figure>
-    <img src={mulching} alt="mulching" />
+<picture>
+    <source media="(min-width: 767px)" srcset={mulching} alt="mulching"/>
+    <img src={mulchingMobile} alt="mulching" />
+</picture>
 </figure>
 
 ## Fertilizing
@@ -282,7 +306,10 @@ In organic farming, Bacillus thuringiensis (sold under the brand name Batik) is 
 insects, if it is sprayed in time. 
 
 <figure>
-    <img src={caterpillarDamage} alt="caterpillar damage" />
+<picture>
+    <source media="(min-width: 767px)" srcset={caterpillarDamage} alt="caterpillar Damage"/>
+    <img src={caterpillarDamageMobile} alt="caterpillar damage" />
+</picture>
 </figure>
 
 Termite attacks also cause damage to moringa plantations. Some organic solutions exist for termite control:   
@@ -302,5 +329,8 @@ The area around the trees, in organic farming, should be kept clear of weeds whi
 Neem leaf or seed extract can be sprayed on the plants to control pest and fungal attacks. This treatment is not as effective as using chemical products. The neem extract should be used as early as possible and sprayed repeatedly. Neem products can be produced locally and are not toxic for humans. The leaf extract is not as effective as the seed extract, but it can be used as well.
 
 <figure>
-    <img src={fungiDamage} alt="fungi damage" />
+<picture>
+    <source media="(min-width: 767px)" srcset={fungiDamage} alt="fungi Damage"/>
+    <img src={fungiDamageMobile} alt="fungi damage" />
+</picture>
 </figure>
