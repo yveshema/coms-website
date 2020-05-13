@@ -6,6 +6,7 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Title from '../components/title'
+import Table from '../components/table'
 
 <SEO title="Cultivation" keywords={['moringa', 'organic', 'standard', 'cultivation','moringa products', 'environmental', 'requirements']} />
 
@@ -52,6 +53,21 @@ To ensure top results and benefits, the following four steps are fundamental  in
 
 <Title anchorId="site-selection" icon={siteSelectionIcon} heading="Site Selection" />
 
+<Table 
+    caption="Environmental requirements for the moringa plant are shown in the following table." 
+    headings={["Parameters", "Requirements/Range"]}
+    content={[
+        ["Climate", "Tropical or Sub-tropical"],
+        ["Altitude/Height", "0-2000 Meters"],
+        ["Temperature", "25-35 °C"],
+        ["Rainfall", <ul>                
+                <li>250mm-200</li>
+                <li>Irrigation needed for lead production if rainfall is below 800mm</li>
+            </ul>],
+        ["Soil Type", "Loamy, sandy, or sandy loam"],
+        ["Soil pH", "Slightly acidic to slightly alkaline (pH 5-9)"]
+    ]}
+/>
 
 <table className="tdesign">
     <caption>Environmental requirements for the moringa plant are shown in the following table.</caption>
@@ -82,7 +98,7 @@ To ensure top results and benefits, the following four steps are fundamental  in
     </tr>
     <tr>
         <td>Soil Type</td>
-        <td>Loamy, sandy or sandy loam</td>
+        <td>Loamy, sandy, or sandy loam</td>
     </tr>
     <tr>
         <td>Soil pH</td>
@@ -95,6 +111,17 @@ To ensure top results and benefits, the following four steps are fundamental  in
 Avoid termite-infested soils as much as possible.</span> It should be an open area to receive full 
 sunlight. <span style="font-weight:500;">The site must be protected from free roaming animals</span> by an adequate natural or artificial fence.</p>
 
+<Table 
+    caption="The following sites are not recommended for moringa cultivation"
+    headings={["Site", "Reason(s)"]}
+    content={[
+        ["Industrial waste", "Absorption of undesirable or toxic heavy metals e.g. mercury, arsenic, lead, etc."],
+        ["Refuse dumps", "Absorption of undesirable or toxic metals e.g mercury, arsenic, lead, etc."],
+        ["Water logged sites", "Poor drainage causes roots to rot. e.g rice fields, clay, river beds, etc."],
+        ["Termite infested soils", "Destruction of young and mature trees"],
+        ["Animal gazing fields", "Destruction of young and mature trees"]
+    ]}
+/>
 <table className="tdesign">
     <caption>The following sites are not recommended for moringa cultivation</caption>
     <tr>

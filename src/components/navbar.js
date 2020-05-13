@@ -120,8 +120,9 @@ const Navmenu = (props) => {
         <div className="navContainer">
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
+
                     <div style={{ minWidth: "140px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{ width: "140px", marginBottom: '0' }} />
+                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{ width: "140px", marginBottom: '0' }} />                    
                     </div>
 
                     {/* Main Navbar */}
@@ -247,7 +248,6 @@ const Navmenu = (props) => {
                             alt="hamburger"
                         />
                     </button>
-
                 </div>
             </div>
         </div>

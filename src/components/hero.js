@@ -24,7 +24,7 @@ position: relative;
 const Tagline = styled.div`
 position: absolute;
 max-width: 768px;
-width: calc(100% * 8 / 12 - 133px);
+width: 100%;
 margin: 0 auto;
 color: white;
 font-size: 48px;
@@ -39,29 +39,8 @@ transform: translate(-50%, -50%);
     font-size: 24px;
     max-width: 100%;
 }
-@media only screen and (width:1024px){
-   width:100%;
-}
-@media screen and (max-width: 1023px) and (min-width: 768px){
-    width: 100%;
-    padding: 0 70px;
-    line-height:35px;
-}
-@media only screen and (max-width: 411px) {
+@media only screen and (max-width: 400px) {
     display: none;
-}
-@media (min-width: 414px)  and (max-width: 767px) {
-    width: 100%;
-    font-size: 21px;
-    line-height: 28px;
-    font-weight: 400;
-    padding: 0 20px;
-    display:none;
-}
-
-
-@media (min-width: 1160px)  and (max-width: 1200px) {
-    max-width: 1200px;
 }
 `
 
