@@ -7,9 +7,12 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 
 <!-- illustrations imports -->
-import nutrition from '../images/Illustrations/desktop/about/moringa-comparison-to-other-food.svg'
-import comparison from '../images/Illustrations/desktop/about/moringa-opportunities.svg'
+import comparison from '../images/Illustrations/desktop/about/moringa-comparison-to-other-food.svg'
+import comparisonMobile from '../images/Illustrations/mobile/about/moringa-comparison.svg'
+import nutrition from '../images/Illustrations/desktop/about/moringa-opportunities.svg'
+import nutritionMobile from '../images/Illustrations/mobile/about/moringa-opportunities.svg'
 import opportunity from '../images/Illustrations/desktop/about/moringa-tree-info-graphic.svg'
+import opportunityMobile from '../images/Illustrations/mobile/about/mobile-moringa-tree-inforaphic.svg'
 
 <SEO title="about" keywords={['moringa', 'organic', 'standard']} />
 
@@ -31,8 +34,12 @@ becoming increasingly popular in the cosmetic industry.
 Leaves and young branches are used as fodder. Moringa may also be used in fish and 
 poultry feeds. The bark yields a blue dye and can also be used in tanning. The wood can produce paper. A plant growth hormone can be extracted from young shoots, which when applied as a foliar spray, increases yields dramatically in almost any plant. Last but not least, almost every part of the plant has pharmacological properties.
 
+
 <figure>
-<img src={opportunity} alt="Moringa opportunities" />
+<picture>
+    <source media="(min-width: 767px)" srcset={opportunity} alt="Moringa opportunity"/>
+    <img src={opportunityMobile} alt="Moringa opportunity"/>
+</picture>
 </figure>
 
 <h1 class="parafont"> Moringa Comparison With Other Types of Foods</h1>
@@ -45,7 +52,10 @@ Absorbance Capacity) score ever recorded, topping all other antioxidant superfoo
 such as Acai berries, green tea, and red wine.</p>
 
 <figure>
-<img src={comparison} alt="Moringa comparison to other food" />
+<picture>
+    <source media="(min-width: 767px)" srcset={comparison} alt="Moringa comparison to other food"/>
+    <img src={comparisonMobile} alt="Moringa comparison to other food" />
+</picture>
 </figure>
 
 <h1 class="parafont"> Why Cultivating Moringa and Meeting Quality Standards are important?</h1>
@@ -55,5 +65,9 @@ This leafy vegetable is an exceptional resource for developing countries. Proces
 Packaging also has an impact on quality: moringa leaf powder, packaged in transparent bags, sold on stands in the sun, rapidly loses its most essential vitamins. This raises concerns, and rightly so, about the quality of this new product as well as its uses.
 
 <figure>
-<img src={nutrition} alt="Moringa tree infographic" />
+<picture>
+    <source media="(min-width: 767px)" srcset={nutrition} alt="Moringa tree infographic"/>
+    <img src={nutritionMobile} alt="Moringa tree infographic" />
+</picture>
 </figure>
+

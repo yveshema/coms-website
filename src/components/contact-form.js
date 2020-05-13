@@ -65,6 +65,9 @@ background-color: #fd6927;
 margin-left: auto;
 margin-right: 10px;
 color: #fff;
+border-radius:3px;
+font-size:16px;
+padding:4px;
 `;
 
 
@@ -150,27 +153,77 @@ const ContactForm = ({ onSuccess }) => {
         clearError(key);        
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        let status;        
-        if ( status = validateInputs()) 
-            onSuccess(true);
-        return status;
+    const post = async (data) => {
+        const {url} = data;
+
+        delete data.url;
+
+        const params = {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+
+        const response = await fetch(url, params);
+
+        if (response.status < 200 && response.status >= 300) {
+            const res = await response.json();
+
+            throw new Error(res);
+        }
+
+        return response.json();
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let validated = validateInputs();
+        if (validated) {
+            let email, name, subject, content, data, url;
+            email = inputs.email;
+            name = `${inputs.fname} ${inputs.lname}`;
+            subject = inputs.subj;
+            content = inputs.msg;
+            url = "https://ztfgyay7nh.execute-api.us-west-2.amazonaws.com/dev/email/send";
+
+            data = {
+                url,
+                email,
+                name,
+                subject,
+                content
+            };
+            
+
+            post(data)
+                .then((res) => {
+                    console.log(res);
+                    alert("Message Sent!");
+                    onSuccess(true);
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }        
+    }
+
+    
     return (
         <Form onSubmit={handleSubmit}>
             <Row>
                 <InputControl>
                     <Label>First Name*</Label>
                     <Input type="text" id="fname" value={inputs.fname}
-                    onChange={handleChange} placeholder="Mary" />
+                    onChange={handleChange} placeholder="First Name" />
                     <FormError>{errors.fname}</FormError>                    
                 </InputControl>
                 <InputControl>
                     <Label>Last Name*</Label>
                     <Input type="text" id="lname" value={inputs.lname}
-                    onChange={handleChange} placeholder="Smith" />
+                    onChange={handleChange} placeholder="Last Name" />
                     <FormError>{errors.lname}</FormError>
                 </InputControl>                
             </Row>            
@@ -178,13 +231,13 @@ const ContactForm = ({ onSuccess }) => {
                 <InputControl>
                     <Label>Email address*</Label>
                     <Input type="email" id="email" value={inputs.email}
-                    onChange={handleChange} placeholder="jane.doe@example.com" />
+                    onChange={handleChange} placeholder="email@email.com" />
                     <FormError>{errors.email}</FormError>
                 </InputControl>
                 <InputControl>
                     <Label>Phone Number</Label>
                     <Input type="tel" id="tel" value={inputs.tel}
-                    onChange={handleChange} placeholder="424-242-4242" />
+                    onChange={handleChange} placeholder="XXX-XXX-XXXX" />
                     <FormError>{errors.tel}</FormError>
                 </InputControl>                
             </Row>            

@@ -5,6 +5,7 @@ title: processing
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import Title from '../components/title'
 
 <!-- illustrations imports -->
 import labeling from '../images/Illustrations/desktop/transportation/labeling.svg';
@@ -13,6 +14,13 @@ import personalHygiene from '../images/Illustrations/desktop/transportation/pers
 import roomDrying from '../images/Illustrations/desktop/transportation/room-drying.svg';
 import straining from '../images/Illustrations/desktop/transportation/straining.svg';
 import moringaPetiole from '../images/Illustrations/desktop/transportation/moringa-petiole.svg';
+
+import labelingMobile from '../images/Illustrations/mobile/transportation/labeling.svg';
+import bulkPackagingMobile from '../images/Illustrations/mobile/transportation/bulk-packaging.svg';
+import personalHygieneMobile from '../images/Illustrations/mobile/transportation/personal-hygiene.svg';
+import roomDryingMobile from '../images/Illustrations/mobile/transportation/room-drying.svg';
+import strainingMobile from '../images/Illustrations/mobile/transportation/moringa-straining.svg';
+import moringaPetioleMobile from '../images/Illustrations/mobile/transportation/moringa-petiole.svg';
 
 <SEO title="Processing" keywords={['moringa', 'organic', 'standard', 'cultivation','moringa products', 'environmental', 'requirements', 'processing', 'harvesting','sanitary']} />
 
@@ -25,7 +33,10 @@ Processing should start immediately after harvesting and transporting  the leave
 Strip all the leaflets from the leaf petiole. This can be done directly from the branches if the leaves have not been stripped off the main branch before transportation. At this stage, diseased and damaged leaves are discarded.
 
 <figure>
-    <img src={moringaPetiole} alt="moringa petiole" />
+<picture>
+    <source media="(min-width: 767px)" srcset={moringaPetiole} alt="moringa petiole"/>
+    <img src={moringaPetioleMobile} alt="moringa petiole" />
+</picture>
 </figure>
 
 <h1 class="parafont aline">Washing</h1>
@@ -37,7 +48,10 @@ Wash leaflets in troughs using clean potable water to remove dirt. Wash leaves a
 Strain water from the leaves in buckets that have been perforated, spread leaflets on trays made with food-grade mesh and leave to drain for 15 minutes before taking them to the dryer.
 
 <figure>
-    <img src={straining} alt="draining" />
+<picture>
+    <source media="(min-width: 767px)" srcset={straining} alt="draining"/>
+    <img src={strainingMobile} alt="draining" />
+</picture>
 </figure>
 
 <h1 class="parafont aline">Drying</h1>
@@ -51,7 +65,10 @@ Spread the leaflets thinly on mesh tied on racks (mosquito net mesh can be used)
 It is advisable to turn the leaves over at least once, with sterile gloves, to improve uniform drying. Leaves should be completely dry within a maximum of 4 days. The loading density should not exceed 1 kg/m2. However, room-dried leaves cannot be guaranteed mould-free with the maximum recommended moisture content of 10%. Therefore, we do not advise this method.
 
 <figure>
-    <img src={roomDrying} alt="room drying" />
+<picture>
+    <source media="(min-width: 767px)" srcset={roomDrying} alt="room drying"/>
+    <img src={roomDryingMobile} alt="room drying" />
+</picture>
 </figure>
 
 <h2 class="hdesign">Solar Drying</h2>
@@ -92,7 +109,10 @@ Moringa leaf powder can easily be contaminated by moulds as it strongly attracts
 All persons involved in the packaging of moringa leaf products must ensure that, while on duty, personal cleanliness and hygiene are maintained. Personal protective equipment (PPE) such as head caps, nose masks, disposable gloves, etc. must be used at all times.
 
 <figure>
-    <img src={personalHygiene} alt="personal hygiene" />
+<picture>
+    <source media="(min-width: 767px)" srcset={personalHygiene} alt="personal hygiene"/>
+    <img src={personalHygieneMobile} alt="personal hygiene" />
+</picture>
 </figure>
 
 ## Packaging in Bulk
@@ -100,7 +120,10 @@ All persons involved in the packaging of moringa leaf products must ensure that,
 The temperature and humidity must be controlled in the packaging room, to avoid re-humidification of the product. After drying, the powder is left to cool and packed into clean, single-use polythene bags and sealed. This is enclosed in a second polythene bag and heat-sealed. This is to maintain freshness and dryness prior to further use. The bags should be stored in a cool, dry place.
 
 <figure>
-    <img src={bulkPackaging} alt="bulk packaging" />
+<picture>
+    <source media="(min-width: 767px)" srcset={bulkPackaging} alt="bulk Packaging"/>
+    <img src={bulkPackagingMobile} alt="bulk packaging" />
+</picture>
 </figure>
 
 ## Final packaging
@@ -113,7 +136,7 @@ and opaque containers made of materials that do not affect the quality of the pr
 <p class="captionName">Each package of moringa leaf product must be legibly marked
 with the following information:</p>
 <blockquote>
-<ol type="a" className="listLine">
+<ol className="listLine">
     <li>Name of product</li>
     <li>Net content</li>
     <li>Name and address of producer</li>
@@ -126,5 +149,8 @@ with the following information:</p>
 </blockquote>
 
 <figure>
-    <img src={labeling} alt="labeling" />
+<picture>
+    <source media="(min-width: 767px)" srcset={labeling} alt="labeling"/>
+    <img src={labelingMobile} alt="labeling" />
+</picture>
 </figure>
