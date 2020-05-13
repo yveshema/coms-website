@@ -105,7 +105,7 @@ width: 14em;
 
 const ItemSelectionForm = (props) => {
     return (
-        <form onSubmit={props.submitTotal}>
+        <form style={props.progress === 1 ? {display: 'block'} : {display: 'none'}} onSubmit={props.submitTotal}>
             <Control>
                 <input type="checkbox" value="sys" onChange={props.changeCheckedStatus} />
                 <Label>NCD 185 system control fee</Label>
@@ -129,7 +129,7 @@ const ItemSelectionForm = (props) => {
             <hr />
             <Row>
                 <Label>Total amount to be paid: </Label>
-                <StyledInput type="text" value={'NCD ' + props.totalCost} />
+                <StyledInput type="text" value={'NCD ' + props.totalCost} placeholder="NCD"/>
             </Row>
             <Row><SubmitButton>Next-payment information</SubmitButton></Row>
         </form>
