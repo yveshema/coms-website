@@ -48,7 +48,7 @@ width: 183px;
 border: 1px solid #fd6927;
 border-radius: 3px;
 background-color: #fd6927;
-font-size: 18px;
+font-size: 16px;
 text-align: center;
 padding: 7px 5px;
 color: #fff;

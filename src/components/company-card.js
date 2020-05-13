@@ -25,7 +25,7 @@ display:flex;
 justify-content: center;
 align-items: center;
 background: #fff;
-box-shadow: 2px 2px 2px #555;
+box-shadow: 3px 3px 3px #bfbababa;
 margin-bottom: 10px;
 `;
 
