@@ -120,7 +120,7 @@ const PaymentForm = (props) => {
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form style={props.progress === 2 ? {display: 'block'} : {display: 'none'}} onSubmit={handleSubmit}>
             <div className="form-align">
                 <label for="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
@@ -159,7 +159,7 @@ const PaymentForm = (props) => {
                     </label>
                 </div>
             </div>
-            <button>Back</button>
+            <button onClick={props.reverseForm}>Back</button>
             <button type="submit" disabled={!stripe}>Review and Confirm</button>
         </Form>
     )
@@ -168,7 +168,7 @@ const PaymentForm = (props) => {
 const PaymentInfo = (props) => {
     return (
         <Elements stripe={props.stripePubKey} >
-            <PaymentForm handleCardInfo={props.handleCardInfo} />
+            <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
         </Elements>
     )
 }
