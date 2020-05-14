@@ -3,8 +3,17 @@ import ItemSelectionForm from "./item-selection";
 import PaymentInfo from './payment-info';
 import PaymentConfirm from './payment-confirm';
 import { loadStripe } from "@stripe/stripe-js";
+import styled from 'styled-components';
 
+// Replace public test Stripe key with live Stripe key to actually bill customers
+// The private test key also needs to be replaced in the serverless function
 const stripePromise = loadStripe("pk_test_xnFaHOBqDv0NhsCEPQtTLj9c0025sSw7c3");
+
+const PayDiv = styled.div`
+    max-width: 100%;
+    background-color: white;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
+`
 
 const PaymentComponent = () => {
     const [formStates, changeForm] = useState({
@@ -141,11 +150,11 @@ const PaymentComponent = () => {
     }
 
     return (
-        <div>
+        <PayDiv>
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} />
             <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
             <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} />
-        </div>
+        </PayDiv>
     )
 }
 
