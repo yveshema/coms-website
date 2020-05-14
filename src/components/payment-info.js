@@ -8,6 +8,8 @@ import {
     CardCvcElement,
     CardExpiryElement
 } from "@stripe/react-stripe-js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
     width: 100%;
@@ -56,6 +58,9 @@ const Container = styled.div`
     .buttonDiv {
         display: flex;
         justify-content: space-between;
+        border-top: 1px solid hsla(0,0%,0%,0.2);
+        margin-top: 30px;
+        padding-top: 30px;
     }
 
     .buttonNext, .buttonBack {
@@ -75,6 +80,7 @@ const Container = styled.div`
         border: 0;
         background-color: #FD6927;
         color: white;
+        width: 14em;
     }
 
     .buttonNext:disabled {
@@ -136,7 +142,8 @@ const elementOptions = {
 const PaymentForm = (props) => {
     const [billingInfo, changeInfo] = useState({
         fullName: '',
-        emailAddress: ''
+        emailAddress: '',
+        isLoading: false
     })
 
     const [error, setError] = useState(null);
@@ -153,6 +160,8 @@ const PaymentForm = (props) => {
             return;
         }
 
+        changeInfo({...billingInfo, isLoading: true})
+
         const payload = await stripe.createPaymentMethod({
             billing_details: {
                 name: billingInfo.fullName,
@@ -161,7 +170,7 @@ const PaymentForm = (props) => {
             type: "card",
             card: elements.getElement(CardNumberElement)
         });
-        console.log(payload);
+        changeInfo({...billingInfo, isLoading: false})
         props.handleCardInfo(payload)
     };
 
@@ -186,13 +195,13 @@ const PaymentForm = (props) => {
         }
     }
 
-    if (props.progress === 1) {
+    if (props.progress === 2) {
         return (
         <Container>
             <p>
                 Please provide your payment information below.
             </p>
-            <form style={props.progress === 1 ? { display: 'block' } : { display: 'none' }} onSubmit={handleSubmit}>
+            <form style={props.progress === 2 ? { display: 'block' } : { display: 'none' }} onSubmit={handleSubmit}>
                 <div className="form-align">
                     <label for="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
@@ -203,9 +212,9 @@ const PaymentForm = (props) => {
                 </div>
 
                 <div className="form-align">
-                    <label for="cardNumInput">
+                    <label for="cardNumInput" style={{width: 'calc(100% - 20px)'}}>
                         Card number
-                <CardNumberElement
+                        <CardNumberElement
                             className="stripeInput"
                             options={stripeStyle}
                             onChange={handleStripeChange}
@@ -238,7 +247,7 @@ const PaymentForm = (props) => {
                 </div>
                 <div className="buttonDiv">
                     <button className="buttonBack" onClick={props.reverseForm}>Back</button>
-                    <button className="buttonNext" type="submit" disabled={!stripe}>Review and Confirm</button>
+                    <button className="buttonNext" type="submit" disabled={!stripe}>{billingInfo.isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Review and Confirm'}</button>
                 </div>
             </form>
         </Container>
