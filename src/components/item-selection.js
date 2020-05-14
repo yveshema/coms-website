@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {
@@ -6,19 +6,41 @@ import {
     Button,
 } from "./input-components";
 
+const Container = styled.div`
+max-width: 768px;
+width: 100%;
+margin: auto;
+
+p {
+    color: black;
+    font-style: italic;
+    border-bottom: 1px solid hsla(0,0%,0%,0.2);
+    margin: 30px 0px;
+    padding-bottom: 30px;
+}
+`
+
 const Row = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: flex-end;
+align-items: center;
 margin-bottom: 5px;
 `
 
 const SubmitButton = styled(Button)`
+font-size: 1em;
+font-weight: 500;
+padding: 5px 20px;
 width: 14em;
-border: 1px solid #fd6927;
-background-color: #fd6927;
-margin-left: auto;
-color: #fff;
-border-radius: 3px;
+border-radius: 4px;
+border: 0;
+background-color: #FD6927;
+color: white;
+cursor: pointer;
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
 `;
 
 const Control = styled.div`
@@ -37,6 +59,11 @@ line-height: 1.2;
 
 const StyledInput = styled(Input)`
 width: 14em;
+border: 1px solid #C1C1C1;
+border-radius: 0.25rem;
+padding: 5px 12px;
+background-color: white;
+box-shadow: none;
 `
 
 // const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
@@ -105,34 +132,39 @@ width: 14em;
 
 const ItemSelectionForm = (props) => {
     return (
-        <form style={props.progress === 1 ? {display: 'block'} : {display: 'none'}} onSubmit={props.submitTotal}>
-            <Control>
-                <input type="checkbox" value="sys" onChange={props.changeCheckedStatus} />
-                <Label>NCD 185 system control fee</Label>
-            </Control>
-            <Control>
-                <input type="checkbox" value="file" onChange={props.changeCheckedStatus} />
-                <Label>NCD 55 file management fee</Label>
-            </Control>
-            <Control>
-                <input type="checkbox" value="recert" onChange={props.changeCheckedStatus} />
-                <Label>NCD 700 recertification fee</Label>
-            </Control>
-            <Control>
-                <input type="checkbox" value="under2" onChange={props.changeCheckedStatus} />
-                <Label>NCD 350 for crops below 2 acres</Label>
-            </Control>
-            <Control>
-                <input type="checkbox" value="over2" onChange={props.changeCheckedStatus} />
-                <Label>NCD 550 for crops above 2 acres</Label>
-            </Control>
-            <hr />
-            <Row>
-                <Label>Total amount to be paid: </Label>
-                <StyledInput type="text" value={'NCD ' + props.totalCost} placeholder="NCD"/>
-            </Row>
-            <Row><SubmitButton>Next-payment information</SubmitButton></Row>
-        </form>
+        <Container style={props.progress === 1 ? { display: 'block' } : { display: 'none' }}>
+            <p>
+                Select the items you want to pay for according to the invoice you received.
+            </p>
+            <form onSubmit={props.submitTotal}>
+                <Control>
+                    <input type="checkbox" value="sys" onChange={props.changeCheckedStatus} />
+                    <Label>NCD 185 system control fee</Label>
+                </Control>
+                <Control>
+                    <input type="checkbox" value="file" onChange={props.changeCheckedStatus} />
+                    <Label>NCD 55 file management fee</Label>
+                </Control>
+                <Control>
+                    <input type="checkbox" value="recert" onChange={props.changeCheckedStatus} />
+                    <Label>NCD 700 recertification fee</Label>
+                </Control>
+                <Control>
+                    <input type="checkbox" value="under2" onChange={props.changeCheckedStatus} />
+                    <Label>NCD 350 for crops below 2 acres</Label>
+                </Control>
+                <Control>
+                    <input type="checkbox" value="over2" onChange={props.changeCheckedStatus} />
+                    <Label>NCD 550 for crops above 2 acres</Label>
+                </Control>
+                <hr />
+                <Row>
+                    <Label>Total amount to be paid: </Label>
+                    <StyledInput type="text" value={'NCD ' + props.totalCost} placeholder="NCD" />
+                </Row>
+                <Row><SubmitButton>Payment Information</SubmitButton></Row>
+            </form>
+        </Container>
     )
 };
 
