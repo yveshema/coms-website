@@ -18,6 +18,7 @@ const PayDiv = styled.div`
 const PaymentComponent = () => {
     const [formStates, changeForm] = useState({
         currProgress: 1,
+        isLoading: false,
         sysControl: false,
         fileManage: false,
         recertFee: false,
@@ -35,28 +36,29 @@ const PaymentComponent = () => {
         calcCost();
     }, [formStates.sysControl, formStates.fileManage, formStates.recertFee, formStates.underTwoAcres, formStates.overTwoAcres])
 
-    const changeCheckedStatus = (event) => {
-        switch (event.target.value) {
+    const changeCheckedStatus = (val) => {
+        switch (val) {
             case "sys":
-                changeForm({ ...formStates, sysControl: event.target.checked });
+                changeForm({ ...formStates, sysControl: !formStates.sysControl });
                 break;
             case "file":
-                changeForm({ ...formStates, fileManage: event.target.checked });
+                changeForm({ ...formStates, fileManage: !formStates.fileManage });
                 break;
             case "recert":
-                changeForm({ ...formStates, recertFee: event.target.checked });
+                changeForm({ ...formStates, recertFee: !formStates.recertFee });
                 break;
             case "under2":
-                changeForm({ ...formStates, underTwoAcres: event.target.checked });
+                changeForm({ ...formStates, underTwoAcres: !formStates.underTwoAcres });
                 break;
             case "over2":
-                changeForm({ ...formStates, overTwoAcres: event.target.checked });
+                changeForm({ ...formStates, overTwoAcres: !formStates.overTwoAcres });
                 break;
             default:
                 break;
         }
     }
 
+    // Calculate the total cost for front end display only
     const calcCost = () => {
         changeForm({
             ...formStates,
@@ -64,9 +66,9 @@ const PaymentComponent = () => {
         })
     }
 
+    // Write card info to state if valid
     const handleCardInfo = payload => {
         if (payload.paymentMethod === undefined) {
-            console.log("Error:", payload);
             return;
         }
         console.log("[PaymentMethod]", payload)
@@ -105,6 +107,7 @@ const PaymentComponent = () => {
         return response.json();
     };
 
+    // Create a new Payment Intent with Stripe and return Client Secret
     const submitTotal = (event) => {
         event.preventDefault();
 
@@ -124,19 +127,34 @@ const PaymentComponent = () => {
             }
         }
 
+        changeForm({
+            ...formStates,
+            isLoading: true
+        })
+
         post(data)
             .then((res) => {
                 if (res.client_secret) {
                     changeForm({
                         ...formStates,
                         clientSecret: res.client_secret,
-                        currProgress: 2
+                        currProgress: 2,
+                        isLoading: false
                     })
                 } else {
+                    changeForm({
+                        ...formStates,
+                        clientSecret: 'Error',
+                        isLoading: false
+                    })
                     console.log(res)
                 }
             })
             .catch((error) => {
+                changeForm({
+                    ...formStates,
+                    isLoading: false
+                })
                 console.log("Error ", error)
             })
     }
@@ -151,7 +169,7 @@ const PaymentComponent = () => {
 
     return (
         <PayDiv>
-            <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} />
+            <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
             <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
             <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} />
         </PayDiv>
