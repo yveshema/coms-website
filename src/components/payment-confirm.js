@@ -1,20 +1,48 @@
 import React, { useState } from 'react';
 import { Elements, useStripe } from "@stripe/react-stripe-js";
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
     width: 100%;
     max-width: 768px;
     margin: auto;
 
-    p {
-        font-style: italic;
+    h1 {
         color: black;
-    }    
+        font-style: italic;
+        border-bottom: 1px solid hsla(0,0%,0%,0.2);
+        margin: 30px 0px !important;
+        padding-bottom: 30px;
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    h2, p {
+        font-size: 1.25em !important;
+        margin-top: 0 !important;
+        margin-bottom: 0;
+        color: black;
+        font-style: normal;
+    }
+
+    h2, h3 {
+        font-weight: 500;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        color: black;
+        margin-top: 30px;
+    }
 
     .buttonDiv {
         display: flex;
         justify-content: space-between;
+        border-top: 1px solid hsla(0,0%,0%,0.2);
+        margin-top: 30px;
+        padding-top: 30px;
     }
 
     .buttonNext, .buttonBack {
@@ -34,6 +62,7 @@ const Container = styled.div`
         border: 0;
         background-color: #FD6927;
         color: white;
+        width: 13em;
     }
 
     .buttonBack {
@@ -46,21 +75,50 @@ const Container = styled.div`
         background-color: #626262;
         color: white;
     }
+
+    .row {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .columnDiv {
+        border-bottom: 1px solid hsla(0,0%,0%,0.2);
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    @media only screen and (min-width:769px) {
+        h2 {
+            margin-bottom: 30px;
+        }
+        .columnDiv {
+            width: calc(100% / 3);
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .row {
+            flex-direction: row;
+        }
+    }
 `
 
 const PaymentSummary = (props) => {
     // paymentSuccess will change to either error or succeeded
-    const [ paymentSuccess, changePayState ] = useState( null );
+    const [paymentSuccess, changePayState] = useState(null);
+    const [isLoading, changeLoad] = useState(false);
     const monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     const stripe = useStripe();
 
     const submitPayment = async (event) => {
         event.preventDefault();
+        changeLoad(true);
         const result = await stripe.confirmCardPayment(props.currState.clientSecret, {
             payment_method: props.currState.paymentID
         });
 
+        changeLoad(false);
         if (result.paymentIntent) {
             changePayState(result.paymentIntent.status)
         } else {
@@ -71,47 +129,53 @@ const PaymentSummary = (props) => {
     }
 
     if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
-        let ccBrand = props.currState.cardDetails.brand;
+        let ccBrand = props.currState.cardDetails.brand ? props.currState.cardDetails.brand : 'undefined';
         return (
             <Container>
-                <div>
-                    <p>Items:</p>
-                    {props.currState.sysControl ? <p>NCD 185 System Control Fee</p> : ''}
-                    {props.currState.fileManage ? <p>NCD 55 File Management Fee</p> : ''}
-                    {props.currState.recertFee ? <p>NCD 700 Recertification Fee</p> : ''}
-                    {props.currState.underTwoAcres ? <p>NCD 350 For Crops Below 2 Acres</p> : ''}
-                    {props.currState.overTwoAcres ? <p>NCD 550 For Crops Above 2 Acres</p> : ''}
+                <h1>
+                    Please review your order information below.
+                </h1>
+                <div className="row">
+                    <div className="columnDiv">
+                        <h2>Items:</h2>
+                        {props.currState.sysControl ? <p>NCD 185 System Control Fee</p> : ''}
+                        {props.currState.fileManage ? <p>NCD 55 File Management Fee</p> : ''}
+                        {props.currState.recertFee ? <p>NCD 700 Recertification Fee</p> : ''}
+                        {props.currState.underTwoAcres ? <p>NCD 350 For Crops Below 2 Acres</p> : ''}
+                        {props.currState.overTwoAcres ? <p>NCD 550 For Crops Above 2 Acres</p> : ''}
+                    </div>
+                    <div className="columnDiv">
+                        <h2>Email Address:</h2>
+                        <p>
+                            {props.currState.email}
+                        </p>
+                    </div>
+                    <div className="columnDiv">
+                        <h2>Credit Card:</h2>
+                        <p>
+                            {ccBrand[0].toUpperCase()}{ccBrand.slice(1)}: ************{props.currState.cardDetails.last4 ? props.currState.cardDetails.last4 : 'null'}
+                        </p>
+                        <p>
+                            Expires: {monthArr[props.currState.cardDetails.exp_month ? props.currState.cardDetails.exp_month : 0]} {props.currState.cardDetails.exp_year ? props.currState.cardDetails.exp_year : 1990}
+                        </p>
+                    </div>
                 </div>
                 <div>
-                    <p>Email Address:</p>
-                    <p>
-                        {props.currState.email}
-                    </p>
-                </div>
-                <div>
-                    <p>Credit Card:</p>
-                    <p>
-                        {ccBrand[0].toUpperCase()}{ccBrand.slice(1)}: ************{props.currState.cardDetails.last4}
-                    </p>
-                    <p>
-                        Expires: {monthArr[props.currState.cardDetails.exp_month]} {props.currState.cardDetails.exp_year}
-                    </p>
-                </div>
-                <div>
-                    <p>
+                    <h3>
                         Total: NCD {props.currState.totalCost}
-                    </p>
+                    </h3>
                 </div>
                 <div className='buttonDiv'>
                     <button className='buttonBack' onClick={props.reverseForm}>Back</button>
-                    <button className='buttonNext' onClick={submitPayment}>Confirm Payment</button>
+                    <button className='buttonNext' onClick={submitPayment}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Confirm Payment'}</button>
                 </div>
             </Container>
-    )} else if (props.currState.currProgress === 3 && paymentSuccess === "succeeded") {
+        )
+    } else if (props.currState.currProgress === 3 && paymentSuccess === "succeeded") {
         return (
             <Container>
-                <h1>Thank you!</h1>
-                <h2>A confirmation email has been sent to your email</h2>
+                <h1 style={{fontSize: '2.375em', fontStyle: 'normal', fontWeight: '500', border: 'none', textAlign: 'center'}}>Thank you!</h1>
+                <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
             </Container>
         )
     } else {
