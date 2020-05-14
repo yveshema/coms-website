@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path') 
 
 module.exports = {
   siteMetadata: {
@@ -65,7 +65,7 @@ module.exports = {
             id: node => node.id,
             title: node => node.frontmatter.title,
             content: node => node.internal.content,
-            excerpt: node => node.excerpt            
+            excerpt: node => node.frontmatter.excerpt,  
           },
         },
       },
