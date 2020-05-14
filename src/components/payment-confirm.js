@@ -1,5 +1,52 @@
 import React, { useState } from 'react';
 import { Elements, useStripe } from "@stripe/react-stripe-js";
+import styled from 'styled-components';
+
+const Container = styled.div`
+    width: 100%;
+    max-width: 768px;
+    margin: auto;
+
+    p {
+        font-style: italic;
+        color: black;
+    }    
+
+    .buttonDiv {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .buttonNext, .buttonBack {
+        font-size: 1em;
+        font-weight: 500;
+        padding: 3px 30px;
+        border-radius: 4px;
+        margin: 5px;
+        cursor: pointer;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
+    }
+
+    .buttonNext {
+        border: 0;
+        background-color: #FD6927;
+        color: white;
+    }
+
+    .buttonBack {
+        border: solid 2px #626262;
+        background-color: white;
+        color: #626262;
+    }
+
+    .buttonBack:hover {
+        background-color: #626262;
+        color: white;
+    }
+`
 
 const PaymentSummary = (props) => {
     // paymentSuccess will change to either error or succeeded
@@ -26,7 +73,7 @@ const PaymentSummary = (props) => {
     if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
         let ccBrand = props.currState.cardDetails.brand;
         return (
-            <div>
+            <Container>
                 <div>
                     <p>Items:</p>
                     {props.currState.sysControl ? <p>NCD 185 System Control Fee</p> : ''}
@@ -55,15 +102,17 @@ const PaymentSummary = (props) => {
                         Total: NCD {props.currState.totalCost}
                     </p>
                 </div>
-                <button onClick={props.reverseForm}>Back</button>
-                <button onClick={submitPayment}>Confirm Payment</button>
-            </div>
+                <div className='buttonDiv'>
+                    <button className='buttonBack' onClick={props.reverseForm}>Back</button>
+                    <button className='buttonNext' onClick={submitPayment}>Confirm Payment</button>
+                </div>
+            </Container>
     )} else if (props.currState.currProgress === 3 && paymentSuccess === "succeeded") {
         return (
-            <div>
+            <Container>
                 <h1>Thank you!</h1>
                 <h2>A confirmation email has been sent to your email</h2>
-            </div>
+            </Container>
         )
     } else {
         return null;
