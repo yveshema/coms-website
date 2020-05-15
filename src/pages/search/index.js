@@ -6,6 +6,7 @@ import Layout from "../../components/layout";
 import { SearchContext } from "../../components/search_context";
 import { navigate } from "@reach/router";
 import "./search.css";
+import icon from "../../images/icons/ui-icons/search-24.png";
 
 const SearchPage = () => {
     // initialize query string and update global state
@@ -69,7 +70,7 @@ const SearchPage = () => {
                         onChange={(e) => updateQuery(e.target.value)}
                         onKeyPress={handleSearch}
                     />
-                    <button>Search</button>
+                    <button onClick={handleSearch}><img src={icon} alt="search icon" /></button> 
                 </section>
                 <section className="searchResults">          
                 {results.length ?
