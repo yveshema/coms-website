@@ -165,8 +165,7 @@ const ItemSelectionForm = (props) => {
                     </span>
                     NCD 550 for crops above 2 acres
                 </Control>
-                <hr />
-                <Row>
+                <Row style={{ borderTop: '1px solid hsla(0,0%,0%,0.2)', marginTop: '30px', paddingTop: '30px'}}>
                     <Label>Total amount to be paid: </Label>
                     <StyledInput type="text" value={'NCD ' + props.totalCost} placeholder="NCD" />
                 </Row>
