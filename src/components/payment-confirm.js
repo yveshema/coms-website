@@ -87,6 +87,38 @@ const Container = styled.div`
         margin-bottom: 20px;
     }
 
+    .thankYouHeader {
+        color: #626262;
+        font-size: 2.375em;
+        font-style: normal;
+        font-weight: 500;
+        border: none;
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .centerThanksDiv {
+        position: relative;
+        transform: translateY(50%);
+    }
+
+    .checkCircleDiv {
+        margin: auto;
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        border: 3px solid #53AB34;
+    }
+
+    .checkSvg {
+        fill: none;
+        stroke: #53AB34;
+        stroke-width: 4;
+        stroke-dasharray: 60;
+        stroke-dashoffset: 60;
+        animation: checkmark 1s ease-out forwards;
+    }
+
     @media only screen and (min-width:769px) {
         h2 {
             margin-bottom: 15px;
@@ -99,6 +131,12 @@ const Container = styled.div`
         }
         .row {
             flex-direction: row;
+        }
+    }
+
+    @keyframes checkmark {
+        to {
+            stroke-dashoffset: 120;
         }
     }
 `
@@ -178,9 +216,16 @@ const PaymentSummary = (props) => {
         )
     } else if (props.currState.currProgress === 4 && paymentSuccess === "succeeded") {
         return (
-            <Container>
-                <h1 style={{fontSize: '2.375em', fontStyle: 'normal', fontWeight: '500', border: 'none', textAlign: 'center'}}>Thank you!</h1>
+            <Container style={{minHeight: '500px'}}>
+                <div className="centerThanksDiv">
+                <div className="checkCircleDiv">
+                    <svg viewBox="0 0 70 70">
+                        <polyline className="checkSvg" points="56,20 28,52 15,40" />
+                    </svg>
+                </div>
+                <h1 className="thankYouHeader">Thank you!</h1>
                 <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
+                </div>
             </Container>
         )
     } else {
