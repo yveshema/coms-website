@@ -1,0 +1,8 @@
+.searchInput {
+    margin: 2em 0;
+    display: flex;    
+}
+
+.searchInput input {
+    flex:2;
+}

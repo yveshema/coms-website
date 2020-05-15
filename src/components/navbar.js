@@ -241,7 +241,7 @@ const Navmenu = (props) => {
                     </div>}
 
                     {/* Search bar and Language selection */}
-                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} />
+                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} location={props.location}/>
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}

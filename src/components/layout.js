@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
+import { SearchContext } from "./search_context";
 
 import Navbar from './navbar';
 import Hero from './hero';
@@ -28,11 +30,12 @@ height: 120px;
 
 
 const Layout = ({ location, children, pageContext={} }) => {
+  
   const [currLang, changeLanguage] = useState({
     language: typeof(Storage) !== "undefined" ? localStorage.getItem('language') : 'EN'
   });
 
-  const {tagline, title } = pageContext.frontmatter ? pageContext.frontmatter : {tagline:'', title:''};
+  const {tagline, hero } = pageContext.frontmatter ? pageContext.frontmatter : {tagline:'', hero:''};
   
   const selectLanguage = (event) => {
     switch (event.target.value) {
@@ -57,13 +60,13 @@ const Layout = ({ location, children, pageContext={} }) => {
     }
   }
 
-  return (  
+  return ( 
     <div className="pagewrapper">
       <header>
       <PadNav>
       <Navbar location={location} currLang={currLang.language} selectLanguage={selectLanguage}/>
       </PadNav>
-      {tagline && title && <Hero tagline={tagline} path={title} /> }
+      {tagline && hero && <Hero tagline={tagline} path={hero} /> }
       </header>
       <Container>
         {React.Children.map(children, (child, i) => {
@@ -98,7 +101,7 @@ const Layout = ({ location, children, pageContext={} }) => {
           <p className="copyright">Copyrights | Terms and Conditions</p>
         </div></div>
       </footer>        
-    </div>    
+    </div>       
   )
 } 
 
@@ -106,4 +109,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default Layout;
