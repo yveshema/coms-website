@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItemSelectionForm from "./item-selection";
 import PaymentInfo from './payment-info';
 import PaymentConfirm from './payment-confirm';
+import PayProgress from './payment-progress';
 import { loadStripe } from "@stripe/stripe-js";
 import styled from 'styled-components';
 
@@ -71,7 +72,6 @@ const PaymentComponent = () => {
         if (payload.paymentMethod === undefined) {
             return;
         }
-        console.log("[PaymentMethod]", payload)
         changeForm({
             ...formStates,
             paymentID: payload.paymentMethod.id,
@@ -167,11 +167,19 @@ const PaymentComponent = () => {
         })
     }
 
+    const finalizePayment = () => {
+        changeForm({
+            ...formStates,
+            currProgress: 4
+        })
+    }
+
     return (
         <PayDiv>
+            <PayProgress progress={formStates.currProgress} />
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
             <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
-            <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} />
+            <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment}/>
         </PayDiv>
     )
 }
