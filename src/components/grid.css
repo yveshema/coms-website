@@ -173,10 +173,12 @@ footer {
 }
 
 footer img{
-    margin-bottom: 1.6rem!important;
-    width: 50px;
-    margin-right: 12px;
-    
+    margin-bottom: 1.2rem!important;
+    width: 18px;
+}
+
+.container.align-vert span{
+    font-size: 16px;
 }
 figure img {
     margin: 35px 0px;
@@ -187,12 +189,12 @@ figure img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;    
-    padding:22px 0;
+    padding:18px 0;
 }
 
 .copyright {
     color: white;
-    font-size: 14px;
+    font-size: 11px;
     text-align: center;
     margin: 0;
     padding-bottom: 10px;
@@ -292,6 +294,11 @@ p.desaLine{
         font-size: 32px;
         line-height: 38px;
     }
+    footer .align-vert img{
+        min-width: 20px;
+        max-width: 20px;
+        margin-right: 0px;
+    }
 }
 
 p{
@@ -382,6 +389,16 @@ strong {
     .feeDesign p{
         width:100%;
     }
+    .mobileNavBg img {
+        width: 60%!important;
+        height: 60%!important;
+    }
+    .searchDiv .gatsby-image-wrapper {
+        width: 22px!important;
+    }
+    figure img{
+        width: 100%;
+    }
     
    
 }
@@ -464,14 +481,15 @@ strong {
         text-align: left;
     }
     .align-vert{
-        padding: 18px 38px;
+        padding: 18px 65px;
         padding-bottom: 5px;
     }
-    .align-vert img{
-        margin-right: 12px;
-    }
+    
     h1{
         line-height: 55px;
+    }
+    footer .align-vert img{
+        margin-right: 10px;
     }
 }
 
@@ -487,8 +505,11 @@ strong {
         text-align: left;
     }
     .align-vert{
-        padding: 22px 100px;
+        padding: 22px 135px;
         padding-bottom: 10px;
+    }
+    footer .align-vert img{
+        margin-right: 10px;
     }
     
 }
@@ -510,4 +531,35 @@ strong {
 
 b {
     color: #626262;
+}
+ol {
+    counter-reset: list;
+}
+ol > li {
+    list-style: none;
+    position: relative;
+}
+ol > li:before {
+    counter-increment: list;
+    content: counter(list, lower-alpha) ") ";
+    position: absolute;
+    left: -1.4em;
+}
+
+/* Animation */
+.spinnerAnim {
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

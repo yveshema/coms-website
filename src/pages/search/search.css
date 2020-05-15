@@ -1,0 +1,31 @@
+.searchInput {
+    margin: 2em 0;
+    display: flex;    
+}
+
+.searchInput input {
+    flex:2;
+    padding: 2px 0.5em;
+    border-radius: 2px;
+    border: 1px solid #626262;
+}
+
+.searchInput input:focus {
+    border-color: #3A722E;
+}
+
+.searchInput button {
+    position:relative;
+    left: -50px;
+    top: 5px;
+    background: transparent;
+    border: 0;
+    height: 1px; 
+    cursor: pointer;
+    outline: none;
+
+}
+
+.searchInput button:focus {
+    outline: none;
+}

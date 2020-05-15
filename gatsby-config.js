@@ -1,4 +1,21 @@
-const path = require('path')
+const path = require('path') 
+
+const clean = (str) => { 
+  /* Preprocess site text before it is indexed. 
+     We only want just the text without any special
+     characters or presentational markup
+   */ 
+
+   // Remove markup, import statements and html markup
+  str = str.replace(/import(.*)\n/g, "");
+  str = str.replace(/(<([^>]+)>)/ig,"").replace(/\n/ig,"");
+  str = str.replace(/---(.*)---/, "");
+
+  // Remove markdown markup
+  str = str.replace(/[#>*/\\]+/g,"");
+
+  return str;
+}
 
 module.exports = {
   siteMetadata: {
@@ -55,7 +72,21 @@ module.exports = {
         offset: -200
       }
     },
-    'gatsby-plugin-styled-components',    
+    'gatsby-plugin-styled-components',
+    {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        fields: [`id`,`title`,`tagline`,`content`],
+        resolvers: {
+          Mdx: {
+            id: node => node.id,
+            title: node => node.frontmatter.title,
+            tagline: node => node.frontmatter.tagline,
+            content: node => clean(node.internal.content),            
+          },
+        },
+      },
+    }    
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

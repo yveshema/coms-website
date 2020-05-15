@@ -1,13 +1,14 @@
 ---
 tagline:  "Safety, transparency, sustainability and scalability."
-title: certification
+title: Get Organic Certification
+hero: certification
 ---
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Ctitle from '../components/ctittle'
 
-import ItemSelectionForm from "../components/item-selection";
+import PaymentComponent from "../components/payment-component";
 import Seals from "../components/seals";
 
 <SEO title="Certification" keywords={['moringa', 'organic', 'standard','safety','transparency','sustainability','scalability']} />
@@ -103,10 +104,9 @@ To maintain the status of an organic product, you will need to annually renew yo
 <p className="desaLine">
 <span style="font-weight:500;">Our online payment system only accepts credit card. To pay via bank/wire transfer please </span><Link to="/contact">contact us for details</Link>. </p>
 
+<PaymentComponent />
 
-<ItemSelectionForm fullwidth/>
-
-<div style={{ marginTop: 100, paddingTop:20, paddingBottom: 20}}>
+<div style={{ marginTop: 50, paddingTop:20, paddingBottom: 20}}>
 <h4>Download documents:</h4>
 <Link>Application form</Link> <br />
 <Link>Renewal form</Link>

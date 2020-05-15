@@ -17,13 +17,13 @@ flex-wrap: wrap;
 `;
 
 const Button = styled.button`
-width: 12em;
+width: 150px;
 border: 1px solid #fd6927;
-border-radius: 1px;
+border-radius: 3px;
 background-color: #fd6927;
-font-size: 1em;
+font-size: 16px;
 text-align: center;
-padding: 3px;
+padding: 5px;
 color: #fff;
 margin: 1em 0;
 cursor: pointer;
@@ -36,9 +36,9 @@ text-align: center;
 }
 `;
 
-const Partners = () => {
+const Partners = ({location}) => {
     return (
-        <Layout>
+        <Layout location={location}>
         <section style={{textAlign: "center"}}>
             <Title>Company Partners</Title>
             <Container>

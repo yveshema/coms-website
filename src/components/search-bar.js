@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
+// Set up search functionality
+import { SearchContext } from "./search_context";
+import { navigate } from "@reach/router";
 
 const icon = graphql`
 query {
@@ -46,9 +50,24 @@ const SearchBar = (props) => {
 
     const data = useStaticQuery(icon);
 
+    // initialize query string and update global state
+    const [queryString, setQueryString] = useState("");
+    const { updateQuery } = useContext(SearchContext);
+    
+    const handleSearch = (e) => {
+        if (e.key === "Enter" || e.type === "click") {
+            updateQuery(queryString);
+            navigate("/search");
+        }
+    }
+    
+
     return (
-        <div className="searchDiv">
-            <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"/>
+        <div className="searchDiv">            
+            <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"
+            onKeyPress={handleSearch} 
+            onChange={(e) => setQueryString(e.target.value)}
+            value={queryString} /> 
             <button className="searchOpenBtn" onClick={openSearchBar}>
                 <Img 
                     fixed={data.search.childImageSharp.fixed}

@@ -120,8 +120,9 @@ const Navmenu = (props) => {
         <div className="navContainer">
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
-                    <div style={{ minWidth: "170px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{ width: "170px", marginBottom: '0' }} />
+
+                    <div style={{ minWidth: "140px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{ width: "140px", marginBottom: '0' }} />                    
                     </div>
 
                     {/* Main Navbar */}
@@ -240,14 +241,13 @@ const Navmenu = (props) => {
                     </div>}
 
                     {/* Search bar and Language selection */}
-                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} />
+                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} location={props.location}/>
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
                             alt="hamburger"
                         />
                     </button>
-
                 </div>
             </div>
         </div>

@@ -65,6 +65,9 @@ background-color: #fd6927;
 margin-left: auto;
 margin-right: 10px;
 color: #fff;
+border-radius:3px;
+font-size:16px;
+padding:4px;
 `;
 
 
@@ -96,6 +99,16 @@ const ContactForm = ({ onSuccess }) => {
         msg: "Invalid message body",
     }
 
+    // Define a minimal set of rules to validate inputs against
+    const rules = {
+        fname: /\w{2,}/,    // disallow less than 2 characters in the name
+        lname: /\w{2,}/,
+        email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
+        tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
+        subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
+        msg: /\w{4,}/,
+    };
+
     // Returns true if all input values are valid
     // Returns false otherwise
     const validateInputs = () => {
@@ -104,14 +117,14 @@ const ContactForm = ({ onSuccess }) => {
         let valid = true; 
         
         // Define a minimal set of rules to validate inputs against
-        const rules = {
-            fname: /\w{2,}/,    // disallow less than 2 characters in the name
-            lname: /\w{2,}/,
-            email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
-            tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
-            subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
-            msg: /\w{4,}/,
-        };
+        // const rules = {
+        //     fname: /\w{2,}/,    // disallow less than 2 characters in the name
+        //     lname: /\w{2,}/,
+        //     email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
+        //     tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
+        //     subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
+        //     msg: /\w{4,}/,
+        // };
         
         // Check validity of one input value
         function validate(rule,value){
@@ -148,6 +161,19 @@ const ContactForm = ({ onSuccess }) => {
                 [key]: value,           
         }));
         clearError(key);        
+    }
+
+    const handleBlur = (e) => {
+        let value, key;
+        value = e.target.value ? e.target.value : "";
+        key = e.target.id;
+
+        if(value && !rules[key].test(value)){
+            setErrors((errors) => ({
+                ...errors,
+                [key]: errorMessages[key],
+            }));             
+        }
     }
 
     const post = async (data) => {
@@ -214,13 +240,15 @@ const ContactForm = ({ onSuccess }) => {
                 <InputControl>
                     <Label>First Name*</Label>
                     <Input type="text" id="fname" value={inputs.fname}
-                    onChange={handleChange} placeholder="Mary" />
+                    onChange={handleChange} placeholder="First Name" required
+                    onBlur={handleBlur} />
                     <FormError>{errors.fname}</FormError>                    
                 </InputControl>
                 <InputControl>
                     <Label>Last Name*</Label>
                     <Input type="text" id="lname" value={inputs.lname}
-                    onChange={handleChange} placeholder="Smith" />
+                    onChange={handleChange} placeholder="Last Name" required 
+                    onBlur={handleBlur} />
                     <FormError>{errors.lname}</FormError>
                 </InputControl>                
             </Row>            
@@ -228,13 +256,15 @@ const ContactForm = ({ onSuccess }) => {
                 <InputControl>
                     <Label>Email address*</Label>
                     <Input type="email" id="email" value={inputs.email}
-                    onChange={handleChange} placeholder="jane.doe@example.com" />
+                    onChange={handleChange} placeholder="email@email.com" required 
+                    onBlur={handleBlur} />
                     <FormError>{errors.email}</FormError>
                 </InputControl>
                 <InputControl>
                     <Label>Phone Number</Label>
                     <Input type="tel" id="tel" value={inputs.tel}
-                    onChange={handleChange} placeholder="424-242-4242" />
+                    onChange={handleChange} placeholder="XXX-XXX-XXXX" 
+                    onBlur={handleBlur} />
                     <FormError>{errors.tel}</FormError>
                 </InputControl>                
             </Row>            
@@ -242,7 +272,8 @@ const ContactForm = ({ onSuccess }) => {
                 <InputControl>
                     <Label>Subject*</Label>
                     <Input type="text" id="subj" value={inputs.subj}
-                    onChange={handleChange} placeholder="Message subject"/>
+                    onChange={handleChange} placeholder="Message subject"required 
+                    onBlur={handleBlur} />
                     <FormError>{errors.subj}</FormError>
                 </InputControl>                                
             </Row>
@@ -250,7 +281,8 @@ const ContactForm = ({ onSuccess }) => {
                 <InputControl>
                     <Label>Message*</Label>
                     <TextArea type="text" id="msg" value={inputs.msg}
-                    onChange={handleChange} placeholder="Your message goes here...">
+                    onChange={handleChange} placeholder="Your message goes here..." required
+                    onBlur={handleBlur}>
                     Please enter your message here ...
                     </TextArea> 
                     <FormError>{errors.msg}</FormError>
