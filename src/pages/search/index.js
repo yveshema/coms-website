@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { Index } from "elasticlunr";
 
 import Layout from "../../components/layout"; 
-import Search from "../../components/search";
+import { SearchContext } from "../../components/search_context";
+import { navigate } from "@reach/router";
+import "./search.css";
 
-const SearchPage = ({location}) => { 
-    // Get the search term from the query parameters
-    const params = new URLSearchParams(location.search.slice(1));
-    const query = params.get("q") || "";
-
-    // Results of the index search
-    const [results, updateResults] = useState([]);
-
+const SearchPage = () => {
+    // initialize query string and update global state
+    const { query, results, updateQuery, updateResults } = useContext(SearchContext);
+    const [queryString, setQueryString] = useState(query);    
+    
     // Load the site index pre-built with elasticlunr
     const data = useStaticQuery(graphql`
         query SearchIndexQuery {
@@ -21,36 +20,22 @@ const SearchPage = ({location}) => {
             }
         }
     `);
-    
-    const excerptify = (str, queryStr) => {
-        
-        // Need a better way of dealing with this.
-        // Basically the goal is to remove the frontmatter
-        // and the module imports from the content
-        const strFilter = (newStr, start) => {
-            const strArr = newStr.split("\n");
-            const filtered =  strArr.filter((item) => {
-                return !item.trim().startsWith(start)
-            });
-            return filtered.join("\n");
-        };
 
-        str = strFilter(str,"import");
-        str = strFilter(str,"---");
-        str = strFilter(str,"tagline:");
-        str = strFilter(str,"title:");
-        str = strFilter(str,"excerpt:");
-        str = strFilter(str,"#"); 
+    const excerptify = (str, queryStr) => {      
+        // Extract an excerpt from the page(s)
+        // returned from the index search        
+        let words = str.split(" ");        
         
-        const strArr = str.replace(/(<([^>]+)>)/ig,"").split(" ");        
-        
-        let index, idx, end;
-        index = strArr.indexOf(queryStr);
-        
+        let index, idx, end;        
+
+        // Find the first occurence of the search term
+        // Attempt a 15 word excerpt starting 5 positions
+        // before up to 10 positions after
+        index = words.map(value => value.toUpperCase()).indexOf(queryStr.toUpperCase());        
         idx = index > 5 ? index - 5 : index;
-        end = strArr.length > (index + 10) ? (index + 10) : strArr.length;
-        
-        return strArr.slice(idx, end ).join(" ");
+        end = words.length > (index + 20) ? (index + 20) : words.length;
+
+        return words.slice(idx, end ).join(" ");
     }
     
     // Perform index search whenever the value of the query changes
@@ -65,24 +50,46 @@ const SearchPage = ({location}) => {
         };
         
         search(query);
-    },[query]);    
+    },[query]); 
 
+    const handleSearch = (e) => {
+        if (e.key === "Enter" || e.type === "click") {
+            updateQuery(queryString);
+            navigate("/search");
+        }
+    }
+    
     return (        
         <Layout>             
-            <section>
-                <div><Search /></div>            
-                {results.map(page => (
+            <article>
+                <h1>Search Results</h1>
+                <section className="searchInput">
+                    <input name="search"
+                        value={query}
+                        onChange={(e) => updateQuery(e.target.value)}
+                        onKeyPress={handleSearch}
+                    />
+                    <button>Search</button>
+                </section>
+                <section className="searchResults">          
+                {results.length ?
+                results.map(page =>(
                     <div key={page.id}>
                         <h3>
                         <Link to={"/" + page.title}>{page.title}</Link>
                         </h3>                        
                         <p>{
-                        excerptify(page.content, query)?
-                        excerptify(page.content,query).concat("...")
-                        : page.excerpt.split(" ").slice(0,20).join(" ").concat("...")}</p>
+                            excerptify(page.content, query) ? 
+                            excerptify(page.content, query).concat("...")
+                            : page.tagline.concat("...")
+                        }</p>
                     </div>
-                ))}            
-            </section>       
+                )) :
+                (
+                    <p>No results found for that query!</p>
+                )}
+                </section>              
+            </article>       
         </Layout>
     )    
 }

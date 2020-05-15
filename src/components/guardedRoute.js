@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { Auth } from "aws-amplify";
 
+import SearchProvider from "./search_context";
+
 // This positions the login form in the middle of the page.
 const LoginContainer = styled.div`
 height: 100vh;
@@ -19,6 +21,7 @@ align-items: center;
 // persist state. 
 
 const GuardedRoute = ({children, stage}) => {
+    console.log("From inside guard");
 
     const [credentials, setCredentials] = useState({
         username: '',
@@ -84,8 +87,10 @@ const GuardedRoute = ({children, stage}) => {
         
 }
 
-export default ({element}) => (    
+export default ({element}) => (
+    <SearchProvider>    
     <GuardedRoute stage={process.env.GATSBY_ACTIVE_ENV}>
         {element}
-    </GuardedRoute>    
+    </GuardedRoute>
+    </SearchProvider>    
 );

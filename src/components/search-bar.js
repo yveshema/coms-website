@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-/** The search input should lead to the search results page */
+// Set up search functionality
+import { SearchContext } from "./search_context";
 import { navigate } from "@reach/router";
 
 const icon = graphql`
@@ -33,9 +34,6 @@ const SearchBar = (props) => {
         languageDropdownVisible: false
     })
 
-    // Search param
-    const [query, setQuery] = useState("");
-
     const openSearchBar = () => {
         changeSearch({
             ...searchState,
@@ -52,23 +50,24 @@ const SearchBar = (props) => {
 
     const data = useStaticQuery(icon);
 
-    const handleChange = (e) => {
-        setQuery(e.target.value);
-    }
-
+    // initialize query string and update global state
+    const [queryString, setQueryString] = useState("");
+    const { updateQuery } = useContext(SearchContext);
+    
     const handleSearch = (e) => {
-        
-        if (e.key === "Enter") {
-            navigate(`/search?q=${query}`);
-        }        
+        if (e.key === "Enter" || e.type === "click") {
+            updateQuery(queryString);
+            navigate("/search");
+        }
     }
+    
 
     return (
-        <div className="searchDiv">
+        <div className="searchDiv">            
             <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"
             onKeyPress={handleSearch} 
-            onChange={handleChange}
-            value={query} />
+            onChange={(e) => setQueryString(e.target.value)}
+            value={queryString} /> 
             <button className="searchOpenBtn" onClick={openSearchBar}>
                 <Img 
                     fixed={data.search.childImageSharp.fixed}

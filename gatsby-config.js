@@ -1,5 +1,22 @@
 const path = require('path') 
 
+const clean = (str) => { 
+  /* Preprocess site text before it is indexed. 
+     We only want just the text without any special
+     characters or presentational markup
+   */ 
+
+   // Remove markup, import statements and html markup
+  str = str.replace(/import(.*)\n/g, "");
+  str = str.replace(/(<([^>]+)>)/ig,"").replace(/\n/ig,"");
+  str = str.replace(/---(.*)---/, "");
+
+  // Remove markdown markup
+  str = str.replace(/[#>*/\\]+/g,"");
+
+  return str;
+}
+
 module.exports = {
   siteMetadata: {
     title: 'Organic Moringa Standard (COMS)',
@@ -59,13 +76,13 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [`id`,`title`,`excerpt`,`content`],
+        fields: [`id`,`title`,`tagline`,`content`],
         resolvers: {
           Mdx: {
             id: node => node.id,
             title: node => node.frontmatter.title,
-            content: node => node.internal.content,
-            excerpt: node => node.frontmatter.excerpt,  
+            tagline: node => node.frontmatter.tagline,
+            content: node => clean(node.internal.content),            
           },
         },
       },

@@ -36,9 +36,9 @@ text-align: center;
 }
 `;
 
-const Partners = () => {
+const Partners = ({location}) => {
     return (
-        <Layout>
+        <Layout location={location}>
         <section style={{textAlign: "center"}}>
             <Title>Company Partners</Title>
             <Container>

@@ -3,12 +3,12 @@ import Layout from "../../components/layout";
 import ContactForm from "../../components/contact-form";
 import Success from "../../components/success";
 
-const ContactPage = () => {
+const ContactPage = ({location}) => {
     // Watch form submission
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     return (
-    <Layout>
+    <Layout location={location}>
         <section style={{textAlign: "center"}}>
             <h3>Contact Us</h3>
             <p style={{textAlign: "center"}}>For inquiries about organic certifications, investment opportunities and 
