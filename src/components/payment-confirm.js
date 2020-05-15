@@ -20,7 +20,7 @@ const Container = styled.div`
     }
 
     h2, p {
-        font-size: 1.25em !important;
+        font-size: 1em !important;
         margin-top: 0 !important;
         margin-bottom: 0;
         color: black;
@@ -89,7 +89,7 @@ const Container = styled.div`
 
     @media only screen and (min-width:769px) {
         h2 {
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
         .columnDiv {
             width: calc(100% / 3);
@@ -121,8 +121,9 @@ const PaymentSummary = (props) => {
         changeLoad(false);
         if (result.paymentIntent) {
             changePayState(result.paymentIntent.status)
+            props.finalizePayment();
         } else {
-            changePayState("error")
+            changePayState(result.error.message ? result.error : "Error")
         }
 
         console.log(result)
@@ -165,13 +166,17 @@ const PaymentSummary = (props) => {
                         Total: NCD {props.currState.totalCost}
                     </h3>
                 </div>
+                {paymentSuccess !== null && paymentSuccess !== 'succeeded' &&
+                    <div style={{ fontSize: '0.7em', color: 'red' }}>
+                        {paymentSuccess.message}
+                    </div>}
                 <div className='buttonDiv'>
                     <button className='buttonBack' onClick={props.reverseForm}>Back</button>
                     <button className='buttonNext' onClick={submitPayment}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Confirm Payment'}</button>
                 </div>
             </Container>
         )
-    } else if (props.currState.currProgress === 3 && paymentSuccess === "succeeded") {
+    } else if (props.currState.currProgress === 4 && paymentSuccess === "succeeded") {
         return (
             <Container>
                 <h1 style={{fontSize: '2.375em', fontStyle: 'normal', fontWeight: '500', border: 'none', textAlign: 'center'}}>Thank you!</h1>
@@ -186,7 +191,7 @@ const PaymentSummary = (props) => {
 const PaymentConfirm = (props) => {
     return (
         <Elements stripe={props.stripePubKey}>
-            <PaymentSummary currState={props.currState} reverseForm={props.reverseForm} />
+            <PaymentSummary currState={props.currState} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
         </Elements>
     )
 }
