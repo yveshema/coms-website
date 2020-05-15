@@ -8,9 +8,22 @@ import {
     CardCvcElement,
     CardExpiryElement
 } from "@stripe/react-stripe-js";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const Form = styled.form`
+const Container = styled.div`
     width: 100%;
+    max-width: 768px;
+    margin: auto;
+
+    p {
+        font-style: italic;
+        color: black;
+        border-bottom: 1px solid hsla(0,0%,0%,0.2);
+        margin: 30px 0px;
+        padding-bottom: 30px;
+    }
+
     label, input, .stripeInput {
         width: 100%;
     }
@@ -20,17 +33,70 @@ const Form = styled.form`
     }
 
     input, .stripeInput {
+        font-size: 16px;
         border: 1px solid #C1C1C1;
         border-radius: 0.25rem;
         padding: 5px 12px;
         background-color: white;
-        font-family: inherit;
+    }
+
+    .error {
+        color: red;
+        font-size: 0.7em;
+    }
+
+    .stripeInput {
+        padding: 7.4px 12px;
     }
 
     .expiration-align {
         display: flex;
         justify-content: space-between;
         width: 50%;
+    }
+
+    .buttonDiv {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid hsla(0,0%,0%,0.2);
+        margin-top: 30px;
+        padding-top: 30px;
+    }
+
+    .buttonNext, .buttonBack {
+        font-size: 1em;
+        font-weight: 500;
+        padding: 3px 30px;
+        border-radius: 4px;
+        margin: 5px;
+        cursor: pointer;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
+    }
+
+    .buttonNext {
+        border: 0;
+        background-color: #FD6927;
+        color: white;
+        width: 14em;
+    }
+
+    .buttonNext:disabled {
+        background-color: white;
+        color: #626262;
+    }
+
+    .buttonBack {
+        border: solid 2px #626262;
+        background-color: white;
+        color: #626262;
+    }
+
+    .buttonBack:hover {
+        background-color: #626262;
+        color: white;
     }
 
     @media only screen and (min-width: 769px) {
@@ -53,13 +119,11 @@ const Form = styled.form`
     }
 `
 
-// Custom fonts currently don't seem to be working with Stripe. Needs some looking into.
 const stripeStyle = {
     style: {
         base: {
-            fontSize: '18px',
-            fontFamily: 'Rubik, Roboto, Sans-Serif',
-            lineHeight: '1.8'
+            fontSize: '16px',
+            fontFamily: 'Rubik, Roboto, Sans-Serif'
         },
         invalid: {
 
@@ -67,10 +131,19 @@ const stripeStyle = {
     }
 }
 
+const elementOptions = {
+    fonts: [
+        {
+          cssSrc: 'https://fonts.googleapis.com/css2?family=Roboto&family=Rubik'
+        }
+      ]
+}
+
 const PaymentForm = (props) => {
     const [billingInfo, changeInfo] = useState({
         fullName: '',
-        emailAddress: ''
+        emailAddress: '',
+        isLoading: false
     })
 
     const [error, setError] = useState(null);
@@ -87,6 +160,8 @@ const PaymentForm = (props) => {
             return;
         }
 
+        changeInfo({...billingInfo, isLoading: true})
+
         const payload = await stripe.createPaymentMethod({
             billing_details: {
                 name: billingInfo.fullName,
@@ -95,6 +170,7 @@ const PaymentForm = (props) => {
             type: "card",
             card: elements.getElement(CardNumberElement)
         });
+        changeInfo({...billingInfo, isLoading: false})
         props.handleCardInfo(payload)
     };
 
@@ -119,55 +195,71 @@ const PaymentForm = (props) => {
         }
     }
 
-    return (
-        <Form style={props.progress === 2 ? {display: 'block'} : {display: 'none'}} onSubmit={handleSubmit}>
-            <div className="form-align">
-                <label for="fullNameInput">Full Name
+    if (props.progress === 2) {
+        return (
+        <Container>
+            <p>
+                Please provide your payment information below.
+            </p>
+            <form style={props.progress === 2 ? { display: 'block' } : { display: 'none' }} onSubmit={handleSubmit}>
+                <div className="form-align">
+                    <label for="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
-                </label>
-                <label for="emailInput">Email Address
-                    <input onChange={handleInputChange} id="emailInput" type="email" name='email' />
-                </label>
-            </div>
-
-            <div className="form-align">
-                <label for="cardNumInput">
-                    Card number
-                <CardNumberElement
-                        className="stripeInput"
-                        options={stripeStyle}
-                        onChange={handleStripeChange}
-                        id="cardNumInput"
-                    />
-                </label>
-                <div className="form-align-last">
-                    <label for="expiryInput">
-                        Expiry
-                        <CardExpiryElement
-                            className="stripeInput"
-                            options={stripeStyle}
-                            id="expiryInput"
-                        />
                     </label>
-                    <label for="cvcInput">
-                        CVC
-                        <CardCvcElement
-                            className="stripeInput"
-                            options={stripeStyle}
-                            id="cvcInput"
-                        />
+                    <label for="emailInput">Email Address
+                    <input onChange={handleInputChange} id="emailInput" type="email" name='email' />
                     </label>
                 </div>
-            </div>
-            <button onClick={props.reverseForm}>Back</button>
-            <button type="submit" disabled={!stripe}>Review and Confirm</button>
-        </Form>
-    )
+
+                <div className="form-align">
+                    <label for="cardNumInput" style={{width: 'calc(100% - 20px)'}}>
+                        Card number
+                        <CardNumberElement
+                            className="stripeInput"
+                            options={stripeStyle}
+                            onChange={handleStripeChange}
+                            id="cardNumInput"
+                        />
+                    </label>
+                    <div className="form-align-last">
+                        <label for="expiryInput">
+                            Expiry
+                        <CardExpiryElement
+                                className="stripeInput"
+                                options={stripeStyle}
+                                onChange={handleStripeChange}
+                                id="expiryInput"
+                            />
+                        </label>
+                        <label for="cvcInput">
+                            CVC
+                        <CardCvcElement
+                                className="stripeInput"
+                                options={stripeStyle}
+                                onChange={handleStripeChange}
+                                id="cvcInput"
+                            />
+                        </label>
+                    </div>
+                </div>
+                <div className="error">
+                    {error !== null ? `${error} Please ensure all information is filled and valid.` : ''}
+                </div>
+                <div className="buttonDiv">
+                    <button className="buttonBack" onClick={props.reverseForm}>Back</button>
+                    <button className="buttonNext" type="submit" disabled={!stripe}>{billingInfo.isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Review and Confirm'}</button>
+                </div>
+            </form>
+        </Container>
+        )
+    } else {
+        return null;
+    }
 }
 
 const PaymentInfo = (props) => {
     return (
-        <Elements stripe={props.stripePubKey} >
+        <Elements stripe={props.stripePubKey} options={elementOptions}>
             <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
         </Elements>
     )
