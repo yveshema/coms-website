@@ -7,10 +7,11 @@ import { SearchContext } from "../../components/search_context";
 import { navigate } from "@reach/router";
 import "./search.css";
 import icon from "../../images/icons/ui-icons/search-24.png";
+import Filter from "../../components/filter";
 
 const SearchPage = () => {
     // initialize query string and update global state
-    const { query, results, updateQuery, updateResults } = useContext(SearchContext);
+    const { query, results, filteredResults, updateQuery, updateResults, updateFilteredResults } = useContext(SearchContext);
     const [queryString, setQueryString] = useState(query);    
     
     // Load the site index pre-built with elasticlunr
@@ -51,7 +52,9 @@ const SearchPage = () => {
         };
         
         search(query);
+        updateFilteredResults(results);
     },[query]); 
+    
 
     const handleSearch = (e) => {
         if (e.key === "Enter" || e.type === "click") {
@@ -73,8 +76,8 @@ const SearchPage = () => {
                     <button onClick={handleSearch}><img src={icon} alt="search icon" /></button> 
                 </section>
                 <section className="searchResults">          
-                {results.length ?
-                results.map(page =>(
+                {filteredResults.length ?
+                filteredResults.map(page =>(
                     <div key={page.id}>
                         <h3>
                         <Link to={"/" + page.title}>{page.title}</Link>
@@ -89,7 +92,8 @@ const SearchPage = () => {
                 (
                     <p>No results found for that query!</p>
                 )}
-                </section>              
+                </section> 
+                <Filter />             
             </article>       
         </Layout>
     )    
