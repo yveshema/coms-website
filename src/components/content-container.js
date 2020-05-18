@@ -23,10 +23,6 @@ const Container = styled.article`
         margin: 35px 0px;
     }
 
-    @media screen and (max-width: 1023px) and (min-width: 768px){
-       padding: 0px 70px;
-    }
-
     /* Center everything inside */
     > * {
         max-width: 768px;
