@@ -33,6 +33,7 @@ const PaymentComponent = () => {
         cardDetails: {}
     })
 
+    // Recalculate cost whenever any of the billing option states are changed
     useEffect(() => {
         calcCost();
     }, [formStates.sysControl, formStates.fileManage, formStates.recertFee, formStates.underTwoAcres, formStates.overTwoAcres])
@@ -127,6 +128,7 @@ const PaymentComponent = () => {
             }
         }
 
+        // For part 1 of the payment form
         changeForm({
             ...formStates,
             isLoading: true
@@ -159,6 +161,7 @@ const PaymentComponent = () => {
             })
     }
 
+    // Move back in the form
     const reverseForm = (event) => {
         event.preventDefault();
         changeForm({
@@ -167,6 +170,7 @@ const PaymentComponent = () => {
         })
     }
 
+    // Move to final step of form
     const finalizePayment = () => {
         changeForm({
             ...formStates,
