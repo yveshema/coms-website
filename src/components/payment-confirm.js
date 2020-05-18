@@ -63,6 +63,14 @@ const Container = styled.div`
         background-color: #FD6927;
         color: white;
         width: 13em;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
+    }
+
+    .buttonNext:active, .buttonNext:hover {
+        background-color: #E55616;
     }
 
     .buttonBack {
