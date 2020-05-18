@@ -24,6 +24,10 @@
     z-index: 2;
 }
 
+.bookmarkLink:hover {
+    font-weight: 500;
+}
+
 .bookmarkActive {
     color: #3A722E;
 }
@@ -220,10 +224,10 @@
 }
 
 .navImg {
-    height: 100%;
-    top: 50%;
-    margin-top: -25%;
+    width: 140px;
+    margin-bottom: -13px;
 }
+
 
 /* Search bar styles */
 
@@ -320,6 +324,10 @@
 }
 
 @media only screen and (max-width: 1050px) {
+    .navImg {
+        margin-bottom: 0;
+    }
+    
     .link {
         font-size: 20px;
         z-index: 2;
@@ -383,9 +391,6 @@
     .extraNavOptionContainer {
         top: 75px;
     }
-    .navImg {
-        top: 63%;
-    }
     .col-2 {
         width: 100%;
     }
@@ -425,6 +430,12 @@
     }
     .languageBtn {
         margin-right: 65px;
+    }
+    .languageOptionDiv { 
+        right: 60px;
+    }
+    .navImg {
+        width: 90px;
     }
 }
 
