@@ -50,6 +50,7 @@ query {
 
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
+        firstLoad: true,
         desktop: null,
         navBurger: null,
         mobileNavActive: false,
@@ -73,7 +74,7 @@ const Navmenu = (props) => {
     }, [])
 
     const data = useStaticQuery(logo);
-    const currPathHash = props.location ? props.location.hash : "undefined";
+    let currPathHash = props.location ? props.location.hash : "undefined";
 
     // Checks if the current window size is desktop or mobile
     const handleWindowChange = () => {
@@ -88,7 +89,8 @@ const Navmenu = (props) => {
     const changeNavState = () => {
         changeWindowSize({
             ...windowSize,
-            mobileNavActive: !windowSize.mobileNavActive
+            mobileNavActive: !windowSize.mobileNavActive,
+            firstLoad: false
         })
     }
 
@@ -121,14 +123,13 @@ const Navmenu = (props) => {
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
 
-                    <div style={{ minWidth: "140px", display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                        <Link to="/">
-                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" style={{ width: "140px", marginBottom: '0' }} /> </Link>                   
-                    </div>
+                    <Link to="/" style={{ minWidth: "140px", display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: '1' }}>
+                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" className="navImg" />
+                    </Link>
 
                     {/* Main Navbar */}
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : `navMobile navSlideOut` : {}}>
+                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : {}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
