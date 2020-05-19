@@ -81,11 +81,19 @@ const Container = styled.div`
         background-color: #FD6927;
         color: white;
         width: 14em;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
     }
 
     .buttonNext:disabled {
         background-color: white;
         color: #626262;
+    }
+
+    .buttonNext:active, .buttonNext:hover {
+        background-color: #E55616;
     }
 
     .buttonBack {

@@ -43,6 +43,10 @@ cursor: pointer;
 -moz-transition: 0.25s;
 -o-transition: 0.25s;
 transition: 0.25s;
+
+:active, :hover {
+    background-color: #E55616;
+}
 `;
 
 const Control = styled.label`

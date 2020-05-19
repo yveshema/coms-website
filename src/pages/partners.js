@@ -27,6 +27,14 @@ padding: 5px;
 color: #fff;
 margin: 1em 0;
 cursor: pointer;
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
+
+:active, :hover {
+    background-color: #E55616;
+}
 `;
 
 const Title = styled.h3`
