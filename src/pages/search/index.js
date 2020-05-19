@@ -7,12 +7,15 @@ import { SearchContext } from "../../components/search_context";
 import { navigate } from "@reach/router";
 import "./search.css";
 import icon from "../../images/icons/ui-icons/search-24.png";
-import Filter from "../../components/filter";
+// import Filter from "../../components/filter";
+import Highlighter from "../../components/highlighter";
 
 const SearchPage = () => {
     // initialize query string and update global state
-    const { query, results, filteredResults, updateQuery, updateResults, updateFilteredResults } = useContext(SearchContext);
-    const [queryString, setQueryString] = useState(query);    
+    const { query, results, updateQuery, updateResults } = useContext(SearchContext);
+    
+    // const [ filtered, updateFiltered ]   = useState(results);
+    // const [ selection, setSelection ] = useState("");
     
     // Load the site index pre-built with elasticlunr
     const data = useStaticQuery(graphql`
@@ -35,7 +38,7 @@ const SearchPage = () => {
         // before up to 10 positions after
         index = words.map(value => value.toUpperCase()).indexOf(queryStr.toUpperCase());        
         idx = index > 5 ? index - 5 : index;
-        end = words.length > (index + 20) ? (index + 20) : words.length;
+        end = words.length > (index + 20) ? (index + 20) : words.length;       
 
         return words.slice(idx, end ).join(" ");
     }
@@ -52,13 +55,32 @@ const SearchPage = () => {
         };
         
         search(query);
-        updateFilteredResults(results);
+        // updateFiltered(results);
     },[query]); 
+
+    // useEffect(() => {
+    //     const filter = (option) => {
+    //         let filtered;
+
+    //         if (!option) {
+    //             return results;
+    //         } else {
+    //             filtered = results.filter(
+    //                 (item) => {
+    //                     return item.title === option;
+    //                 }
+    //             )
+    //         }    
+    //         return filtered;
+    //     }
+
+    //     updateFiltered(filter(selection));
+    // },[selection] )
     
 
     const handleSearch = (e) => {
         if (e.key === "Enter" || e.type === "click") {
-            updateQuery(queryString);
+            updateQuery(e.target.value);
             navigate("/search");
         }
     }
@@ -76,24 +98,31 @@ const SearchPage = () => {
                     <button onClick={handleSearch}><img src={icon} alt="search icon" /></button> 
                 </section>
                 <section className="searchResults">          
-                {filteredResults.length ?
-                filteredResults.map(page =>(
+                {results.length ?
+                results.map(page =>(
                     <div key={page.id}>
                         <h3>
                         <Link to={"/" + page.title}>{page.title}</Link>
-                        </h3>                        
-                        <p>{
+                        </h3> 
+                        <Highlighter searchTerm={query}>
+                            {
+                                excerptify(page.content,query) ?
+                                excerptify(page.content,query).concat("...")
+                                : page.tagline.concat("...")
+                            }
+                        </Highlighter>                       
+                        {/* <p>{
                             excerptify(page.content, query) ? 
                             excerptify(page.content, query).concat("...")
                             : page.tagline.concat("...")
-                        }</p>
+                        }</p> */}
                     </div>
                 )) :
                 (
                     <p>No results found for that query!</p>
                 )}
                 </section> 
-                <Filter />             
+                {/* <Filter setup={{ selection, setSelection }} />              */}
             </article>       
         </Layout>
     )    
