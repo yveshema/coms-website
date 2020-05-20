@@ -27,6 +27,10 @@ padding: 5px;
 color: #fff;
 margin: 1em 0;
 cursor: pointer;
+&:hover{
+    background-color: #e55616;
+    border: 1px solid #e55616;
+}
 `;
 
 const Title = styled.h3`
