@@ -80,6 +80,10 @@
     position: fixed;
     top: 120px;
     left: 0;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
 }
 
 .extraNavOptionContainer {
