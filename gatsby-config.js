@@ -8,11 +8,12 @@ const clean = (str) => {
 
    // Remove markup, import statements and html markup
   str = str.replace(/import(.*)\n/g, "");
-  str = str.replace(/(<([^>]+)>)/ig,"").replace(/\n/ig,"");
+  str = str.replace(/(<([^>]+)>)/ig,"").replace(/\n/ig," ");
   str = str.replace(/---(.*)---/, "");
 
   // Remove markdown markup
-  str = str.replace(/[#>*/\\]+/g,"");
+  str = str.replace(/[}#>*\/\[\]\\]+/g," ");  
+  str = str.replace(/(\s+)/g, " "); 
 
   return str;
 }
@@ -76,12 +77,13 @@ module.exports = {
     {
       resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
       options: {
-        fields: [`id`,`title`,`tagline`,`content`],
+        fields: [`id`,`title`,`path`,`content`],
         resolvers: {
           Mdx: {
             id: node => node.id,
             title: node => node.frontmatter.title,
-            tagline: node => node.frontmatter.tagline,
+            path: node => node.frontmatter.hero === "home"? 
+                "/" : `/${node.frontmatter.hero}`,           
             content: node => clean(node.internal.content),            
           },
         },
