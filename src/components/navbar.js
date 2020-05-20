@@ -40,7 +40,7 @@ query {
     hamburgerMobile: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
     {
         childImageSharp {
-            fixed (height: 30) {
+            fixed (height: 17) {
                 ...GatsbyImageSharpFixed
             }
         }
