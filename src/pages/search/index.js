@@ -37,8 +37,7 @@ const SearchPage = () => {
                     },
                     expand: true 
                 }
-                ).map(({ ref }) => index.documentStore.getDoc(ref))
-                // .filter ((page) => excerptify(page.content, query) !== "")
+                ).map(({ ref }) => index.documentStore.getDoc(ref))                
             );
         };        
         search(query);
