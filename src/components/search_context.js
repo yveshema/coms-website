@@ -5,17 +5,15 @@ export const SearchContext = createContext();
 const Provider = ({children}) => {
     // Search state
   const [query, updateQuery] = useState("");
-  const [filter, updateFilter] = useState("");
+  
   // Results of the index search
   const [results, updateResults] = useState([]);
-
+  
   return (
       <SearchContext.Provider value={{
-        query,
-        filter,
+        query,        
         results,
-        updateQuery,
-        updateFilter,
+        updateQuery,        
         updateResults
       }}>
           {children}

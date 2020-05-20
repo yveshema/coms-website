@@ -21,14 +21,13 @@ align-items: center;
 // persist state. 
 
 const GuardedRoute = ({children, stage}) => {
-    console.log("From inside guard");
-
+    
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
     });
 
-    const [done, setDone] = useState(false); 
+    // const [done, setDone] = useState(false); 
     
     const [ loggedIn, setLoggedIn ] = useState(false);
 
@@ -43,7 +42,7 @@ const GuardedRoute = ({children, stage}) => {
         try {
             await Auth.signIn(credentials.username, credentials.password);
             setLoggedIn(true);
-            setDone(true);
+            // setDone(true);
         } catch (e) {
             alert(e.message);
         }             

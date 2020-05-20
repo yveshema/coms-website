@@ -29,3 +29,7 @@
 .searchInput button:focus {
     outline: none;
 }
+
+.highlight-search {
+    color: #3A722E;
+}

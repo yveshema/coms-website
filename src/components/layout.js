@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-import { SearchContext } from "./search_context";
 
 import Navbar from './navbar';
 import Hero from './hero';
@@ -81,13 +79,7 @@ const Layout = ({ location, children, pageContext={} }) => {
           }
         })}
       </Container>
-      {/* <div className="wrapper">            
-        <div className="row">
-          <div className="col-8 centre col-s">
-            {children}
-          </div>
-        </div>          
-      </div> */}
+      
       <footer>
         <div className="wrapper">
           <div className="container align-vert">
