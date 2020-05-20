@@ -51,6 +51,8 @@ query {
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
         firstLoad: true,
+        currScroll: 0,
+        hideNav: false,
         desktop: null,
         navBurger: null,
         mobileNavActive: false,
@@ -65,6 +67,13 @@ const Navmenu = (props) => {
         window.addEventListener('resize', handleWindowChange);
         return _ => {
             window.removeEventListener('resize', handleWindowChange);
+        }
+    })
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleWindowScroll);
+        return _ => {
+            window.removeEventListener('scroll', handleWindowScroll);
         }
     })
 
@@ -83,6 +92,20 @@ const Navmenu = (props) => {
             desktop: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 769px)").matches : null,
             navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1051px)").matches : null
         });
+    }
+
+    const handleWindowScroll = () => {
+        let newScrollPos = document.documentElement.scrollTop;
+        // Trigger when user scrolls down
+        if (windowSize.currScroll < newScrollPos) {
+            // Trigger if new position is greater than 120 and navbar is currently visible
+            if (newScrollPos > 120 && !windowSize.hideNav) {
+                changeWindowSize({...windowSize, currScroll: newScrollPos, hideNav: true});
+            }
+            // Trigger when user scrolls up
+        } else if (windowSize.hideNav) {
+            changeWindowSize({...windowSize, currScroll: newScrollPos, hideNav: false});
+        } 
     }
 
     // Sets visibility state of the slide out nav column
@@ -119,7 +142,7 @@ const Navmenu = (props) => {
     }
 
     return (
-        <div className="navContainer">
+        <div className="navContainer" style={windowSize.hideNav ? {top: '-120px'} : {}}>
             <div className="navWrapper">
                 <div className="row" style={{ height: '100%', padding: '0' }}>
 
@@ -133,32 +156,32 @@ const Navmenu = (props) => {
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
-                            Grow Organic Moringa {!windowSize.enableSubMenu ? <FontAwesomeIcon icon={faChevronDown} />: ''}
+                            Grow Organic Moringa {!windowSize.enableSubMenu ? <FontAwesomeIcon icon={faChevronDown} /> : ''}
 
                             {/* Renders this sub menu when not on a cultivation page. Adds a drop down menu to the 'Grow Organic Moringa' nav option on desktop */}
                             {!windowSize.enableSubMenu &&
-                            <div className="desktopDropdown">
-                                <Link to="/cultivation" className="bookmarkLink" activeClassName="bookmarkActive">
-                                    Cultivation <FontAwesomeIcon icon={faChevronRight} />
-                                    <div className="desktopSubDropdown">
-                                        <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
-                                        <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
-                                        <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
-                                        <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
-                                        <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
-                                        <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
-                                    </div>
-                                </Link>
-                                <Link to="/transportation" className="bookmarkLink" activeClassName="bookmarkActive">Transportation</Link>
-                                <Link to="/processing" className="bookmarkLink" activeClassName="bookmarkActive">
-                                    Processing <FontAwesomeIcon icon={faChevronRight} />
-                                    <div className="desktopSubDropdown">
-                                        <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
-                                        <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
-                                        <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
-                                    </div>
-                                </Link>
-                            </div>}
+                                <div className="desktopDropdown">
+                                    <Link to="/cultivation" className="bookmarkLink" activeClassName="bookmarkActive">
+                                        Cultivation <FontAwesomeIcon icon={faChevronRight} />
+                                        <div className="desktopSubDropdown">
+                                            <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
+                                            <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
+                                            <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
+                                            <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
+                                            <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
+                                            <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
+                                        </div>
+                                    </Link>
+                                    <Link to="/transportation" className="bookmarkLink" activeClassName="bookmarkActive">Transportation</Link>
+                                    <Link to="/processing" className="bookmarkLink" activeClassName="bookmarkActive">
+                                        Processing <FontAwesomeIcon icon={faChevronRight} />
+                                        <div className="desktopSubDropdown">
+                                            <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
+                                            <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
+                                            <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
+                                        </div>
+                                    </Link>
+                                </div>}
 
                         </Link>
                         <button className={windowSize.mobileSubMenuToggle ? "mobileCollapse mobileCollapseActive" : "mobileCollapse"} onClick={expandSubNav}>
@@ -219,31 +242,31 @@ const Navmenu = (props) => {
                     {/* Desktop/Tablet Submenu for Cultivation, Transportation, and Processing Pages */}
                     {/* Conditionally render submenu if currently on a url that uses it */}
                     {windowSize.enableSubMenu &&
-                    <div className="extraNavOptionContainer">
-                        <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
-                            Cultivation <FontAwesomeIcon icon={faChevronDown} />
-                            <div className="dropdownSubMenu">
-                                <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
-                                <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
-                                <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
-                                <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
-                                <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
-                                <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
-                            </div>
-                        </Link>
-                        <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
-                        <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">
-                            Processing <FontAwesomeIcon icon={faChevronDown} />
-                            <div className="dropdownSubMenu">
-                                <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
-                                <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
-                                <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
-                            </div>
-                        </Link>
-                    </div>}
+                        <div className="extraNavOptionContainer">
+                            <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
+                                Cultivation <FontAwesomeIcon icon={faChevronDown} />
+                                <div className="dropdownSubMenu">
+                                    <AnchorLink to="/cultivation#site-selection" className={currPathHash === "#site-selection" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Site Selection</AnchorLink>
+                                    <AnchorLink to="/cultivation#soil-preparation" className={currPathHash === "#soil-preparation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Soil Preparation</AnchorLink>
+                                    <AnchorLink to="/cultivation#propagation" className={currPathHash === "#propagation" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Propagation</AnchorLink>
+                                    <AnchorLink to="/cultivation#planting" className={currPathHash === "#planting" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Planting</AnchorLink>
+                                    <AnchorLink to="/cultivation#care" className={currPathHash === "#care" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Caring For The Plant</AnchorLink>
+                                    <AnchorLink to="/cultivation#pests-and-diseases" className={currPathHash === "#pests-and-diseases" ? "bookmarkLink bookmarkActive" : "bookmarkLink"} >Pest &amp; Disease Control</AnchorLink>
+                                </div>
+                            </Link>
+                            <Link to="/transportation" className="extraNavLink extraNavOptions" activeClassName="linkActive">Transportation</Link>
+                            <Link to="/processing" className="extraNavLink extraNavOptions" activeClassName="linkActive">
+                                Processing <FontAwesomeIcon icon={faChevronDown} />
+                                <div className="dropdownSubMenu">
+                                    <AnchorLink to="/processing#leaves" className={currPathHash === "#leaves" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Processing Leaves</AnchorLink>
+                                    <AnchorLink to="/processing#drying" className={currPathHash === "#drying" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Drying</AnchorLink>
+                                    <AnchorLink to="/processing#packaging" className={currPathHash === "#packaging" ? "bookmarkLink bookmarkActive" : "bookmarkLink"}>Packaging</AnchorLink>
+                                </div>
+                            </Link>
+                        </div>}
 
                     {/* Search bar and Language selection */}
-                    <SearchBar currWidth={windowSize.desktop} currLang={props.currLang} selectLanguage={props.selectLanguage} location={props.location}/>
+                    <SearchBar currWidth={windowSize.desktop} hideNav={windowSize.hideNav} currLang={props.currLang} selectLanguage={props.selectLanguage} location={props.location} />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
                             fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
