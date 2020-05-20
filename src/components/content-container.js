@@ -40,6 +40,10 @@ const Container = styled.article`
         }
     }
 
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+        padding: 0px 70px;
+    }
+
     /* Element with the class value of *stretch* expand
        to occupy the full width of the page */
     .stretch {

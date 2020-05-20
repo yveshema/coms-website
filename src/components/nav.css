@@ -437,6 +437,9 @@
     .navImg {
         width: 90px;
     }
+    .hamburgBtn {
+        margin-top: 5px;
+    }
 }
 
 /* Animation Styles */
