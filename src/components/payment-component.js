@@ -14,6 +14,11 @@ const PayDiv = styled.div`
     max-width: 100%;
     background-color: white;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
+
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+        max-width: calc(100% + 140px);
+        margin: 0 -70px;
+    }
 `
 
 const PaymentComponent = () => {
