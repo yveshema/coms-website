@@ -63,7 +63,7 @@ const SearchBar = (props) => {
     
 
     return (
-        <div className="searchDiv">            
+        <div className="searchDiv" style={props.hideNav ? {top: '-120px'} : {}}>            
             <input type="text" id="search" style={searchState.searchBarVisible ? {display: "block"} : {display: "none"}} placeholder="Search..." autoComplete="off"
             onKeyPress={handleSearch} 
             onChange={(e) => setQueryString(e.target.value)}

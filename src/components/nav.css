@@ -59,6 +59,10 @@
     right: 0;
     z-index: 2;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.161);
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
 }
 
 .subNavContainer {
@@ -238,6 +242,10 @@
     display: flex;
     justify-content: flex-end;
     top: 25px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
 }
 
 #search {
