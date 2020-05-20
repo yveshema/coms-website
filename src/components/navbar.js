@@ -96,16 +96,25 @@ const Navmenu = (props) => {
 
     const handleWindowScroll = () => {
         let newScrollPos = document.documentElement.scrollTop;
+
         // Trigger when user scrolls down
         if (windowSize.currScroll < newScrollPos) {
+            // Update the current logged scroll position
+            changeWindowSize({...windowSize, currScroll: newScrollPos})
             // Trigger if new position is greater than 120 and navbar is currently visible
             if (newScrollPos > 120 && !windowSize.hideNav) {
-                changeWindowSize({...windowSize, currScroll: newScrollPos, hideNav: true});
+                changeWindowSize({...windowSize, hideNav: true});
             }
             // Trigger when user scrolls up
-        } else if (windowSize.hideNav) {
-            changeWindowSize({...windowSize, currScroll: newScrollPos, hideNav: false});
-        } 
+        } else if (windowSize.currScroll > newScrollPos) {
+            changeWindowSize({...windowSize, currScroll: newScrollPos});
+            // Trigger if the navbar is currently invisible
+            if (windowSize.hideNav) {
+                changeWindowSize({...windowSize, hideNav: false});
+            } 
+        }
+
+
     }
 
     // Sets visibility state of the slide out nav column
@@ -152,7 +161,7 @@ const Navmenu = (props) => {
 
                     {/* Main Navbar */}
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : {}}>
+                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : {}} style={{top: '0'}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
