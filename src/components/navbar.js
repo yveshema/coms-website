@@ -251,7 +251,7 @@ const Navmenu = (props) => {
                     {/* Desktop/Tablet Submenu for Cultivation, Transportation, and Processing Pages */}
                     {/* Conditionally render submenu if currently on a url that uses it */}
                     {windowSize.enableSubMenu &&
-                        <div className="extraNavOptionContainer">
+                        <div className="extraNavOptionContainer" style={windowSize.hideNav ? {top: '-120px'} : {}}>
                             <Link to="/cultivation" className="extraNavLink extraNavOptions" activeClassName="linkActive">
                                 Cultivation <FontAwesomeIcon icon={faChevronDown} />
                                 <div className="dropdownSubMenu">
