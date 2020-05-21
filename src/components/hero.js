@@ -42,6 +42,9 @@ transform: translate(-50%, -50%);
     font-size: 24px;
     max-width: 100%;
 }
+@media only screen and (max-width: 767px){
+  display:none;
+}
 @media only screen and (max-width: 400px) {
     display: none;
 }

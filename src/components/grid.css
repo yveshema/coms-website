@@ -607,3 +607,11 @@ ol.listLine li, ul li {
         transform: rotate(360deg);
     }
 }
+
+
+@media only screen and (max-width: 320px){
+    table.tdesign th, table.tdesign td {
+        padding-right: 1px;
+        padding-left: 8px;
+    }
+}
