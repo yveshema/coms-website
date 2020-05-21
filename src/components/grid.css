@@ -173,12 +173,13 @@ footer {
 }
 
 footer img{
-    margin-bottom: 1.2rem!important;
-    width: 18px;
+    margin-bottom: 0.8rem!important;
+    width: 13px;
 }
 
 .container.align-vert span{
-    font-size: 16px;
+    font-size: 13px;
+    letter-spacing: .3px;
 }
 figure img {
     margin: 35px 0px;
@@ -189,16 +190,17 @@ figure img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;    
-    padding:18px 0;
+    padding:12px 0;
 }
 
 .copyright {
     color: white;
-    font-size: 11px;
+    font-size: 8px;
     text-align: center;
     margin: 0;
-    padding-bottom: 10px;
-    line-height: 17px;
+    padding-bottom: 7px;
+    line-height: 9px;
+    letter-spacing: .3px;
 }
 .homeContainer{
     width: 33.33%;
@@ -273,6 +275,7 @@ p.desaLine{
     }
     .container.align-vert span {
         margin-left: 12px;
+        font-size: 14px;
     }
     figure {
         padding: 0px!important;
@@ -294,10 +297,26 @@ p.desaLine{
         font-size: 32px;
         line-height: 38px;
     }
+    .container.align-vert{
+        padding-top: 18px; 
+        padding-bottom: 18px;
+    }
+    .copyright{
+        font-size: 10px;
+    }
     footer .align-vert img{
-        min-width: 20px;
-        max-width: 20px;
+        min-width: 18px;
+        max-width: 18px;
         margin-right: 0px;
+    }
+    h1.about-para br {
+        display: none;
+    }
+    h1.about-para1 br {
+        display: none;
+    }
+    h1.about-para {
+        line-height: 42px!important;
     }
 }
 
@@ -476,8 +495,8 @@ strong {
         padding: 2px 0px 0px 20px;
     }
     .buttonClass {
-        width: 100%;
-        float: left;
+        width: 84%;
+        float: right;
         text-align: left;
     }
     .align-vert{
@@ -490,7 +509,17 @@ strong {
     }
     footer .align-vert img{
         margin-right: 10px;
+        min-width: 24px;
+        max-width: 24px;
     }
+    .container.align-vert span {
+        font-size: 16px;
+        letter-spacing: normal;
+    }
+    .copyright{
+        font-size: 10px;
+    }
+    
 }
 
 @media only screen and (width:1024px){
@@ -503,6 +532,7 @@ strong {
     }
     .buttonClass {
         text-align: left;
+        padding-left: 85px;
     }
     .align-vert{
         padding: 22px 135px;
@@ -510,6 +540,13 @@ strong {
     }
     footer .align-vert img{
         margin-right: 10px;
+    }
+    .container.align-vert span {
+        font-size: 16px;
+        letter-spacing: normal;
+    }
+    .copyright{
+        font-size: 11px; 
     }
     
 }
@@ -544,6 +581,13 @@ ol > li:before {
     content: counter(list, lower-alpha) ") ";
     position: absolute;
     left: -1.4em;
+}
+
+h1.about-para {
+    line-height: 57px;
+}
+ol.listLine li, ul li {
+    color: #626262;
 }
 
 /* Animation */

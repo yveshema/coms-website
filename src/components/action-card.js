@@ -55,6 +55,7 @@ color: #fff;
 margin: 1em 0;
 cursor: pointer;
 line-height:21px;
+<<<<<<< HEAD
 -webkit-transition: 0.25s;
 -moz-transition: 0.25s;
 -o-transition: 0.25s;
@@ -63,8 +64,16 @@ transition: 0.25s;
 :active, :hover {
     background-color: #E55616;
 }
+=======
+&:hover{
+    background-color: #e55616; 
+    border: 1px solid #e55616;
+}
+
+>>>>>>> styling
 
 `;
+
 
 
 
