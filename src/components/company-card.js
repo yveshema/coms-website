@@ -6,15 +6,20 @@ display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0 20px 0 0;
+max-height: 8em;
 @media only screen and (max-width: 767px){
     width: 50%;
-    margin: 0px;
+    margin: 0;    
     margin-bottom: 25px;
 }
 @media screen and (max-width: 1023px) and (min-width: 768px){
     width: 33.33%;
     margin: 10px 0px;
     float: left;
+}
+
+img {
+    height: 100%;
 }
 `;
 

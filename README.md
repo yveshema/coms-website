@@ -4,8 +4,6 @@ This repo contains the source code for the Organic Moringa Standard (COMS) websi
 
 ### Contributors:
 - Alex Le
-- Kelvin Tay
 - Preeti Rani
-- Vishesh Naik
 - Yulia Stan
 - Yves Shema
