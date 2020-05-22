@@ -235,7 +235,7 @@ const PaymentSummary = (props) => {
                 </div>
                 <h1 className="thankYouHeader">Thank you!</h1>
                 <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
-                <button onClick={props.sendEmail}>Resend Email</button>
+                <button className="buttonNext" style={{marginLeft: '50%', transform: 'translateX(-50%)'}} onClick={props.sendEmail}>Resend Email</button>
                 </div>
             </Container>
         )
