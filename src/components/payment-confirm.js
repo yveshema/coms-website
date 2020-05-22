@@ -157,11 +157,13 @@ const PaymentSummary = (props) => {
 
     const stripe = useStripe();
 
+    // Note: Stripe does not automatically send email receipts in test mode
     const submitPayment = async (event) => {
         event.preventDefault();
         changeLoad(true);
         const result = await stripe.confirmCardPayment(props.currState.clientSecret, {
-            payment_method: props.currState.paymentID
+            payment_method: props.currState.paymentID,
+            receipt_email: props.currState.email
         });
 
         changeLoad(false);
@@ -233,6 +235,7 @@ const PaymentSummary = (props) => {
                 </div>
                 <h1 className="thankYouHeader">Thank you!</h1>
                 <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
+                <button onClick={props.sendEmail}>Resend Email</button>
                 </div>
             </Container>
         )
@@ -244,7 +247,7 @@ const PaymentSummary = (props) => {
 const PaymentConfirm = (props) => {
     return (
         <Elements stripe={props.stripePubKey}>
-            <PaymentSummary currState={props.currState} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
+            <PaymentSummary currState={props.currState} sendEmail={props.sendEmail} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
         </Elements>
     )
 }
