@@ -177,6 +177,7 @@ const PaymentSummary = (props) => {
         console.log(result)
     }
 
+    // This component contains two different JSX returns
     if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
         let ccBrand = props.currState.cardDetails.brand ? props.currState.cardDetails.brand : 'undefined';
         return (
@@ -219,7 +220,7 @@ const PaymentSummary = (props) => {
                         {paymentSuccess.message}
                     </div>}
                 <div className='buttonDiv'>
-                    <button className='buttonBack' onClick={props.reverseForm}>Back</button>
+                    <button className='buttonBack' onClick={(event) => {changePayState(null); props.reverseForm(event)}}>Back</button>
                     <button className='buttonNext' onClick={submitPayment}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Confirm Payment'}</button>
                 </div>
             </Container>
