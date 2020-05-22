@@ -94,6 +94,7 @@ const Navmenu = (props) => {
         });
     }
 
+    // Decides whether to show or hide the navbar based on current scroll position and last scroll direction
     const handleWindowScroll = () => {
         let newScrollPos = document.documentElement.scrollTop;
 
@@ -113,8 +114,6 @@ const Navmenu = (props) => {
                 changeWindowSize({...windowSize, hideNav: false});
             } 
         }
-
-
     }
 
     // Sets visibility state of the slide out nav column
