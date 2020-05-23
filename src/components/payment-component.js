@@ -30,6 +30,7 @@ const PaymentComponent = () => {
         recertFee: false,
         underTwoAcres: false,
         overTwoAcres: false,
+        intentID: '',
         clientSecret: '',
         paymentID: '',
         totalCost: 0,
@@ -145,6 +146,7 @@ const PaymentComponent = () => {
                     changeForm({
                         ...formStates,
                         clientSecret: res.client_secret,
+                        intentID: res.id,
                         currProgress: 2,
                         isLoading: false
                     })
@@ -183,12 +185,37 @@ const PaymentComponent = () => {
         })
     }
 
+    const sendEmail = () => {
+        // Update Payment Intent with receipt email address
+        const data = {
+            url: "https://l925h1rxba.execute-api.us-west-2.amazonaws.com/dev/update-bill",
+            piID: formStates.intentID,
+            email: formStates.email
+        }
+
+        post(data)
+            .then((res) => {
+                if (res.client_secret) {
+                    console.log("Sent!")
+                } else {
+                    console.log(res)
+                }
+            })
+            .catch((error) => {
+                changeForm({
+                    ...formStates,
+                    isLoading: false
+                })
+                console.log("Error ", error)
+            })
+    }
+
     return (
         <PayDiv>
             <PayProgress progress={formStates.currProgress} />
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
             <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
-            <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment}/>
+            <PaymentConfirm currState={formStates} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
         </PayDiv>
     )
 }
