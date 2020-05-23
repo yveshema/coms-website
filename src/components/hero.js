@@ -34,10 +34,16 @@ text-shadow: 0 3px 6px rgba(0, 0, 0, 0.502);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    padding: 0 70px!important;
+}
 @media only screen and (max-width: 768px) {
     padding: 0 30px;
     font-size: 24px;
     max-width: 100%;
+}
+@media only screen and (max-width: 767px){
+  display:none;
 }
 @media only screen and (max-width: 400px) {
     display: none;
