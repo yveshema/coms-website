@@ -14,6 +14,11 @@ const PayDiv = styled.div`
     max-width: 100%;
     background-color: white;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
+
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+        max-width: calc(100% + 140px);
+        margin: 0 -70px;
+    }
 `
 
 const PaymentComponent = () => {
@@ -25,6 +30,7 @@ const PaymentComponent = () => {
         recertFee: false,
         underTwoAcres: false,
         overTwoAcres: false,
+        intentID: '',
         clientSecret: '',
         paymentID: '',
         totalCost: 0,
@@ -33,6 +39,7 @@ const PaymentComponent = () => {
         cardDetails: {}
     })
 
+    // Recalculate cost whenever any of the billing option states are changed
     useEffect(() => {
         calcCost();
     }, [formStates.sysControl, formStates.fileManage, formStates.recertFee, formStates.underTwoAcres, formStates.overTwoAcres])
@@ -127,6 +134,7 @@ const PaymentComponent = () => {
             }
         }
 
+        // For part 1 of the payment form
         changeForm({
             ...formStates,
             isLoading: true
@@ -138,6 +146,7 @@ const PaymentComponent = () => {
                     changeForm({
                         ...formStates,
                         clientSecret: res.client_secret,
+                        intentID: res.id,
                         currProgress: 2,
                         isLoading: false
                     })
@@ -159,6 +168,7 @@ const PaymentComponent = () => {
             })
     }
 
+    // Move back in the form
     const reverseForm = (event) => {
         event.preventDefault();
         changeForm({
@@ -167,6 +177,7 @@ const PaymentComponent = () => {
         })
     }
 
+    // Move to final step of form
     const finalizePayment = () => {
         changeForm({
             ...formStates,
@@ -174,12 +185,37 @@ const PaymentComponent = () => {
         })
     }
 
+    const sendEmail = () => {
+        // Update Payment Intent with receipt email address
+        const data = {
+            url: "https://l925h1rxba.execute-api.us-west-2.amazonaws.com/dev/update-bill",
+            piID: formStates.intentID,
+            email: formStates.email
+        }
+
+        post(data)
+            .then((res) => {
+                if (res.client_secret) {
+                    console.log("Sent!")
+                } else {
+                    console.log(res)
+                }
+            })
+            .catch((error) => {
+                changeForm({
+                    ...formStates,
+                    isLoading: false
+                })
+                console.log("Error ", error)
+            })
+    }
+
     return (
         <PayDiv>
             <PayProgress progress={formStates.currProgress} />
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
             <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
-            <PaymentConfirm currState={formStates} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment}/>
+            <PaymentConfirm currState={formStates} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
         </PayDiv>
     )
 }

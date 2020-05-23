@@ -68,6 +68,21 @@ color: #fff;
 border-radius:3px;
 font-size:16px;
 padding:4px;
+<<<<<<< HEAD
+
+-webkit-transition: 0.25s;
+-moz-transition: 0.25s;
+-o-transition: 0.25s;
+transition: 0.25s;
+
+:active, :hover {
+    background-color: #E55616;
+=======
+&:hover{
+    background-color: #e55616;
+    border: 1px solid #e55616;
+>>>>>>> styling
+}
 `;
 
 
@@ -95,18 +110,19 @@ const ContactForm = ({ onSuccess }) => {
         lname: "Invalid lastname",
         email: "The email address is incorrect",
         tel: "The phone number is incorrect",
-        subj: "Invalid subject",
-        msg: "Invalid message body",
+        subj: "The subject must be at least 2 letters long",
+        msg: "The message must be at least 8 letters long",
     }
 
     // Define a minimal set of rules to validate inputs against
     const rules = {
-        fname: /\w{2,}/,    // disallow less than 2 characters in the name
-        lname: /\w{2,}/,
+        fname: /(\w.*){2,}/,    // disallow less than 2 characters in the name
+        lname: /(\w.*){2,}/,
         email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
         tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
-        subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
-        msg: /\w{4,}/,
+        // tel: /^\d{10}$/,
+        subj: /(\w.*){2,}/,     // disallow less than 4 characters in subject or message body
+        msg: /(\w.*){8,}/,
     };
 
     // Returns true if all input values are valid
@@ -114,17 +130,7 @@ const ContactForm = ({ onSuccess }) => {
     const validateInputs = () => {
         // Attempts of validate each input
         // return value
-        let valid = true; 
-        
-        // Define a minimal set of rules to validate inputs against
-        // const rules = {
-        //     fname: /\w{2,}/,    // disallow less than 2 characters in the name
-        //     lname: /\w{2,}/,
-        //     email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
-        //     tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
-        //     subj: /\w{4,}/,     // disallow less than 4 characters in subject or message body
-        //     msg: /\w{4,}/,
-        // };
+        let valid = true;        
         
         // Check validity of one input value
         function validate(rule,value){
@@ -155,12 +161,25 @@ const ContactForm = ({ onSuccess }) => {
 
     const handleChange = (e) => {
         const key = e.target.id;
-        const value = e.target.value;
+        let value = e.target.value;
+        if (e.target.id === "tel") {
+            value = formatPhoneNumber(e.target.value);
+        }
         setInputs((prevInputs) => ({            
                 ...prevInputs,
                 [key]: value,           
         }));
         clearError(key);        
+    }
+
+    const formatPhoneNumber = (str) => {
+        if (str.length == 3){
+            str += "-";
+        }
+        if (str.length == 7) {
+            str += "-";
+        }
+        return str;
     }
 
     const handleBlur = (e) => {
@@ -262,7 +281,7 @@ const ContactForm = ({ onSuccess }) => {
                 </InputControl>
                 <InputControl>
                     <Label>Phone Number</Label>
-                    <Input type="tel" id="tel" value={inputs.tel}
+                    <Input type="tel" id="tel" maxLength="12" value={inputs.tel}
                     onChange={handleChange} placeholder="XXX-XXX-XXXX" 
                     onBlur={handleBlur} />
                     <FormError>{errors.tel}</FormError>

@@ -23,10 +23,6 @@ const Container = styled.article`
         margin: 35px 0px;
     }
 
-    @media screen and (max-width: 1023px) and (min-width: 768px){
-       padding: 0px 70px;
-    }
-
     /* Center everything inside */
     > * {
         max-width: 768px;
@@ -42,6 +38,10 @@ const Container = styled.article`
             
             max-width:100%
         }
+    }
+
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+        padding: 0px 70px;
     }
 
     /* Element with the class value of *stretch* expand

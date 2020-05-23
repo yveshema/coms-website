@@ -81,11 +81,19 @@ const Container = styled.div`
         background-color: #FD6927;
         color: white;
         width: 14em;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
     }
 
     .buttonNext:disabled {
         background-color: white;
         color: #626262;
+    }
+
+    .buttonNext:active, .buttonNext:hover {
+        background-color: #E55616;
     }
 
     .buttonBack {
@@ -160,8 +168,21 @@ const PaymentForm = (props) => {
             return;
         }
 
+        // Do not submit if missing valid name. Allows apostrophes and hyphens
+        if (!(/^[a-zA-Z-' ]+$/).test(billingInfo.fullName)) {
+            setError("Invalid Name. ");
+            return;
+        }
+
+        // Do not submit if value does not match a valid email format
+        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(billingInfo.emailAddress))) {
+            setError("Invalid Email address. ");
+            return;
+        }
+
         changeInfo({...billingInfo, isLoading: true})
 
+        // Send billing info to Stripe and return a card info object
         const payload = await stripe.createPaymentMethod({
             billing_details: {
                 name: billingInfo.fullName,

@@ -63,6 +63,14 @@ const Container = styled.div`
         background-color: #FD6927;
         color: white;
         width: 13em;
+        -webkit-transition: 0.25s;
+        -moz-transition: 0.25s;
+        -o-transition: 0.25s;
+        transition: 0.25s;
+    }
+
+    .buttonNext:active, .buttonNext:hover {
+        background-color: #E55616;
     }
 
     .buttonBack {
@@ -149,11 +157,13 @@ const PaymentSummary = (props) => {
 
     const stripe = useStripe();
 
+    // Note: Stripe does not automatically send email receipts in test mode
     const submitPayment = async (event) => {
         event.preventDefault();
         changeLoad(true);
         const result = await stripe.confirmCardPayment(props.currState.clientSecret, {
-            payment_method: props.currState.paymentID
+            payment_method: props.currState.paymentID,
+            receipt_email: props.currState.email
         });
 
         changeLoad(false);
@@ -167,6 +177,7 @@ const PaymentSummary = (props) => {
         console.log(result)
     }
 
+    // This component contains two different JSX returns
     if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
         let ccBrand = props.currState.cardDetails.brand ? props.currState.cardDetails.brand : 'undefined';
         return (
@@ -209,7 +220,7 @@ const PaymentSummary = (props) => {
                         {paymentSuccess.message}
                     </div>}
                 <div className='buttonDiv'>
-                    <button className='buttonBack' onClick={props.reverseForm}>Back</button>
+                    <button className='buttonBack' onClick={(event) => {changePayState(null); props.reverseForm(event)}}>Back</button>
                     <button className='buttonNext' onClick={submitPayment}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Confirm Payment'}</button>
                 </div>
             </Container>
@@ -225,6 +236,7 @@ const PaymentSummary = (props) => {
                 </div>
                 <h1 className="thankYouHeader">Thank you!</h1>
                 <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
+                <button className="buttonNext" style={{marginLeft: '50%', transform: 'translateX(-50%)'}} onClick={props.sendEmail}>Resend Email</button>
                 </div>
             </Container>
         )
@@ -236,7 +248,7 @@ const PaymentSummary = (props) => {
 const PaymentConfirm = (props) => {
     return (
         <Elements stripe={props.stripePubKey}>
-            <PaymentSummary currState={props.currState} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
+            <PaymentSummary currState={props.currState} sendEmail={props.sendEmail} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
         </Elements>
     )
 }
