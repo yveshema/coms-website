@@ -190,7 +190,7 @@ figure img {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;    
-    padding:12px 0;
+    padding:13px 145px;
 }
 
 .copyright {
@@ -201,6 +201,7 @@ figure img {
     padding-bottom: 7px;
     line-height: 9px;
     letter-spacing: .3px;
+    margin-left: 37px;
 }
 .homeContainer{
     width: 33.33%;
@@ -298,11 +299,11 @@ p.desaLine{
         line-height: 38px;
     }
     .container.align-vert{
-        padding-top: 18px; 
-        padding-bottom: 18px;
+        padding: 18px 0px;
     }
     .copyright{
         font-size: 10px;
+        margin-left: 0px;
     }
     footer .align-vert img{
         min-width: 18px;
@@ -502,6 +503,9 @@ strong {
     .align-vert{
         padding: 18px 65px;
         padding-bottom: 5px;
+        width: 100%;
+    max-width: 100%;
+    display: -webkit-inline-box;
     }
     
     h1{
@@ -535,8 +539,11 @@ strong {
         padding-left: 85px;
     }
     .align-vert{
-        padding: 22px 135px;
-        padding-bottom: 10px;
+        padding: 22px 85px;
+    padding-bottom: 10px;
+    width: 100%;
+    max-width: 100%;
+    display: -webkit-inline-box;
     }
     footer .align-vert img{
         margin-right: 10px;

@@ -10,7 +10,7 @@ max-height: 8em;
 @media only screen and (max-width: 767px){
     width: 50%;
     margin: 0;    
-    margin-bottom: 25px;
+    margin-bottom: 45px;
 }
 @media screen and (max-width: 1023px) and (min-width: 768px){
     width: 33.33%;
@@ -19,7 +19,22 @@ max-height: 8em;
 }
 
 img {
-    height: 100%;
+    
+    height: 125px;
+    box-shadow: rgba(191, 186, 186, 0.73) 3px 3px 3px;
+    padding: 10px;
+    background: #ffffff;
+    margin-bottom: 10px;
+    @media only screen and (max-width: 767px){
+        height: 103px;
+    }
+    @media only screen and (max-width: 320px){
+        height: 89px;
+    }
+    @media screen and (max-width: 1023px) and (min-width: 768px){
+        height: 108px;
+    }
+
 }
 `;
 

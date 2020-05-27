@@ -84,8 +84,7 @@ const Layout = ({ location, children, pageContext={} }) => {
         <div className="wrapper">
           <div className="container align-vert">
           <Contact icon={ContactEnvelope} content='contactemail@email.com' />
-          <Separator />
-          <Contact icon={ContactLocation} content='Suit 111, Street Name, Zip 333 333, City Name, Country Name' />
+          
           <Separator />
           <Contact icon={ContactPhone} content='+1 (123) 456 7890' />
         </div>

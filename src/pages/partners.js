@@ -17,7 +17,7 @@ flex-direction: row;
 justify-content: space-between;
 flex-wrap: wrap;
 @media screen and (max-width: 1023px) and (min-width: 768px){
-    display:block;
+    display:inline-block;
 }
 `;
 
