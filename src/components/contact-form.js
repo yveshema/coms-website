@@ -41,7 +41,7 @@ font-size: .8em;
 const Input = styled.input`
 border: 0;
 border-radius: 2px;
-box-shadow: 0 0 1px 1px inset #a3a3a3;
+box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
 padding: 5px;
 `;
 
@@ -68,7 +68,6 @@ color: #fff;
 border-radius:3px;
 font-size:16px;
 padding:4px;
-<<<<<<< HEAD
 
 -webkit-transition: 0.25s;
 -moz-transition: 0.25s;
@@ -77,11 +76,6 @@ transition: 0.25s;
 
 :active, :hover {
     background-color: #E55616;
-=======
-&:hover{
-    background-color: #e55616;
-    border: 1px solid #e55616;
->>>>>>> styling
 }
 `;
 
@@ -94,6 +88,7 @@ const ContactForm = ({ onSuccess }) => {
         tel: "",
         subj: "",
         msg: "",
+        file: "upload.pdf",
     });
 
     const [errors, setErrors] = useState({
@@ -306,6 +301,12 @@ const ContactForm = ({ onSuccess }) => {
                     </TextArea> 
                     <FormError>{errors.msg}</FormError>
                 </InputControl>                              
+            </Row>
+            <Row>
+                <InputControl>
+                    <Label>Attach a file: </Label>
+                    <Input type="file" disabled noshadow />
+                </InputControl>
             </Row>
             <Row><SubmitButton>Send</SubmitButton></Row>
         </Form>
