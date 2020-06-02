@@ -155,7 +155,7 @@ const Navmenu = (props) => {
                 <div className="row" style={{ height: '100%', padding: '0' }}>
 
                     <Link to="/" style={{ minWidth: "140px", display: 'flex', flexDirection: 'column', justifyContent: 'center', zIndex: '1' }}>
-                        <img src={windowSize.desktop ? DesktopLogo : MobileLogo} alt="logo" className="navImg" />
+                        <img src={windowSize.navBurger ? DesktopLogo : MobileLogo} alt="logo" className="navImg" />
                     </Link>
 
                     {/* Main Navbar */}
