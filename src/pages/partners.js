@@ -16,10 +16,6 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 flex-wrap: wrap;
-@media screen and (max-width: 480px){
-    flex-direction: column;
-    justify-content: space-around;    
-}
 `;
 
 const Button = styled.button`
@@ -61,17 +57,15 @@ const Partners = ({location}) => {
         <Layout location={location}>
         <section style={{textAlign: "center"}}>
             <Title>Company Partners</Title>
-            <Container>
-                {/* <Company type="partner" name="evolve x" /> */}
+            <Container>                
                 <Company type="partner" name="Agency Carbon/Green" 
                     logo={carbonGreen} />                    
                 <Company type="partner" name="SustainT&amp;T" 
                     logo={sustainTT} />                    
                 <Company type="partner" name="The Resilience Fund" 
-                    logo={theResilienceFund} />
-                    
-                {/* <Company type="partner" name="BAF" /> */}
+                    logo={theResilienceFund} />                
             </Container>
+            
             <Title>Certified Businesses</Title>
             <Container>
                 <Company type="business" name="Certified COMS" />
