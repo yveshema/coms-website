@@ -219,6 +219,10 @@ figure img {
     width: 100%;
     object-fit: cover;
     margin-bottom: 0;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 h1{
     font-size: 48px;

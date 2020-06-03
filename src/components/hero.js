@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Image }  from 'react-bootstrap';
 
 const images = {
-    home: require("../images/heros/homepage_hero_img.jpg"),
-    about: require("../images/heros/about_moringa_hero_img.jpg"),
-    cultivation: require("../images/heros/cultivation_hero_img.jpg"),
-    transportation: require("../images/heros/transportation_hero_img.jpg"),
-    processing: require("../images/heros/processing_hero_img.jpg"),
-    certification: require("../images/heros/get_certification.jpg"),
+    home: require("../images/heros/homepage-hero-100.jpg"),
+    about: require("../images/heros/About-moringa-hero-100.jpg"),
+    cultivation: require("../images/heros/Cultivation-hero-100.jpg"),
+    transportation: require("../images/heros/transportation-hero-100.jpg"),
+    processing: require("../images/heros/processing-hero-100.jpg"),
+    certification: require("../images/heros/certificate-hero-100.jpg"),
 };
 
 const Container = styled.div`
@@ -18,7 +17,6 @@ position: relative;
 @media only screen and (max-width: 524px) {
     margin-top: 0 !important;
 }
-
 `
 
 const Tagline = styled.div`
@@ -52,9 +50,9 @@ transform: translate(-50%, -50%);
 
 const Hero = ({tagline, path}) => {
     return (
-        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>          
-	        <Image src={images[path]} className="hero-img"/>	
-            <Tagline><span>{tagline}</span></Tagline>        
+        <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>
+            <div className="hero-img" style={{ backgroundImage: `url(${images[path]})` }}></div>
+            <Tagline><span>{tagline}</span></Tagline>
         </Container>
 );
 }
