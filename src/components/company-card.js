@@ -19,19 +19,23 @@ max-height: 8em;
 
 img {
     
-    height: 125px;
-    box-shadow: rgba(191, 186, 186, 0.73) 3px 3px 3px;
+    // height: 125px;
+    height: 95px;
+    // box-shadow: rgba(191, 186, 186, 0.73) 3px 3px 3px;
     padding: 10px;
-    background: #ffffff;
+    // background: #ffffff;
     margin-bottom: 10px;
     @media only screen and (max-width: 767px){
-        height: 103px;
+        // height: 103px;
+        height: 75px;
     }
     @media only screen and (max-width: 320px){
-        height: 89px;
+        // height: 89px;
+        height: 67px;
     }
     @media screen and (max-width: 1023px) and (min-width: 768px){
-        height: 108px;
+        // height: 108px;
+        height: 75px;
     }
 
 }
