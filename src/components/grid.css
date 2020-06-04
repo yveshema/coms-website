@@ -323,6 +323,15 @@ p.desaLine{
     h1.about-para {
         line-height: 42px!important;
     }
+    .align-vert {
+        display: block;
+    }
+    span.separator__Wrapper-fDLMHg.iCHIvn {
+        display: none;
+    }
+    img.no-pic {
+        display: none;
+    }
 }
 
 p{
