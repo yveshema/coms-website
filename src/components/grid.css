@@ -332,6 +332,7 @@ p.desaLine{
     img.no-pic {
         display: none;
     }
+    
 }
 
 p{
@@ -431,6 +432,9 @@ strong {
     }
     figure img{
         width: 100%;
+    }
+    .line-high li {
+        line-height: 30px!important;
     }
     
    
@@ -634,4 +638,9 @@ ol.listLine li, ul li {
         padding-right: 1px;
         padding-left: 8px;
     }
+}
+
+ul.line-high li {
+    line-height: 35px;
+    margin-bottom: 3px;
 }
