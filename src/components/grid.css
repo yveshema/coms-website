@@ -219,6 +219,10 @@ figure img {
     width: 100%;
     object-fit: cover;
     margin-bottom: 0;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 h1{
     font-size: 48px;
@@ -319,6 +323,16 @@ p.desaLine{
     h1.about-para {
         line-height: 42px!important;
     }
+    .align-vert {
+        display: block;
+    }
+    span.separator__Wrapper-fDLMHg.iCHIvn {
+        display: none;
+    }
+    img.no-pic {
+        display: none;
+    }
+    
 }
 
 p{
@@ -418,6 +432,9 @@ strong {
     }
     figure img{
         width: 100%;
+    }
+    .line-high li {
+        line-height: 30px!important;
     }
     
    
@@ -621,4 +638,9 @@ ol.listLine li, ul li {
         padding-right: 1px;
         padding-left: 8px;
     }
+}
+
+ul.line-high li {
+    line-height: 35px;
+    margin-bottom: 3px;
 }
