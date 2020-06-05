@@ -51,7 +51,7 @@ query {
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
         firstLoad: true,
-        currScroll: 0,
+        currScroll: document.documentElement.scrollTop,
         hideNav: false,
         desktop: null,
         navBurger: null,
