@@ -14,12 +14,15 @@ const Wrapper = styled.span`
     }
     height: 0;
   }
-  @media only screen and (max-width: 675px) {
-    :first-of-type {
-      order: 2;
-      flex-basis: 100%;
-    }
+  @media only screen and (max-width: 768px){
+    display: none;
   }
+  // @media only screen and (max-width: 675px) {
+  //   :first-of-type {
+  //     order: 2;
+  //     flex-basis: 100%;
+  //   }
+  // }
 `;
 
 const Separator = () => (
