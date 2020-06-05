@@ -9,6 +9,7 @@ import SEO from '../components/seo'
 
 <!-- illustrations imports -->
 import moringaBranch from '../images/Illustrations/desktop/transportation/moringa-branch.svg';
+import moringaBranchMobile from '../images/Illustrations/mobile/transportation/moringa-branch.svg';
 
 <SEO title="Transportation" keywords={['moringa', 'organic', 'standard','safety','transparency','sustainability','scalability', 'transportation','quality','consumption']} />
 
@@ -19,7 +20,10 @@ import moringaBranch from '../images/Illustrations/desktop/transportation/moring
 The moringa tree has a compound leaf: one leaf is made up of multiple leaflets. What is referred to here as a leaf is precisely multiple leaflets attached to the rachis which stems from the branch.
 
 <figure>
-    <img src={moringaBranch} alt="moringa branch" />
+<picture>
+    <source media="(min-width: 767px)" srcset={moringaBranch} alt="moringa branch"/>
+    <img src={moringaBranchMobile} alt="moringa branch" />
+</picture>
 </figure>
 
 Manual harvesting of shoots and leaves with a pair of shears, a sickle or a sharp knife is recommended. All shoots should be cut at the desired height, i.e. 30 cm to 1 meter above ground. Mechanical harvesters could also be used for large-scale, intensive leaf production.
