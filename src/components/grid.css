@@ -326,11 +326,11 @@ p.desaLine{
     .align-vert {
         display: block;
     }
-    span.separator__Wrapper-fDLMHg.iCHIvn {
+    /* span.separator__Wrapper-fDLMHg.iCHIvn {
         display: none;
-    }
+    } */
     img.no-pic {
-        display: none;
+        display: none; 
     }
     
 }
