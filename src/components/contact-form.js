@@ -42,6 +42,7 @@ const Input = styled.input`
 border: 0;
 border-radius: 2px;
 box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
+-webkit-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
 padding: 5px;
 `;
 
