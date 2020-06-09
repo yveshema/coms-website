@@ -175,7 +175,7 @@ const PaymentForm = (props) => {
         }
 
         // Do not submit if value does not match a valid email format
-        if (!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(billingInfo.emailAddress))) {
+        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(billingInfo.emailAddress))) {
             setError("Invalid Email address. ");
             return;
         }
