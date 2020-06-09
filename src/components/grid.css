@@ -216,13 +216,13 @@ figure img {
 
 .hero-img {
     min-height: 350px;
-    width: 100%;
     object-fit: cover;
     margin-bottom: 0;
     background-attachment: fixed;
-    background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position-x: center;
+    background-origin: content-box;
 }
 h1{
     font-size: 48px;
@@ -407,6 +407,7 @@ strong {
 @media only screen and (max-width: 768px) {
     .hero-img {
         min-height: 200px;
+        background-size: auto;
     }
     p{
         font-size: 18px;
@@ -436,7 +437,6 @@ strong {
     .line-high li {
         line-height: 30px!important;
     }
-    
    
 }
 
@@ -451,9 +451,10 @@ strong {
     }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 414px) {
     .hero-img {
         min-height: 115px;
+        background-position-y: 11%;
     }
 
 }
@@ -540,6 +541,7 @@ strong {
     .copyright{
         font-size: 10px;
     }
+
     
 }
 
