@@ -75,7 +75,7 @@ const SearchBar = (props) => {
                 />
             </button>
             <button className="languageBtn" onClick={openLanguageOptions}>
-                {props.currLang === 'EN' ? 'ENG' : 'FRA'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
+                {props.currLang === 'FR' ? 'FRA' : 'ENG'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
             </button>
             <div className={searchState.languageDropdownVisible ? "languageDropDown languageDropDownOpen languageOptionDiv": "languageDropDown languageOptionDiv"}>
                 <button className={props.currLang === 'EN' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='EN'>
