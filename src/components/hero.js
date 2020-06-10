@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import ParallaxHero from './parallax-hero';
 
 const Container = styled.div`
 position: relative;
+max-height: 350px;
+overflow: hidden;
 // margin-top: 120px;
 // margin-bottom: 100px;
 @media only screen and (max-width: 524px) {
@@ -96,13 +99,20 @@ const Hero = ({tagline, path}) => {
 
     return (
         <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>
-            <div className="hero-img" style={{ backgroundImage: `url(${
+            {/* <div className="hero-img" style={{ backgroundImage: `url(${
                 imgSize.mobile ? 
                 mobileImages[path] :
                 imgSize.tablet ? 
                 tabletImages[path] :
                 desktopImages[path]
-                })` }}></div>
+                })` }}></div> */}
+            <ParallaxHero image={
+            imgSize.mobile ? 
+            mobileImages[path] :
+            imgSize.tablet ? 
+            tabletImages[path] :
+            desktopImages[path]}
+            />
             <Tagline><span>{tagline}</span></Tagline>
         </Container>
 );
