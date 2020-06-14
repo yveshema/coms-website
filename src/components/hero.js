@@ -11,6 +11,14 @@ overflow: hidden;
 @media only screen and (max-width: 524px) {
     margin-top: 0 !important;
 }
+
+@media only screen and (max-width: 768px) {
+    max-height: 200px
+}
+
+@media only screen and (max-width: 500px) {
+    max-height: 115px;
+}
 `
 
 const Tagline = styled.div`
@@ -70,6 +78,7 @@ const Hero = ({tagline, path}) => {
         });
     }
 
+    // Objects containing different hero image sizes
     const desktopImages = {
         home: require("../images/heros/homepage-hero-1920.jpg"),
         about: require("../images/heros/About-moringa-hero-100.jpg"),
@@ -99,19 +108,13 @@ const Hero = ({tagline, path}) => {
 
     return (
         <Container style={ (path === "cultivation" || path === "transportation" || path === "processing") ? {marginTop: "63px"} : {}}>
-            {/* <div className="hero-img" style={{ backgroundImage: `url(${
-                imgSize.mobile ? 
-                mobileImages[path] :
-                imgSize.tablet ? 
-                tabletImages[path] :
-                desktopImages[path]
-                })` }}></div> */}
             <ParallaxHero image={
             imgSize.mobile ? 
             mobileImages[path] :
             imgSize.tablet ? 
             tabletImages[path] :
             desktopImages[path]}
+            tablet={imgSize.tablet}
             />
             <Tagline><span>{tagline}</span></Tagline>
         </Container>

@@ -23,6 +23,9 @@ const ParallaxHero = (props) => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleParallax);
+        return _ => {
+            window.removeEventListener('scroll', handleParallax);
+        }
     }, [])
 
     const handleParallax = () => {
@@ -32,8 +35,10 @@ const ParallaxHero = (props) => {
         })
     }
 
+    // This parallax uses the current scroll position to determine the parallax scroll position
+    // The effect is disabled for tablet and mobile breakpoints for compatibility and performance
     return (
-        <ParallaxImg alt="hero" src={props.image} style={{ transform: `translate3D(0, ${imgSize.currScroll * 0.5}px, 0)` }} />
+        <ParallaxImg alt="hero" src={props.image} style={!props.tablet ? { transform: `translate3D(0, ${imgSize.currScroll * 0.4}px, 0)` } : {}} />
     );
 
 }
