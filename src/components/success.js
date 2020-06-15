@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import icon from "../images/icons/ui-icons/success-icon-70px@2x.png";
+import icon from "../images/icons/success-icon-70px@2x.png";
 
 /* Display success message following form submission
 Accepts title and body as props */

@@ -6,7 +6,7 @@ import Layout from "../../components/layout";
 import { SearchContext } from "../../components/search_context";
 import { navigate } from "@reach/router";
 import "./search.css";
-import icon from "../../images/icons/ui-icons/search-24.png";
+import icon from "../../images/icons/search-24.png";
 import Highlighter from "../../components/highlighter";
 
 import { snapshot } from "../../utils/helpers";

@@ -1,6 +1,6 @@
-import certificationIcon from "../images/icons/homepage/70px/certification-icon-70px.svg";
-import investIcon from "../images/icons/homepage/70px/invest-icon-70px.svg";
-import learnIcon from "../images/icons/homepage/70px/learn-icon-70px.svg";
+import certificationIcon from "../images/icons/certification-icon-70px.svg";
+import investIcon from "../images/icons/invest-icon-70px.svg";
+import learnIcon from "../images/icons/learn-icon-70px.svg";
 
 export default {
     certification: {
