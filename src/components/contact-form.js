@@ -39,17 +39,17 @@ font-size: .8em;
 `
 
 const Input = styled.input`
-border: 0;
+border: ${props => props.noborder? 0 : "1px solid #a3a3a3"};
 border-radius: 2px;
-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
--webkit-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
+// box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
+// -webkit-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
 padding: 5px;
 `;
 
 const TextArea = styled.textarea`
-border: 0;
+border: 1px solid #a3a3a3;
 border-radius: 2px;
-box-shadow: 0 0 1px 1px inset #a3a3a3;
+// box-shadow: 0 0 1px 1px inset #a3a3a3;
 padding: 5px;
 min-height: 10em;
 `;
@@ -306,7 +306,7 @@ const ContactForm = ({ onSuccess }) => {
             <Row>
                 <InputControl>
                     <Label>Attach a file: </Label>
-                    <Input type="file" disabled noshadow />
+                    <Input type="file" disabled noborder />
                 </InputControl>
             </Row>
             <Row><SubmitButton>Send</SubmitButton></Row>
