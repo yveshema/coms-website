@@ -4,10 +4,8 @@ import { navigate } from "@reach/router";
 
 import Layout from "../components/layout";
 import Company from "../components/company-card";
+import { Logos as logos } from "../data/assets";
 
-import carbonGreen from "../images/partners/carbon-green.svg";
-import sustainTT from "../images/partners/sustain-T-T.svg";
-import theResilienceFund from "../images/partners/the-resilience-fund.svg";
 
 const Container = styled.div`
 margin-bottom: 50px;
@@ -59,11 +57,11 @@ const Partners = ({location}) => {
             <Title>Company Partners</Title>
             <Container>                
                 <Company type="partner" name="Agency Carbon/Green" 
-                    logo={carbonGreen} />                    
+                    logo={logos.CarbonGreen} />                    
                 <Company type="partner" name="SustainT&amp;T" 
-                    logo={sustainTT} />                    
+                    logo={logos.SustainTnT} />                    
                 <Company type="partner" name="The Resilience Fund" 
-                    logo={theResilienceFund} />                
+                    logo={logos.TheResilienceFund} />                
             </Container>
             
             <Title>Certified Businesses</Title>

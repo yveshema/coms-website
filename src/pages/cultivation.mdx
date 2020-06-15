@@ -7,40 +7,16 @@ import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Title from '../components/title'
+import { Images as images, Icons as icons } from '../data/assets'
 
 <SEO title="Cultivation" keywords={['moringa', 'organic', 'standard', 'cultivation','moringa products', 'environmental', 'requirements']} />
 
-<!-- illustrations imports -->
-import propagationByCutting from '../images/Illustrations/desktop/cultivation/propagation-by-cuttings.svg';
-import intensiveProduction from '../images/Illustrations/desktop/cultivation/intensive-production.svg';
-import semiIntensiveProduction from '../images/Illustrations/desktop/cultivation/semi-intensive-production.svg';
-import agroforestry from '../images/Illustrations/desktop/cultivation/agroforestry.svg';
-import mulching from '../images/Illustrations/desktop/cultivation/Mulching.svg';
-import caterpillarDamage from '../images/Illustrations/desktop/cultivation/caterpillar-damage.svg';
-import termiteDamage from '../images/Illustrations/desktop/cultivation/termite-damage.svg';
-import fungiDamage from '../images/Illustrations/desktop/cultivation/fungi-damage.svg';
-
-import agroforestryMobile from '../images/Illustrations/mobile/cultivation/agroforestry.svg';
-import caterpillarDamageMobile from '../images/Illustrations/mobile/cultivation/caterpillar-damage.svg';
-import fungiDamageMobile from '../images/Illustrations/mobile/cultivation/fungi-damage.svg';
-import intensiveProductionMobile from '../images/Illustrations/mobile/cultivation/intensive-production.svg';
-import mulchingMobile from '../images/Illustrations/mobile/cultivation/mulching.svg';
-import propagationByCuttingMobile from '../images/Illustrations/mobile/cultivation/propagation.svg';
-import semiIntensiveProductionMobile from '../images/Illustrations/mobile/cultivation/semi-intensive-production.svg';
-
-import cultivationIcon from '../images/icons/cultivation/70px/cultivation-icon-70px.svg';
-import siteSelectionIcon from '../images/icons/cultivation/70px/site-selection-icon-70px.svg';
-import soilPrepIcon from '../images/icons/cultivation/70px/Soil-preparation-icon-70px.svg';
-import propagationIcon from '../images/icons/cultivation/70px/propagation-icon-70px.svg';
-import plantingIcon from '../images/icons/cultivation/70px/planting-icon-70px.svg';
-import plantCareIcon from '../images/icons/cultivation/70px/plant-care-icon-70px.svg';
-import pestsIcon from '../images/icons/cultivation/70px/insects-and-fungi-icon-70px.svg';
 
 # Intro
 
 The information in this section will depict in detail how to cultivate,  transport and process moringa according to the Ghana organic moringa standard. The purpose of this documentation is to provide an easy-to-follow set of practices to ensure that moringa products comply with all safety and environmental requirements. The practices recommended here will help to promote good farming and manufacturing methods to obtain healthy trees and quality-processed products.
 
-<Title icon={cultivationIcon} heading="Cultivation" />
+<Title icon={icons.cultivation} heading="Cultivation" />
 
 To ensure top results and benefits, the following four steps are fundamental  in moringa cultivation:
 
@@ -50,8 +26,7 @@ To ensure top results and benefits, the following four steps are fundamental  in
 >* Maintenance of the plantation
 
 
-
-<Title anchorId="site-selection" icon={siteSelectionIcon} heading="Site Selection" />
+<Title anchorId="site-selection" icon={icons.site} heading="Site Selection" />
 
 <table className="tdesign">
     <caption>Environmental requirements for the moringa plant are shown in the following table.</caption>
@@ -124,7 +99,7 @@ sunlight. <span style="font-weight:500;">The site must be protected from free ro
 </table>
 
 
-<Title anchorId="soil-preparation" icon={soilPrepIcon} heading="Soil Preparation" />
+<Title anchorId="soil-preparation" icon={icons.soil} heading="Soil Preparation" />
 
 
 The ease with which the roots spread is a necessary condition in plant  growth and development. <span style="font-weight:500;">Moringa therefore requires a well-drained  loamy or sandy soil for optimal growth</span>. from the field. If planting density is high, the land must be ploughed and harrowed to a maximum depth of 30 cm. 
@@ -132,7 +107,7 @@ The ease with which the roots spread is a necessary condition in plant  growth a
 If planting density is low (>1 m x 1 m),  it is better to dig pits and refill them with the soil. This ensures good root system penetration without causing too much land erosion (ploughing can be risky in some tropical environments, in the cases  of heavy rains, wind or sloping). In this case, the pits must be 30 to-50  cm deep, and 20 to 40 cm wide. When refilling the pit, mix the soil with manure. For the farmer producing moringa on a large scale, it is recommended that soil and seed testing are done to ensure good returns on investment.
 
 
-<Title anchorId="propagation" icon={propagationIcon} heading="Propagation" />
+<Title anchorId="propagation" icon={icons.propagation} heading="Propagation" />
 
 
 #### Moringa can be propagated from seeds or from mature cuttings (brown wood).
@@ -181,13 +156,13 @@ Hard woodcuttings of one meter long and at least 4 to 5 cm in  diameter can also
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={propagationByCutting} alt="propagation by cutting"/>
-    <img src={propagationByCuttingMobile} alt="propagation by cutting" />
+    <source media="(min-width: 767px)" srcset={images.desktop.propagation} alt="propagation by cutting"/>
+    <img src={images.mobile.propagation} alt="propagation by cutting" />
 </picture>
 </figure>
 
 
-<Title anchorId="planting" icon={plantingIcon} heading="Planting" />
+<Title anchorId="planting" icon={icons.planting} heading="Planting" />
 
 #### For leaf production, several methods can be considered.
 
@@ -200,8 +175,8 @@ Another option is to space the seeding lines 45 cm apart and to sow every 5 cm o
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={intensiveProduction} alt="intensive production"/>
-    <img src={intensiveProductionMobile} alt="intensive production" />
+    <source media="(min-width: 767px)" srcset={images.desktop.productionI} alt="intensive production"/>
+    <img src={images.mobile.productionI} alt="intensive production" />
 </picture>
 </figure>
 
@@ -211,8 +186,8 @@ Plants are spaced 50 cm to 1 m apart. This is more appropriate for  small-scale 
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={semiIntensiveProduction} alt="semi intensive production"/>
-    <img src={semiIntensiveProductionMobile} alt="semi intensive production" />
+    <source media="(min-width: 767px)" srcset={images.desktop.productionS} alt="semi intensive production"/>
+    <img src={images.mobile.productionS} alt="semi intensive production" />
 </picture>
 </figure>
 
@@ -232,8 +207,8 @@ associate crops that can enrich the soil in minerals, especially in nitrogen lik
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={agroforestry} alt="agroforestry"/>
-    <img src={agroforestryMobile} alt="agroforestry" />
+    <source media="(min-width: 767px)" srcset={images.desktop.agroforestry} alt="agroforestry"/>
+    <img src={images.mobile.agroforestry} alt="agroforestry" />
 </picture>
 </figure>
 
@@ -242,7 +217,7 @@ associate crops that can enrich the soil in minerals, especially in nitrogen lik
 Spacing must be much wider for fruit or seed production. Trees must be at least 2.5 m apart. Line and peg using a 3 x 3 meter triangular pattern for seed-producing farms. This will optimize plant population density.
 
 
-<Title anchorId="care" icon={plantCareIcon} heading="Plant Care" />
+<Title anchorId="care" icon={icons.care} heading="Plant Care" />
 
 #### Moringa requires a lot of care and maintenance to produce the expected yields.
 
@@ -280,8 +255,8 @@ Mulching consists in covering the soil with crop or weed residue to reduce the l
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={mulching} alt="mulching"/>
-    <img src={mulchingMobile} alt="mulching" />
+    <source media="(min-width: 767px)" srcset={images.desktop.mulching} alt="mulching"/>
+    <img src={images.mobile.mulching} alt="mulching" />
 </picture>
 </figure>
 
@@ -300,7 +275,7 @@ of terminal parts. In seed-producing farms, pruning helps induce more fruits, as
 stimulate branching.
 
 
-<Title anchorId="pests-and-diseases" icon={pestsIcon} heading="Pest and Disease Control" />
+<Title anchorId="pests-and-diseases" icon={icons.pests} heading="Pest and Disease Control" />
 
 ## Insects
 
@@ -311,8 +286,8 @@ insects, if it is sprayed in time.
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={caterpillarDamage} alt="caterpillar Damage"/>
-    <img src={caterpillarDamageMobile} alt="caterpillar damage" />
+    <source media="(min-width: 767px)" srcset={images.desktop.caterpillar} alt="caterpillar Damage"/>
+    <img src={images.mobile.caterpillar} alt="caterpillar damage" />
 </picture>
 </figure>
 
@@ -325,8 +300,9 @@ Termite attacks also cause damage to moringa plantations. Some organic solutions
 <li> Building termite traps using bowls filled with wet straw, soil and other vegetable waste (wood chips, mango pits). The bowls are filled in the morning, turned up side down against      the soil, the edges slightly buried and covered with a handful of dry leaves to maintain      coolness. These traps should be checked every 24 to 48 hours.If synthetic insecticides have to be used, choose the least toxic, like pyrethroids (Decis, Karate, Klartan). They remain active for 20 days or more, even in hot or windy conditions. Pyrethroids kill Lepidoptera eggs. Allow a 7-day minimum waiting period before harvesting, 14 days if the leaves are to be eaten raw. Avoid reapplying more than 2 or 3 times per season as this could favour resistance development to the pesticide and aphid attacks.</li>
 </ul>
 </blockquote>
+
 <figure>
-    <img src={termiteDamage} alt="termite damage" class="no-pic" />
+    <img src={images.desktop.termite} alt="termite damage" class="no-pic" />
 </figure>
 
 These diseases are by far the most serious in moringa farming. Brown spots can appear on the leaves and then spread to cover them entirely, turning the leaves yellow and killing them. This is caused by the fungi Cercospora spp and Septoria lycopersici. Alternaria is also frequent: angular, dark-brown spots with concentric circles appear on the leaves. Black or brown marks appear on the branches as well. The fungus is known as Alternaria solani. 
@@ -337,7 +313,7 @@ Neem leaf or seed extract can be sprayed on the plants to control pest and funga
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={fungiDamage} alt="fungi Damage"/>
-    <img src={fungiDamageMobile} alt="fungi damage" />
+    <source media="(min-width: 767px)" srcset={images.desktop.fungi} alt="fungi Damage"/>
+    <img src={images.mobile.fungi} alt="fungi damage" />
 </picture>
 </figure>
