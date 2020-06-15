@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faChevronRight, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './search-bar';
 
 import DesktopLogo from '../images/logos/COMS_desktop_logo.svg';
@@ -70,6 +70,7 @@ const Navmenu = (props) => {
         }
     })
 
+    // Updates current scroll position every time user scrolls on the page
     useEffect(() => {
         window.addEventListener('scroll', handleWindowScroll);
         return _ => {
@@ -233,7 +234,16 @@ const Navmenu = (props) => {
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
                         <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
                         <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
-                        <div className="mobileNavBg">
+                        {/* The size of the mobile nav background controls the mobile nav's scroll behaviour additional classes take effect below 820px view height */}
+                        <div className={`mobileNavBg ${windowSize.mobileSubMenuToggle ? 
+                            (windowSize.openCultivationSubMenu && windowSize.openProcessingSubMenu) ? 
+                            'mobileNavBgAllOpen' :
+                            windowSize.openCultivationSubMenu ? 
+                            'mobileNavBgGrowOpen' :
+                            windowSize.openProcessingSubMenu ?
+                            'mobileNavBgProcessOpen' :
+                            'mobileNavBgNoneOpen' :
+                            'mobileNavBgMin'}`} >
                             <button className="closeNavBtn" onClick={changeNavState}>
                                 <Img
                                     fixed={data.closeNavIcon.childImageSharp.fixed}
