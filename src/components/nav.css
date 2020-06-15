@@ -340,6 +340,8 @@
     outline: none;
 }
 
+/* Trigger when navbar options are too wide
+for screen width */
 @media only screen and (max-width: 1050px) {
     .navImg {
         margin-bottom: 0;
@@ -402,9 +404,11 @@
     }
 }
 
+/* These classes trigger when the mobile nav
+is too short to fit all options on screen */
 @media only screen and (max-height: 820px) {
     .mobileNavBgMin {
-        height: calc(1550px - 100vh);
+        height: calc(1700px - 100vh);
     }
     .mobileNavBgNoneOpen {
         height: calc(1850px - 100vh);
@@ -424,6 +428,7 @@
     }
 }
 
+/* Trigger within tablet breakpoint */
 @media only screen and (max-width: 768px) {
     .navContainer {
         height: 75px;
