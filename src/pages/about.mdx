@@ -6,13 +6,7 @@ hero: about
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-<!-- illustrations imports -->
-import comparison from '../images/Illustrations/desktop/about/Moringa-comparison-to-other-foods-illustration.svg'
-import comparisonMobile from '../images/Illustrations/mobile/about/100-grams-of-moringa-mobile.svg'
-import nutrition from '../images/Illustrations/desktop/about/Moringa-opportunities.svg'
-import nutritionMobile from '../images/Illustrations/mobile/about/moringa-opportunities-mobile.svg'
-import opportunity from '../images/Illustrations/desktop/about/Moringa-infographics.svg'
-import opportunityMobile from '../images/Illustrations/mobile/about/uses-of-moringa-mobile.svg'
+import { Images as images } from '../data/assets'
 
 <SEO title="about" keywords={['moringa', 'organic', 'standard']} />
 
@@ -37,8 +31,8 @@ poultry feeds. The bark yields a blue dye and can also be used in tanning. The w
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={opportunity} alt="Moringa opportunity"/>
-    <img src={opportunityMobile} alt="Moringa opportunity"/>
+    <source media="(min-width: 767px)" srcset={images.desktop.nutrition} alt="Moringa nutritional value"/>
+    <img src={images.mobile.nutrition} alt="Moringa nutritional value"/>
 </picture>
 </figure>
 
@@ -53,8 +47,8 @@ such as Acai berries, green tea, and red wine.</p>
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={comparison} alt="Moringa comparison to other food"/>
-    <img src={comparisonMobile} alt="Moringa comparison to other food" />
+    <source media="(min-width: 767px)" srcset={images.desktop.comparison} alt="Moringa comparison to other food"/>
+    <img src={images.mobile.comparison} alt="Moringa comparison to other food" />
 </picture>
 </figure>
 
@@ -66,8 +60,7 @@ Packaging also has an impact on quality: moringa leaf powder, packaged in transp
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={nutrition} alt="Moringa tree infographic"/>
-    <img src={nutritionMobile} alt="Moringa tree infographic" />
+    <source media="(min-width: 767px)" srcset={images.desktop.opportunity} alt="Moringa tree infographic"/>
+    <img src={images.mobile.opportunity} alt="Moringa tree infographic" />
 </picture>
 </figure>
-

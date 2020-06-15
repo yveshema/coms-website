@@ -21,7 +21,7 @@ const Nav = styled.div`
 
 const logo = graphql`
 query {
-    closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close-48.png" })
+    closeNavIcon: file(relativePath: { eq: "icons/close-48.png" })
     {
         childImageSharp {
             fixed (height: 32) {
@@ -29,7 +29,7 @@ query {
             }
         }
     }
-    hamburger: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
+    hamburger: file(relativePath: { eq: "icons/menu-48.png" })
     {
         childImageSharp {
             fixed (height: 48) {
@@ -37,7 +37,7 @@ query {
             }
         }
     }
-    hamburgerMobile: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
+    hamburgerMobile: file(relativePath: { eq: "icons/menu-48.png" })
     {
         childImageSharp {
             fixed (height: 17) {

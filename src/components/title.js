@@ -16,7 +16,7 @@ const TitleStyle = styled.div`
         line-height: 31px;
         margin-top: 30px;
     }
-
+    
     img {
         margin-bottom: 0;
         margin-right: 10px;

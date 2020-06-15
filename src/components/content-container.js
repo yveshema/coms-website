@@ -17,6 +17,7 @@ import styled, { css } from "styled-components";
 const Container = styled.article`
     padding: 0 0px;
     margin-top:75px;
+    flex: 1;
 
     @media only screen and (max-width: 767px){
         padding:0px;

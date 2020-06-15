@@ -58,7 +58,7 @@ span {
 const Contact = (props) => {
     return (
         <Wrapper>
-            <img src={props.icon} alt="icon" />
+            <img src={props.icon} alt="phone icon" />
             <span>{props.content}</span>
         </Wrapper>
     )

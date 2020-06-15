@@ -10,9 +10,9 @@ import Container from "./content-container";
 import Contact from './contact-component';
 import Separator from './separator';
 
-import ContactEnvelope from '../images/icons/ui-icons/envelope.svg';
-import ContactLocation from '../images/icons/ui-icons/location-icon.svg';
-import ContactPhone from '../images/icons/ui-icons/phone-icon.svg';
+import emailIcon from '../images/icons/envelope.svg';
+import ContactLocation from '../images/icons/location-icon.svg';
+import phoneIcon from '../images/icons/phone-icon.svg';
 
 // The navbar is fixed positioned, which would cause it to
 // overlap content below it. Apply a top margin to the content
@@ -83,10 +83,10 @@ const Layout = ({ location, children, pageContext={} }) => {
       <footer>
         <div className="wrapper">
           <div className="container align-vert">
-          <Contact icon={ContactEnvelope} content='contactemail@email.com' />
+          <Contact icon={emailIcon} content='contactemail@email.com' />
           
           <Separator />
-          <Contact icon={ContactPhone} content='+1 (123) 456 7890' />
+          <Contact icon={phoneIcon} content='+1 (123) 456 7890' />
         </div>
         <div>
           <p className="copyright">Copyrights | Terms and Conditions</p>
