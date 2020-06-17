@@ -1,11 +1,25 @@
 /* List styles */
+/* Give lists and their items top and bottom 
+   margins of equivalent to the line height */
+ol, ul, li {
+    margin: 1.5rem 0;    
+}
+
 ol {
     counter-reset: list;
+    /* margin-top: 20px;    */
 }
+
+li {
+    color: #626262;
+}
+
 ol > li {
     list-style: none;
     position: relative;
 }
+
+/* Set up custom list item counters */
 ol > li:before {
     counter-increment: list;
     content: counter(list, lower-alpha) ") ";
@@ -13,11 +27,7 @@ ol > li:before {
     left: -1.4em;
 }
 
-ol.listLine li, ul li {
-    color: #626262;
-}
-
-ul.line-high li {
+/* ul.line-high li {
     line-height: 35px;
     margin-bottom: 3px;
 }
@@ -26,9 +36,4 @@ ul.line-high li {
     .line-high li {
         line-height: 30px!important;
     }   
-}
-
-.listLine{
-    margin-top: 20px;
-    
-}
+} */

@@ -1,3 +1,9 @@
+@import "layout_styles.css";
+@import "text_styles.css";
+@import "image_styles.css";
+@import "table_styles.css";
+@import "list_styles.css";
+
 /* General styles */
 html, body {
     margin: 0;

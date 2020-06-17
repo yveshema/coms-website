@@ -1,50 +1,41 @@
 /* Table styles */
-.tdesign{
+table {
     box-shadow: 3px 3px 3px #bfbababa;
     margin-bottom: 58px;
-    
 }
-.tdesig td, .tdesig th {
+
+table[title*='fee'] td{ /* special case */
+    border-bottom: 0px;
+    border-right: 0px;
+}
+
+td, th {
     border: 1px solid #C1C1C1;
     padding: 10px;
     padding-left: 18px!important;
     font-size: 20px;
+    color: #626262;
 }
 
-.tdesign tr:nth-child(even){background-color: #F4F4F4; color:#000000 ;}
-
-.tdesign tr:hover {background-color: #dddddd;}
-.tdesign th {
+th {
     padding-top: 12px;
     padding-bottom: 12px;
     font-weight: 500;
     background-color: #E8E8E8;
     color: #000000;
-  }
+}
 
-  th:first-child, td:first-child {
+th:first-child, td:first-child {
     padding-left: 18px;
     border-right: 1px solid #C1C1C1;
 }
 
-.hdesign{
-    font-style: italic;
-    font-size: 30px;
-    line-height: 38px;
+tr:nth-child(even){
+    background-color: #F4F4F4; 
+    color:#000000 ;
 }
 
-.tdesign th{
-    color: #626262;
-}
-
-.tdesign td{
-    color: #626262;
-}
-
-table.feeDesign td{
-    border-bottom: 0px;
-    border-right: 0px;
-}
+tr:hover {background-color: #dddddd;}
 
 caption {
     font-size: 23px;
@@ -53,16 +44,16 @@ caption {
     color: #3A722E;
     font-weight: 500;
     margin-bottom: 50px;
-}
+} 
 
 @media only screen and (max-width: 768px) {    
-    .feeDesign p{
+    table p{
         width:100%;
     }    
 }
 
 @media only screen and (max-width: 320px){
-    table.tdesign th, table.tdesign td {
+    th, td {
         padding-right: 1px;
         padding-left: 8px;
     }
