@@ -54,7 +54,7 @@ const Navmenu = (props) => {
         currScroll: (typeof document !== 'undefined') ? document.documentElement.scrollTop : 0,
         hideNav: false,
         desktop: null,
-        navBurger: null,
+        navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1051px)").matches : null,
         mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
@@ -161,7 +161,7 @@ const Navmenu = (props) => {
 
                     {/* Main Navbar */}
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : {}} style={{top: '0'}}>
+                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : ''} style={{top: '0'}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
