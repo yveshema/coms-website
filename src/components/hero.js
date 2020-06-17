@@ -52,6 +52,7 @@ transform: translate(-50%, -50%);
 
 const Hero = ({tagline, path}) => {
     const [imgSize, changeImgSize] = useState({
+        currWidth: null,
         tablet: null,
         mobile: null
     });
@@ -71,11 +72,14 @@ const Hero = ({tagline, path}) => {
 
     // Checks if the current window size is tablet or mobile
     const handleWindowChange = () => {
-        changeImgSize({
-            ...imgSize,
-            tablet: (typeof window !== 'undefined') ? window.matchMedia("(max-width: 768px)").matches : null,
-            mobile: (typeof window !== 'undefined') ? window.matchMedia("(max-width: 414px)").matches : null
-        });
+        if (typeof window !== 'undefined') {
+            changeImgSize({
+                ...imgSize,
+                currWidth: window.innerWidth,
+                tablet: window.matchMedia("(max-width: 1050px)").matches,
+                mobile: window.matchMedia("(max-width: 414px)").matches
+            });
+        }
     }
 
     // Objects containing different hero image sizes
@@ -115,6 +119,8 @@ const Hero = ({tagline, path}) => {
             tabletImages[path] :
             desktopImages[path]}
             tablet={imgSize.tablet}
+            path={path}
+            currWidth={imgSize.currWidth}
             />
             <Tagline><span>{tagline}</span></Tagline>
         </Container>
