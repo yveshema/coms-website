@@ -10,7 +10,7 @@ font-size: 15px;
 font-weight: 300;
 margin: auto;
 img {
-    height: 1em;
+    height: 1.2em;    
     margin-bottom: 1rem;
 }
 span {
