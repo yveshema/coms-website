@@ -9,12 +9,13 @@ color: white;
 font-size: 15px;
 font-weight: 300;
 margin: auto;
-img {
+
+img {    
     height: 1.2em;    
     margin-bottom: 1rem;
 }
 span {
-    margin-top: -1em; 
+    // margin-top: -1em; 
 }
 
 @media only screen and (max-width: 1200px) {
@@ -29,10 +30,13 @@ span {
     //     order: 5; 
     // }
     img {
-        margin-right: 5px;
-        height: 30px;
-        min-width: 30px;
-        max-width: 30px;
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 1rem;
+        // margin-right: 5px;
+        // height: 30px;
+        // min-width: 30px;
+        // max-width: 30px;
     }
 }
 
