@@ -11,14 +11,18 @@ import styled from 'styled-components';
 const stripePromise = loadStripe("pk_test_xnFaHOBqDv0NhsCEPQtTLj9c0025sSw7c3");
 
 const PayDiv = styled.div`
+    padding: 2em 2em;
     max-width: 100%;
     background-color: white;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.161);
 
-    @media screen and (max-width: 1023px) and (min-width: 768px){
+    /* @Shema changed the min-width from 768px to 788px because the sync with
+     * the rest of the main content area
+     */ 
+    @media screen and (max-width: 1023px) and (min-width: 788px){
         max-width: calc(100% + 140px);
         margin: 0 -70px;
-    }
+    }   
 `
 
 const PaymentComponent = () => {

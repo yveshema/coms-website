@@ -7,14 +7,14 @@ const Wrapper = styled.span`
   user-select: none;
   color: transparent;
 
-  @media only screen and (max-width: 1280px) {
-    :last-of-type {
-      order: 4;
-      flex-basis: 100%;
-    }
-    height: 0;
-  }
-  @media only screen and (max-width: 768px){
+  // @media only screen and (max-width: 1200px) {
+  //   :last-of-type {
+  //     order: 4;
+  //     flex-basis: 100%;
+  //   }
+  //   height: 0;
+  // }
+  @media only screen and (max-width: 1200px){
     display: none;
   }
   // @media only screen and (max-width: 675px) {

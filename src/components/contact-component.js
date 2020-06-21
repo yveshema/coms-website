@@ -6,7 +6,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 color: white;
-font-size: 18px;
+font-size: 15px;
 font-weight: 300;
 margin: auto;
 img {
@@ -17,17 +17,17 @@ span {
     margin-top: -1em; 
 }
 
-@media only screen and (max-width: 1280px) {
-    flex-direction: row;
-    :first-of-type { 
-        order: 1;
-    }
-    :last-of-type { 
-        order: 3;
-    }
-    :nth-of-type(2) { 
-        order: 5; 
-    }
+@media only screen and (max-width: 1200px) {
+    flex-direction: row;    
+    // :first-of-type { 
+    //     order: 1;
+    // }
+    // :last-of-type { 
+    //     order: 3;
+    // }
+    // :nth-of-type(2) { 
+    //     order: 5; 
+    // }
     img {
         margin-right: 5px;
         height: 30px;
@@ -36,23 +36,27 @@ span {
     }
 }
 
-@media only screen and (max-width: 769px) {
-    :first-of-type { 
-        margin: 0 auto 0 0;
-    }
-    :last-of-type { 
-        margin: 0 0 0 auto;
-    }
+@media only screen and (max-width: 600px) {
+    width: 15em;
 }
 
-@media only screen and (max-width: 675px) {
-    :first-of-type, :last-of-type { 
-        margin: 0;
-    }
-    :nth-of-type(2) {
-        margin: 0;
-    }
-}
+// @media only screen and (max-width: 769px) {
+//     :first-of-type { 
+//         margin: 0 auto 0 0;
+//     }
+//     :last-of-type { 
+//         margin: 0 0 0 auto;
+//     }
+// }
+
+// @media only screen and (max-width: 675px) {
+//     :first-of-type, :last-of-type { 
+//         margin: 0;
+//     }
+//     :nth-of-type(2) {
+//         margin: 0;
+//     }
+// }
 `
 
 const Contact = (props) => {
