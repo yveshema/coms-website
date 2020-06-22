@@ -106,7 +106,7 @@ const ActionCard = ({content}) => {
 
     return (
         <Container>
-            <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} /></div>
+            <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} alt={`${content.action} icon`} /></div>
             <div>{content.text.map((text) => <Text>{text}</Text>)}</div>
             <Action onClick={handleClick}>{content.action}</Action>     
         </Container>

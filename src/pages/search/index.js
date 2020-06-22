@@ -13,7 +13,7 @@ import { snapshot } from "../../utils/helpers";
 
 const SearchPage = () => {
     // initialize query string and update global state
-    const { query, results, updateQuery, updateResults } = useContext(SearchContext);   
+    const { query, results, updateQuery, updateResults } = useContext(SearchContext); 
     
     // Load the site index pre-built with elasticlunr
     const data = useStaticQuery(graphql`
@@ -22,27 +22,32 @@ const SearchPage = () => {
                 index
             }
         }
-    `);
+    `);    
 
+    // const {query, results, updateQuery} = useResults(data);
+    
     // Perform index search whenever the value of the query changes
-    useEffect(() => {     
-
-        const search = (query) => {            
-            const index = Index.load(data.siteSearchIndex.index);
-            
-            updateResults(() => index.search(query, 
+    useEffect(() => {                  
+                   
+        const index = Index.load(data.siteSearchIndex.index);
+        
+        updateResults((prevResults) => {
+            //Replace the contents of results array
+            //with new results
+            prevResults.length = 0;
+            const newResults = index.search(query,             
                 {
                     fields: {
                         content: {boost: 1}
                     },
                     expand: true 
-                }
-                ).map(({ ref }) => index.documentStore.getDoc(ref))                
-            );
-        };        
-        search(query);
+                }            
+            )
+            .map(({ ref }) => index.documentStore.getDoc(ref));
+            return prevResults.concat(newResults); 
+        });         
        
-    },[query]);     
+    },[query, data]);     
 
     const handleSearch = (e) => {
         if (e.key === "Enter" || e.type === "click") {
