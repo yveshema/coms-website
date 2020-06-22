@@ -22,20 +22,14 @@ const SearchPage = () => {
                 index
             }
         }
-    `);    
-
-    // const {query, results, updateQuery} = useResults(data);
+    `);     
     
     // Perform index search whenever the value of the query changes
-    useEffect(() => {                  
-                   
-        const index = Index.load(data.siteSearchIndex.index);
-        
-        updateResults((prevResults) => {
-            //Replace the contents of results array
-            //with new results
-            prevResults.length = 0;
-            const newResults = index.search(query,             
+    // Suppressing missing dependency warnings because for the time
+    // being it is not clear how else to update state for this particular component
+    useEffect(() => {                   
+        const index = Index.load(data.siteSearchIndex.index);        
+        updateResults(() => index.search(query,             
                 {
                     fields: {
                         content: {boost: 1}
@@ -43,10 +37,9 @@ const SearchPage = () => {
                     expand: true 
                 }            
             )
-            .map(({ ref }) => index.documentStore.getDoc(ref));
-            return prevResults.concat(newResults); 
-        });         
-       
+            .map(({ ref }) => index.documentStore.getDoc(ref))             
+        ); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps       
     },[query, data]);     
 
     const handleSearch = (e) => {
