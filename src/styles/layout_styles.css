@@ -1,195 +1,79 @@
-/* Layout styles */
+/* Layout styles
+----------------- */
+
+/* Ensure minimum page height is the height
+ * of the viewport 
+ */
 .pagewrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-.wrapper {
-    margin: 0 100px;   
-    flex: 1;
-    line-height: 1.8;    
-}
-
+/* Generic horizontal layout */
 .row {
     display: flex;
     justify-content: space-between; 
     padding: 50px 0;   
 }
 
-.col-8 {
-    width: calc(100% * 8 / 12 - 16px);
-    
-}
-
-.container {
-    max-width: 1280px;
-    margin: 0 auto;    
-}
-
-.centre {
-    margin: 0 auto;
-    
-}
-
-.align-bottom {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-footer {
-    /* display:flex; */
+/* Footer styles
+-----------------*/
+footer {    
     background-color: #2F5926;
     height: max-content;      
 }
 
-footer img{
-    margin-bottom: 0.8rem!important;
-    width: 13px;
+/* Center everthing within */
+footer > div {
+    margin: 10px 100px;   
+    flex: 1;
+
+    /* line-height: 1.8;     */
 }
 
-.container.align-vert span{
-    font-size: 13px;
-    letter-spacing: .3px;
-}
-
-.align-vert {    
+/* Contact info */
+footer > div > div:first-child {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0; 
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;    
-    padding:13px 145px;
 }
 
-.copyright {
+footer .copyright {
     color: white;
-    font-size: 8px;
+    font-size: .8rem;
     text-align: center;
     margin: 0;
     padding-bottom: 7px;
-    line-height: 9px;
+    line-height: 1.2;
     letter-spacing: .3px;
     margin-left: 37px;
 }
 
-.homeContainer{
-    width: 33.33%;
- }
- .homeContainer:first-child{
-     margin-left: 0px;
- }
-
- .homeContainer:last-child{
-    margin-right: 0px;
-}
-
-/* Why do we have so many break points? */
-
-@media only screen and (max-width: 1280px) {
-    .align-vert {
-        max-width: max-content;
-        padding-bottom:25px;
-    }
-}
-
-@media only screen and (width:1024px){
-    .homeContainer {
-        width: 100%;
-        padding: 25px!important;
-    }
-    .fixHeight {
-        min-height: auto;
-    }
-    .buttonClass {
-        text-align: left;
-        padding-left: 85px;
-    }
-    .align-vert{
-        padding: 22px 85px;
-        padding-bottom: 10px;
+/* Full width display on smaller screens */
+@media only screen and (max-width: 1200px) {
+    footer > div > div:first-child {        
         width: 100%;
         max-width: 100%;
-        display: -webkit-inline-box;
-    }    
-}
-
-@media screen and (max-width: 1023px) and (min-width: 768px){
-    .homeContainer {
-        width: 100%;
-        float: left;
-        padding: 20px!important;
-    }
-    .homeContainer img{
-        width: 12%;
-        float: left;
-    }
-    .fixHeight {
-        min-height: auto;
-        width: 80%;
-        float: left;
-    }
-    .fixHeight p{
-        text-align: left;
-        padding: 2px 0px 0px 20px;
-    }
-    .buttonClass {
-        width: 84%;
-        float: right;
-        text-align: left;
-    }
-    .align-vert{
-        padding: 18px 65px;
-        padding-bottom: 5px;
-        width: 100%;
-        max-width: 100%;
-        display: -webkit-inline-box;
-    }    
-}
-
-@media only screen and (max-width: 769px){
-    .wrapper {
-        flex:1;
-        margin: 0;
-        padding: 0 5em;
-    }    
-}
-
-
-@media only screen and (max-width: 767px){    
-    .homeContainer{     /* What is this used for ? */
-        width: 100%;      
-    }
-    section .homeContainer{
-        padding: 25px;
-
-    }           
-    .container.align-vert{
-        padding: 18px 0px;
-    }        
-    .align-vert {
-        display: block;
-    }   
-}
-
-@media only screen and (max-width: 675px) {
-    .align-vert {
-        justify-content: flex-start;
-        padding-top:25px;
-    }
-    .wrapper {
-        margin: 0 20px;
-        padding:10px 0;
+        padding: 20px 0;       
     }
 }
 
-@media only screen and (min-width: 360px)  and (max-width: 767px){
-    .col-8 {
-        width: 100%;
+/* Align contact info on small screens */
+@media only screen and (max-width: 600px){
+    footer > div {
+        margin:0;
+    }
+
+    footer > div > div:first-child {        
+        /* display: block; */
+        flex-direction: column;
+        align-items: flex-start;
         
+        /* margin: auto; */
+        padding: 10px 0;
     }
 }
-
-
-
-
-

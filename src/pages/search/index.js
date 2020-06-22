@@ -13,7 +13,7 @@ import { snapshot } from "../../utils/helpers";
 
 const SearchPage = () => {
     // initialize query string and update global state
-    const { query, results, updateQuery, updateResults } = useContext(SearchContext);   
+    const { query, results, updateQuery, updateResults } = useContext(SearchContext); 
     
     // Load the site index pre-built with elasticlunr
     const data = useStaticQuery(graphql`
@@ -22,27 +22,25 @@ const SearchPage = () => {
                 index
             }
         }
-    `);
-
+    `);     
+    
     // Perform index search whenever the value of the query changes
-    useEffect(() => {     
-
-        const search = (query) => {            
-            const index = Index.load(data.siteSearchIndex.index);
-            
-            updateResults(() => index.search(query, 
+    // Suppressing missing dependency warnings because for the time
+    // being it is not clear how else to update state for this particular component
+    useEffect(() => {                   
+        const index = Index.load(data.siteSearchIndex.index);        
+        updateResults(() => index.search(query,             
                 {
                     fields: {
                         content: {boost: 1}
                     },
                     expand: true 
-                }
-                ).map(({ ref }) => index.documentStore.getDoc(ref))                
-            );
-        };        
-        search(query);
-       
-    },[query]);     
+                }            
+            )
+            .map(({ ref }) => index.documentStore.getDoc(ref))             
+        ); 
+    // eslint-disable-next-line react-hooks/exhaustive-deps       
+    },[query, data]);     
 
     const handleSearch = (e) => {
         if (e.key === "Enter" || e.type === "click") {
