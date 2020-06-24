@@ -41,15 +41,12 @@ font-size: .8em;
 const Input = styled.input`
 border: ${props => props.noborder? 0 : "1px solid #a3a3a3"};
 border-radius: 2px;
-// box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
-// -webkit-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
 padding: 5px;
 `;
 
 const TextArea = styled.textarea`
 border: 1px solid #a3a3a3;
 border-radius: 2px;
-// box-shadow: 0 0 1px 1px inset #a3a3a3;
 padding: 5px;
 min-height: 10em;
 `;
@@ -114,9 +111,8 @@ const ContactForm = ({ onSuccess }) => {
     const rules = {
         fname: /(\w.*){2,}/,    // disallow less than 2 characters in the name
         lname: /(\w.*){2,}/,
-        email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
-        tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
-        // tel: /^\d{10}$/,
+        email: /^[^\s\\]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
+        tel: /^(\d{3}-\d{3}-\d{4})?$/,         // North American format. Should be revised        
         subj: /(\w.*){2,}/,     // disallow less than 4 characters in subject or message body
         msg: /(\w.*){8,}/,
     };
@@ -169,10 +165,10 @@ const ContactForm = ({ onSuccess }) => {
     }
 
     const formatPhoneNumber = (str) => {
-        if (str.length == 3){
+        if (str.length === 3){
             str += "-";
         }
-        if (str.length == 7) {
+        if (str.length === 7) {
             str += "-";
         }
         return str;

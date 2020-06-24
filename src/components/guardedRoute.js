@@ -25,12 +25,9 @@ const GuardedRoute = ({children, stage}) => {
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
-    });
-
-    // const [done, setDone] = useState(false); 
+    });    
     
     const [ loggedIn, setLoggedIn ] = useState(false);
-
         
     const handleUpdate = event => {
         setCredentials({...credentials, [event.target.name]:event.target.value});
@@ -41,8 +38,7 @@ const GuardedRoute = ({children, stage}) => {
 
         try {
             await Auth.signIn(credentials.username, credentials.password);
-            setLoggedIn(true);
-            // setDone(true);
+            setLoggedIn(true);            
         } catch (e) {
             alert(e.message);
         }             
@@ -63,13 +59,13 @@ const GuardedRoute = ({children, stage}) => {
                         }}
                     >   
                         <table>         
-                            <tr><td><label>Username: </label></td>
-                                <td><input type="text" name="username" 
+                            <tr><td><label htmlFor="username">Username: </label></td>
+                                <td><input type="text" name="username" id="username" 
                                         onChange={handleUpdate} /></td>
                             </tr>
                             <tr>
-                                <td><label>Password: </label></td> 
-                                <td><input type="password" name="password" 
+                                <td><label htmlFor="password">Password: </label></td> 
+                                <td><input type="password" name="password" id="password"
                                     onChange={handleUpdate} /></td>
                             </tr>
                             <tr>

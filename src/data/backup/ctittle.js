@@ -25,7 +25,7 @@ const TitleStyle = styled.div`
         max-height: 70px;
     }
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) { 
         img {
             max-height: 48px;
             margin-right: 10px;

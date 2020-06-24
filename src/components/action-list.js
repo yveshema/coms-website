@@ -1,22 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+/* Wrapper around the action card components on the
+ * home page. Lay the cards horizontally on large screens
+ * and switch to vertical layout from tablet's size and below
+ * */
 const Container = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
 margin-top:30px;
 margin-bottom:30px;
-@media only screen and (max-width: 769px){
-    flex-direction: column;    
-}
-@media screen and (max-width: 1023px) and (min-width: 768px){
-    display: inline-block!important;
-    width: 100%;
-}
 
-@media only screen and (max-width: 1224px){
-    display: block;
+@media screen and (max-width: 1200px) {    
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
 }
 `;
 

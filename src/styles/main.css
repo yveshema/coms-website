@@ -1,3 +1,5 @@
+@import "layout_styles.css";
+
 /* General styles */
 html, body {
     margin: 0;
@@ -10,10 +12,6 @@ html, body {
     box-sizing: border-box;
 }
 
-.buttonClass{   /* Should this be moved into a button component instead? */
-    width: 100%;
-    text-align: center;
-}
 
 /* Animation */
 /* This should perhaps be moved to a component? */
