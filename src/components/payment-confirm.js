@@ -178,7 +178,7 @@ const PaymentSummary = (props) => {
     }
 
     // This component contains two different JSX returns
-    if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
+    if (props.currState.currProgress === 3 && props.currState.paymentType === 'card' && paymentSuccess !== "succeeded") {
         let ccBrand = props.currState.cardDetails.brand ? props.currState.cardDetails.brand : 'undefined';
         return (
             <Container>
