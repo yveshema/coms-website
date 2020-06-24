@@ -20,6 +20,16 @@ p {
     margin: 30px 0px;
     padding-bottom: 30px;
 }
+
+.submitBtnRow {
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 500px) {
+    .submitBtnRow {
+        flex-direction: column;
+    }
+}
 `
 
 const Row = styled.div`
@@ -46,6 +56,10 @@ transition: 0.25s;
 
 :active, :hover {
     background-color: #E55616;
+}
+
+@media only screen and (max-width: 500px) {
+    width: 100%;
 }
 `;
 
@@ -123,7 +137,7 @@ const ItemSelectionForm = (props) => {
             <p>
                 Select the items you want to pay for according to the invoice you received.
             </p>
-            <form onSubmit={props.submitTotal}>
+            <form>
                 <Control>
                     <input type="checkbox" onChange={() => props.changeCheckedStatus("sys")} />
                     <span className="checkmark">
@@ -177,7 +191,10 @@ const ItemSelectionForm = (props) => {
                     <div style={{ fontSize: '0.7em', color: 'red' }}>
                         There was an issue connecting to Stripe services. Please try again.
                 </div>}
-                <Row><SubmitButton>{props.isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Payment Information'}</SubmitButton></Row>
+                <Row className="submitBtnRow">
+                    <SubmitButton onClick={props.submitTotalCrypto} disabled={props.isLoading}>Pay with Crypto</SubmitButton>
+                    <SubmitButton onClick={props.submitTotal}>{props.isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Pay with Credit Card'}</SubmitButton>
+                </Row>
             </form>
         </Container>
     )
