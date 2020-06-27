@@ -59,7 +59,7 @@ export default css`
         color: #3A722E;
         font-weight: 500;
         margin-bottom: 50px;
-    }    
+    }      
     
     @media only screen and (max-width: 600px) {    
         table p{

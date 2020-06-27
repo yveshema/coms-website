@@ -13,7 +13,7 @@ export const Images = {
         agroforestry: require('../images/Illustrations/agroforestry.svg'),            
         mulching: require('../images/Illustrations/mulching.svg'),            
         caterpillar: require('../images/Illustrations/caterpillar.svg'),        
-        termite: require('../images/Illustrations/termite.svg'),    
+        termite: require('../images/Illustrations/termite.png'),    
         fungi: require('../images/Illustrations/fungi.svg'),
         labeling: require('../images/Illustrations/labeling.svg'),            
         packaging: require('../images/Illustrations/packaging.svg'),            
