@@ -81,6 +81,7 @@ const Navmenu = (props) => {
     // Run once after component mounts to determine current window size
     useEffect(() => {
         handleWindowChange();
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const data = useStaticQuery(logo);

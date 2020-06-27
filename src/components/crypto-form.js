@@ -172,6 +172,7 @@ const CryptoForm = (props) => {
     // Get the current exchange rates for all supported coins for the form and write to state on mount
     useEffect(() => {
         getCoinRates();
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Saves customer name and email to state
