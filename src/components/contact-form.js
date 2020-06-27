@@ -54,6 +54,39 @@ min-height: 10em;
 const Form = styled.form`
 padding: 10px;
 background: #fff;
+
+/* Hide the input and display custom button  */       
+#attach-file {
+    visibility: hidden;
+}
+
+
+label[for="attach-file"] {
+     display: inline-block!important;
+     width: 8rem;     
+     font-size: .8rem;    
+     border: 1px solid #a3a3a3;
+     border-radius: 2px;
+     padding: 5px 8px;
+     cursor: pointer;
+     position:relative;     
+ }
+
+label[for="attach-file"]:hover:before,
+label[for="attach-file"]:focus:before {
+    content: attr(title);
+    position: absolute;
+    display: inline-block;
+    background: #eee;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    width: 12rem;
+    top: -70px;
+    left: -2px;    
+    tabindex: -1;
+}
 `;
 
 const SubmitButton = styled(Button)`
@@ -79,6 +112,9 @@ transition: 0.25s;
 
 
 const ContactForm = ({ onSuccess }) => {
+    const tooltip = `Our company will start accepting
+documents in the near future,
+when we are fully operational.`;
     const [inputs, setInputs] = useState({
         fname: "",
         lname: "",
@@ -299,12 +335,14 @@ const ContactForm = ({ onSuccess }) => {
                     <FormError>{errors.msg}</FormError>
                 </InputControl>                              
             </Row>
+           
             <Row>
-                <InputControl>
-                    <Label>Attach a file: </Label>
-                    <Input type="file" disabled noborder />
+                 <InputControl>
+                    <Label htmlFor="attach-file" title={tooltip}>+ Attach a file</Label>
+                    <Input type="file"  id="attach-file"  disabled />
                 </InputControl>
-            </Row>
+                
+             </Row>
             <Row><SubmitButton>Send</SubmitButton></Row>
         </Form>
     );
