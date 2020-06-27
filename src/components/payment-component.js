@@ -41,7 +41,8 @@ const PaymentComponent = () => {
         totalCost: 0,
         fullName: '',
         email: '',
-        cardDetails: {}
+        cardDetails: {},
+        cryptoDetails: null
     })
 
     // Recalculate cost whenever any of the billing option states are changed
@@ -93,6 +94,17 @@ const PaymentComponent = () => {
             currProgress: 3
         })
     };
+
+    const handleCryptoTransactionInfo = payload => {
+        if (payload.result === undefined) {
+            return;
+        }
+        changeForm({
+            ...formStates,
+            cryptoDetails: payload.result,
+            currProgress: 3
+        })
+    }
 
     const post = async (data) => {
         const { url } = data;
@@ -237,8 +249,8 @@ const PaymentComponent = () => {
         <PayDiv>
             <PayProgress progress={formStates.currProgress} />
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} submitTotalCrypto={submitTotalCrypto} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
-            <PaymentInfo progress={formStates.currProgress} paymentType={formStates.paymentType} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
-            <PaymentConfirm currState={formStates} paymentType={formStates.paymentType} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
+            <PaymentInfo progress={formStates.currProgress} paymentType={formStates.paymentType} handleCardInfo={handleCardInfo} handleCryptoTransactionInfo={handleCryptoTransactionInfo} reverseForm={reverseForm} totalCost={formStates.totalCost} stripePubKey={stripePromise} />
+            <PaymentConfirm currState={formStates} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
         </PayDiv>
     )
 }
