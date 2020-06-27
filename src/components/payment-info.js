@@ -283,7 +283,7 @@ const PaymentInfo = (props) => {
         )
     } else if (props.progress === 2 && props.paymentType === 'crypto') {
         return (
-            <CryptoForm progress={props.progress} reverseForm={props.reverseForm}></CryptoForm>
+            <CryptoForm progress={props.progress} handleCryptoTransactionInfo={props.handleCryptoTransactionInfo} totalCost={props.totalCost} reverseForm={props.reverseForm}></CryptoForm>
         );
     } else {
         return null;
