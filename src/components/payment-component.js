@@ -28,6 +28,7 @@ const PayDiv = styled.div`
 const PaymentComponent = () => {
     const [formStates, changeForm] = useState({
         currProgress: 1,
+        paymentType: null,
         isLoading: false,
         sysControl: false,
         fileManage: false,
@@ -40,7 +41,8 @@ const PaymentComponent = () => {
         totalCost: 0,
         fullName: '',
         email: '',
-        cardDetails: {}
+        cardDetails: {},
+        cryptoDetails: null
     })
 
     // Recalculate cost whenever any of the billing option states are changed
@@ -92,6 +94,17 @@ const PaymentComponent = () => {
             currProgress: 3
         })
     };
+
+    const handleCryptoTransactionInfo = payload => {
+        if (payload.result === undefined) {
+            return;
+        }
+        changeForm({
+            ...formStates,
+            cryptoDetails: payload.result,
+            currProgress: 3
+        })
+    }
 
     const post = async (data) => {
         const { url } = data;
@@ -152,6 +165,7 @@ const PaymentComponent = () => {
                         clientSecret: res.client_secret,
                         intentID: res.id,
                         currProgress: 2,
+                        paymentType: 'card',
                         isLoading: false
                     })
                 } else {
@@ -170,6 +184,23 @@ const PaymentComponent = () => {
                 })
                 console.log("Error ", error)
             })
+    }
+
+    // Send user forward in payment to submit additional info
+    const submitTotalCrypto = (event) => {
+        event.preventDefault();
+        // Don't move forward if no options are selected
+        if (!formStates.sysControl && !formStates.fileManage && !formStates.recertFee && !formStates.underTwoAcres && !formStates.overTwoAcres) {
+            return;
+        } else {
+            changeForm({
+                ...formStates,
+                currProgress: 2,
+                paymentType: 'crypto',
+                isLoading: false
+            })
+        }
+
     }
 
     // Move back in the form
@@ -217,8 +248,8 @@ const PaymentComponent = () => {
     return (
         <PayDiv>
             <PayProgress progress={formStates.currProgress} />
-            <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
-            <PaymentInfo progress={formStates.currProgress} handleCardInfo={handleCardInfo} reverseForm={reverseForm} stripePubKey={stripePromise} />
+            <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} submitTotalCrypto={submitTotalCrypto} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
+            <PaymentInfo progress={formStates.currProgress} paymentType={formStates.paymentType} handleCardInfo={handleCardInfo} handleCryptoTransactionInfo={handleCryptoTransactionInfo} reverseForm={reverseForm} totalCost={formStates.totalCost} stripePubKey={stripePromise} />
             <PaymentConfirm currState={formStates} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
         </PayDiv>
     )

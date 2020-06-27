@@ -10,6 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import CryptoForm from './crypto-form';
 
 const Container = styled.div`
     width: 100%;
@@ -142,9 +143,9 @@ const stripeStyle = {
 const elementOptions = {
     fonts: [
         {
-          cssSrc: 'https://fonts.googleapis.com/css2?family=Roboto&family=Rubik'
+            cssSrc: 'https://fonts.googleapis.com/css2?family=Roboto&family=Rubik'
         }
-      ]
+    ]
 }
 
 const PaymentForm = (props) => {
@@ -180,7 +181,7 @@ const PaymentForm = (props) => {
             return;
         }
 
-        changeInfo({...billingInfo, isLoading: true})
+        changeInfo({ ...billingInfo, isLoading: true })
 
         // Send billing info to Stripe and return a card info object
         const payload = await stripe.createPaymentMethod({
@@ -191,7 +192,7 @@ const PaymentForm = (props) => {
             type: "card",
             card: elements.getElement(CardNumberElement)
         });
-        changeInfo({...billingInfo, isLoading: false})
+        changeInfo({ ...billingInfo, isLoading: false })
         props.handleCardInfo(payload)
     };
 
@@ -215,9 +216,7 @@ const PaymentForm = (props) => {
             setError(null);
         }
     }
-
-    if (props.progress === 2) {
-        return (
+    return (
         <Container>
             <p>
                 Please provide your payment information below.
@@ -233,7 +232,7 @@ const PaymentForm = (props) => {
                 </div>
 
                 <div className="form-align">
-                    <label for="cardNumInput" style={{width: 'calc(100% - 20px)'}}>
+                    <label for="cardNumInput" style={{ width: 'calc(100% - 20px)' }}>
                         Card number
                         <CardNumberElement
                             className="stripeInput"
@@ -272,18 +271,24 @@ const PaymentForm = (props) => {
                 </div>
             </form>
         </Container>
-        )
-    } else {
-        return null;
-    }
+    )
 }
 
 const PaymentInfo = (props) => {
-    return (
-        <Elements stripe={props.stripePubKey} options={elementOptions}>
-            <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
-        </Elements>
-    )
+    if (props.progress === 2 && props.paymentType === 'card') {
+        return (
+            <Elements stripe={props.stripePubKey} options={elementOptions}>
+                <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
+            </Elements>
+        )
+    } else if (props.progress === 2 && props.paymentType === 'crypto') {
+        return (
+            <CryptoForm progress={props.progress} handleCryptoTransactionInfo={props.handleCryptoTransactionInfo} totalCost={props.totalCost} reverseForm={props.reverseForm}></CryptoForm>
+        );
+    } else {
+        return null;
+    }
+
 }
 
 export default PaymentInfo;

@@ -5,6 +5,7 @@ const ParallaxImg = styled.img`
 min-height: 350px;
 width: 100%;
 margin-bottom: 0;
+transform-origin: bottom;
 
 @media only screen and (max-width: 768px) {
     min-height: 200px
@@ -35,10 +36,18 @@ const ParallaxHero = (props) => {
         })
     }
 
+    const offset = (path, currWidth) => {
+        if (path === 'home') {
+            return -((currWidth - 1050) * 0.3)
+        } else {
+            return -(((currWidth - 1050) * 0.3) + 135)
+        }
+    }
+
     // This parallax uses the current scroll position to determine the parallax scroll position
     // The effect is disabled for tablet and mobile breakpoints for compatibility and performance
     return (
-        <ParallaxImg alt="hero" src={props.image} style={!props.tablet ? { transform: `translate3D(0, ${imgSize.currScroll * 0.4}px, 0)` } : {}} />
+        <ParallaxImg alt="hero" src={props.image} style={!props.tablet ? { transform: `translate3D(0, ${imgSize.currScroll * 0.4 + offset(props.path, props.currWidth)}px, 0)` } : {}} />
     );
 
 }

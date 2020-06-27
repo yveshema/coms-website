@@ -149,7 +149,7 @@
     align-items: flex-start;
     z-index: 1;
     display: none;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .navHidden {
@@ -453,11 +453,13 @@ is too short to fit all options on screen */
     }
 }
 
+/* Width at which search bar is too long 
+to fit navbar */
 @media only screen and (max-width: 599px) {
     #search {
         position: fixed;
-        top: 60px;
-        left: 0;
+        top: 50px;
+        left: -1px;
         margin-left: 0;
         max-width: 100%;
     }
@@ -466,13 +468,11 @@ is too short to fit all options on screen */
     }
 }
 
-@media only screen and (max-width: 524px) {
+/* Trigger at max mobile breakpoint */
+@media only screen and (max-width: 500px) {
     .extraNavOptionContainer {
         display: none;
     }
-}
-
-@media only screen and (max-width: 400px) {
     .navWrapper {
         padding: 0 10px;
     }
