@@ -6,17 +6,11 @@ hero: about
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-<!-- illustrations imports -->
-import comparison from '../images/Illustrations/desktop/about/moringa-comparison-to-other-food.svg'
-import comparisonMobile from '../images/Illustrations/mobile/about/moringa-comparison.svg'
-import nutrition from '../images/Illustrations/desktop/about/moringa-opportunities.svg'
-import nutritionMobile from '../images/Illustrations/mobile/about/moringa-opportunities.svg'
-import opportunity from '../images/Illustrations/desktop/about/moringa-tree-info-graphic.svg'
-import opportunityMobile from '../images/Illustrations/mobile/about/mobile-moringa-tree-inforaphic.svg'
+import { Images as images } from '../data/assets'
 
 <SEO title="about" keywords={['moringa', 'organic', 'standard']} />
 
-<h1 class="about-para">Nutritional Value and <br/>Benefits of Moringa</h1>
+# Nutritional Value and <br/>Benefits of Moringa
 
 The moringa plant (Moringa oleifera) is known worldwide for its nutritional and medicinal 
 benefits and industrial uses. It produces harvestable leaves within just six months and can 
@@ -37,12 +31,12 @@ poultry feeds. The bark yields a blue dye and can also be used in tanning. The w
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={opportunity} alt="Moringa opportunity"/>
-    <img src={opportunityMobile} alt="Moringa opportunity"/>
+    <source media="(min-width: 767px)" srcset={images.desktop.nutrition} alt="Moringa nutritional value"/>
+    <img src={images.mobile.nutrition} alt="Moringa nutritional value"/>
 </picture>
 </figure>
 
-<h1 class="parafont about-para1"> Moringa Comparison With Other<br/> Types of Foods</h1>
+# Moringa Comparison With <br/>Other Types of Foods
 
 Moringa contains an extraordinary array of micronutrients, vitamins and minerals needed 
 for a balanced, healthy diet. Moringa leaves are 30% high-quality protein and are among a handful of vegetables that contain all 9 essential amino acids (18 in all).  Added to staple foods like bread and flour, moringa could help hundreds of millions of malnourished 
@@ -53,12 +47,12 @@ such as Acai berries, green tea, and red wine.</p>
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={comparison} alt="Moringa comparison to other food"/>
-    <img src={comparisonMobile} alt="Moringa comparison to other food" />
+    <source media="(min-width: 767px)" srcset={images.desktop.comparison} alt="Moringa comparison to other food"/>
+    <img src={images.mobile.comparison} alt="Moringa comparison to other food" />
 </picture>
 </figure>
 
-<h1 class="parafont"> Why Cultivating Moringa and Meeting Quality Standards are important?</h1>
+# Why Cultivating Moringa and Meeting Quality Standards are important?
 
 This leafy vegetable is an exceptional resource for developing countries. Processed or fresh, the moringa leaf is not only a new, promising source of income and employment but also an outstanding, nutritionally rich vegetable for families and businesses. However, Leaf powder, if of poor sanitary quality, can cause digestive illnesses. Counterfeit products (various mixtures of dried leaves, even ground twigs) are also an issue in certain countries.
 
@@ -66,8 +60,7 @@ Packaging also has an impact on quality: moringa leaf powder, packaged in transp
 
 <figure>
 <picture>
-    <source media="(min-width: 767px)" srcset={nutrition} alt="Moringa tree infographic"/>
-    <img src={nutritionMobile} alt="Moringa tree infographic" />
+    <source media="(min-width: 767px)" srcset={images.desktop.opportunity} alt="Moringa tree infographic"/>
+    <img src={images.mobile.opportunity} alt="Moringa tree infographic" />
 </picture>
 </figure>
-

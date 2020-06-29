@@ -149,6 +149,7 @@
     align-items: flex-start;
     z-index: 1;
     display: none;
+    overflow: auto;
 }
 
 .navHidden {
@@ -339,6 +340,8 @@
     outline: none;
 }
 
+/* Trigger when navbar options are too wide
+for screen width */
 @media only screen and (max-width: 1050px) {
     .navImg {
         margin-bottom: 0;
@@ -358,6 +361,7 @@
     }
     .link:last-of-type:not(.mobileCollapse) {
         border-bottom: none;
+        margin-bottom: 80vh;
     }
     .linkActive, .link:hover, .mobileCollapse:hover, .sublink:hover {
         color: #3A722E;
@@ -400,6 +404,31 @@
     }
 }
 
+/* These classes trigger when the mobile nav
+is too short to fit all options on screen */
+@media only screen and (max-height: 820px) {
+    .mobileNavBgMin {
+        height: calc(1700px - 100vh);
+    }
+    .mobileNavBgNoneOpen {
+        height: calc(1850px - 100vh);
+    }
+    .mobileNavBgGrowOpen {
+        height:calc(2300px - 100vh);
+    }
+    .mobileNavBgProcessOpen {
+        height: calc(2050px - 100vh);
+    }
+    .mobileNavBgAllOpen {
+        height: calc(2500px - 100vh);
+    }
+    .link:last-of-type:not(.mobileCollapse) {
+        border-bottom: none;
+        margin-bottom: 800px;
+    }
+}
+
+/* Trigger within tablet breakpoint */
 @media only screen and (max-width: 768px) {
     .navContainer {
         height: 75px;
@@ -424,11 +453,13 @@
     }
 }
 
+/* Width at which search bar is too long 
+to fit navbar */
 @media only screen and (max-width: 599px) {
     #search {
         position: fixed;
-        top: 60px;
-        left: 0;
+        top: 50px;
+        left: -1px;
         margin-left: 0;
         max-width: 100%;
     }
@@ -437,18 +468,16 @@
     }
 }
 
-@media only screen and (max-width: 524px) {
+/* Trigger at max mobile breakpoint */
+@media only screen and (max-width: 500px) {
     .extraNavOptionContainer {
         display: none;
     }
-}
-
-@media only screen and (max-width: 400px) {
     .navWrapper {
         padding: 0 10px;
     }
     .languageBtn {
-        margin-right: 30px;
+        margin-right: 40px;
     }
     .languageOptionDiv { 
         right: 60px;

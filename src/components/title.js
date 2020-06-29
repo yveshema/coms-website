@@ -9,31 +9,34 @@ const TitleStyle = styled.div`
     font-weight: 500;
     text-rendering: optimizeLegibility;
     font-size: 2rem;
-    margin-bottom: 1.5rem;
-    margin-top: 50px;
+    font-style: ${props => props.italic? 'italic' : 'normal'};    
+    // margin-bottom: 1.5rem;
+    // margin-top: 50px;
+    margin-top: 2em;
+    margin-bottom: 1.5em;
     @media only screen and (max-width: 767px){
         font-size: 26px;
         line-height: 31px;
         margin-top: 30px;
     }
-
+    
     img {
         margin-bottom: 0;
-        margin-right: 10px;
+        margin-right: 20px;
         max-height: 70px;
     }
 
     @media only screen and (max-width: 768px) {
         img {
             max-height: 48px;
-            margin-right: 5px;
+            margin-right: 10px;
         }
     }
 `
 // Title 
-const Title = (props) => {
+const Title = (props) => {     
     return (
-        <TitleStyle id={props.anchorId}>
+        <TitleStyle id={props.anchorId} italic={props.italic}>
             {/* Render icon only if an icon is provided in props*/}
             {(props.icon !== undefined) &&
                 <img src={props.icon} alt="Icon" />

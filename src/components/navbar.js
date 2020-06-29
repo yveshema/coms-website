@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 import styled from "styled-components"
 import './nav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faChevronRight, faCalculator } from '@fortawesome/free-solid-svg-icons';
 import SearchBar from './search-bar';
 
 import DesktopLogo from '../images/logos/COMS_desktop_logo.svg';
@@ -21,7 +21,7 @@ const Nav = styled.div`
 
 const logo = graphql`
 query {
-    closeNavIcon: file(relativePath: { eq: "icons/ui-icons/close-48.png" })
+    closeNavIcon: file(relativePath: { eq: "icons/close-48.png" })
     {
         childImageSharp {
             fixed (height: 32) {
@@ -29,7 +29,7 @@ query {
             }
         }
     }
-    hamburger: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
+    hamburger: file(relativePath: { eq: "icons/menu-48.png" })
     {
         childImageSharp {
             fixed (height: 48) {
@@ -37,7 +37,7 @@ query {
             }
         }
     }
-    hamburgerMobile: file(relativePath: { eq: "icons/ui-icons/menu-48.png" })
+    hamburgerMobile: file(relativePath: { eq: "icons/menu-48.png" })
     {
         childImageSharp {
             fixed (height: 17) {
@@ -51,10 +51,10 @@ query {
 const Navmenu = (props) => {
     const [windowSize, changeWindowSize] = useState({
         firstLoad: true,
-        currScroll: document.documentElement.scrollTop,
+        currScroll: (typeof document !== 'undefined') ? document.documentElement.scrollTop : 0,
         hideNav: false,
         desktop: null,
-        navBurger: null,
+        navBurger: (typeof window !== 'undefined') ? window.matchMedia("(min-width: 1051px)").matches : null,
         mobileNavActive: false,
         enableSubMenu: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
         mobileSubMenuToggle: props.location ? (props.location.pathname.includes("cultivation") || props.location.pathname.includes("transportation") || props.location.pathname.includes("processing")) : false,
@@ -70,6 +70,7 @@ const Navmenu = (props) => {
         }
     })
 
+    // Updates current scroll position every time user scrolls on the page
     useEffect(() => {
         window.addEventListener('scroll', handleWindowScroll);
         return _ => {
@@ -80,6 +81,7 @@ const Navmenu = (props) => {
     // Run once after component mounts to determine current window size
     useEffect(() => {
         handleWindowChange();
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const data = useStaticQuery(logo);
@@ -160,7 +162,7 @@ const Navmenu = (props) => {
 
                     {/* Main Navbar */}
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : {}} style={{top: '0'}}>
+                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : ''} style={{top: '0'}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
@@ -233,7 +235,16 @@ const Navmenu = (props) => {
                         <Link to="/certification" className="link" activeClassName="linkActive">Get Organic Certification</Link>
                         <Link to="/partners" className="link" activeClassName="linkActive">Partners</Link>
                         <Link to="/contact" className="link" activeClassName="linkActive">Contact</Link>
-                        <div className="mobileNavBg">
+                        {/* The size of the mobile nav background controls the mobile nav's scroll behaviour additional classes take effect below 820px view height */}
+                        <div className={`mobileNavBg ${windowSize.mobileSubMenuToggle ? 
+                            (windowSize.openCultivationSubMenu && windowSize.openProcessingSubMenu) ? 
+                            'mobileNavBgAllOpen' :
+                            windowSize.openCultivationSubMenu ? 
+                            'mobileNavBgGrowOpen' :
+                            windowSize.openProcessingSubMenu ?
+                            'mobileNavBgProcessOpen' :
+                            'mobileNavBgNoneOpen' :
+                            'mobileNavBgMin'}`} >
                             <button className="closeNavBtn" onClick={changeNavState}>
                                 <Img
                                     fixed={data.closeNavIcon.childImageSharp.fixed}

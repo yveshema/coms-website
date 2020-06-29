@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Elements, useStripe } from "@stripe/react-stripe-js";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -84,7 +84,7 @@ const Container = styled.div`
         color: white;
     }
 
-    .row {
+    .row, .column {
         flex-direction: column;
         padding: 0;
     }
@@ -127,6 +127,11 @@ const Container = styled.div`
         animation: checkmark 1s ease-out forwards;
     }
 
+    .qrImg {
+        width: 30%;
+        align-self: center;
+    }
+
     @media only screen and (min-width:769px) {
         h2 {
             margin-bottom: 15px;
@@ -154,6 +159,23 @@ const PaymentSummary = (props) => {
     const [paymentSuccess, changePayState] = useState(null);
     const [isLoading, changeLoad] = useState(false);
     const monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    const [timeLimit, changeTimeLimit] = useState(0)
+
+    // Set time limit for cryptocurrency transaction if one is given
+    useEffect(() => {
+        if (props.currState.cryptoDetails !== null) {
+            changeTimeLimit(props.currState.cryptoDetails.timeout)
+        }
+    }, [props.currState.cryptoDetails])
+
+    // Count down timer
+    useEffect(() => {
+        setTimeout(() => {
+            if (timeLimit > 0) {
+                changeTimeLimit(time => time - 1);
+            }
+        }, 1000)
+    }, [timeLimit])
 
     const stripe = useStripe();
 
@@ -177,9 +199,16 @@ const PaymentSummary = (props) => {
         console.log(result)
     }
 
-    // This component contains two different JSX returns
-    if (props.currState.currProgress === 3 && paymentSuccess !== "succeeded") {
+    const submitPaymentClaim = async (event) => {
+        event.preventDefault();
+        changePayState('succeeded')
+        props.finalizePayment();
+    }
+
+    // This component contains three different JSX returns
+    if (props.currState.currProgress === 3 && props.currState.paymentType === 'card' && paymentSuccess !== "succeeded") {
         let ccBrand = props.currState.cardDetails.brand ? props.currState.cardDetails.brand : 'undefined';
+        // Return review page for credit card payments
         return (
             <Container>
                 <h1>
@@ -220,23 +249,54 @@ const PaymentSummary = (props) => {
                         {paymentSuccess.message}
                     </div>}
                 <div className='buttonDiv'>
-                    <button className='buttonBack' onClick={(event) => {changePayState(null); props.reverseForm(event)}}>Back</button>
+                    <button className='buttonBack' onClick={(event) => { changePayState(null); props.reverseForm(event) }}>Back</button>
                     <button className='buttonNext' onClick={submitPayment}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Confirm Payment'}</button>
                 </div>
             </Container>
         )
-    } else if (props.currState.currProgress === 4 && paymentSuccess === "succeeded") {
+    } else if (props.currState.currProgress === 3 && props.currState.paymentType === 'crypto' && paymentSuccess !== "succeeded") {
+        // Return transaction page for crypto payments
         return (
-            <Container style={{minHeight: '500px'}}>
+            <Container>
+                <h1>
+                    Please send the requested amount to the address below.
+                </h1>
+                {props.currState.cryptoDetails !== null &&
+                    <div className="column" style={{ textAlign: 'center' }}>
+                        <div>Total Amount Due: {props.currState.cryptoDetails.amount}</div>
+                        <div>Address: {props.currState.cryptoDetails.address}</div>
+                        <div>
+                            Or scan the QR code:
+                        </div>
+                        <img className="qrImg" src={props.currState.cryptoDetails.qrcode_url} alt="QR Code" />
+                        <div>Total confirms required: {props.currState.cryptoDetails.confirms_needed}</div>
+                        <div>This transaction will automatically be cancelled in {Math.floor(timeLimit / 60)}:{(timeLimit % 60).toString().padStart(2, "0")}</div>
+                        <div className='buttonDiv'>
+                            <button className='buttonNext' onClick={submitPaymentClaim}>{isLoading ? <FontAwesomeIcon className="spinnerAnim" icon={faCircleNotch} /> : 'Payment Sent'}</button>
+                        </div>
+                    </div>
+                }
+
+            </Container>
+        )
+    } else if (props.currState.currProgress === 4 && paymentSuccess === "succeeded") {
+        // Return payment success for credit card payments
+        return (
+            <Container style={{ minHeight: '500px' }}>
                 <div className="centerThanksDiv">
-                <div className="checkCircleDiv">
-                    <svg viewBox="0 0 70 70">
-                        <polyline className="checkSvg" points="56,20 28,52 15,40" />
-                    </svg>
-                </div>
-                <h1 className="thankYouHeader">Thank you!</h1>
-                <h2 style={{fontWeight: 'normal', textAlign: 'center'}}>A confirmation email has been sent to your email</h2>
-                <button className="buttonNext" style={{marginLeft: '50%', transform: 'translateX(-50%)'}} onClick={props.sendEmail}>Resend Email</button>
+                    <div className="checkCircleDiv">
+                        <svg viewBox="0 0 70 70">
+                            <polyline className="checkSvg" points="56,20 28,52 15,40" />
+                        </svg>
+                    </div>
+                    <h1 className="thankYouHeader">Thank you!</h1>
+                    <h2 style={{ fontWeight: 'normal', textAlign: 'center' }}>{props.currState.paymentType === 'card' ? 'A confirmation email has been sent to your email' : 'Monitor the status of your payment below'}</h2>
+                    {props.currState.paymentType === 'card' &&
+                    <button className="buttonNext" style={{ marginLeft: '50%', transform: 'translateX(-50%)' }} onClick={props.sendEmail}>Resend Email</button>
+                    }
+                    {props.currState.paymentType === 'crypto' &&
+                    <a className="buttonNext" style={{ display: 'inline-block', marginLeft: '50%', transform: 'translateX(-50%)', textDecoration: 'none', textAlign: 'center' }} href={props.currState.cryptoDetails.status_url} target='_blank'>Check Status</a>
+                    }
                 </div>
             </Container>
         )
@@ -248,7 +308,7 @@ const PaymentSummary = (props) => {
 const PaymentConfirm = (props) => {
     return (
         <Elements stripe={props.stripePubKey}>
-            <PaymentSummary currState={props.currState} sendEmail={props.sendEmail} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment}/>
+            <PaymentSummary currState={props.currState} sendEmail={props.sendEmail} reverseForm={props.reverseForm} finalizePayment={props.finalizePayment} />
         </Elements>
     )
 }

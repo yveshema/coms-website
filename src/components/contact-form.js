@@ -39,16 +39,14 @@ font-size: .8em;
 `
 
 const Input = styled.input`
-border: 0;
+border: ${props => props.noborder? 0 : "1px solid #a3a3a3"};
 border-radius: 2px;
-box-shadow: ${props => props.noshadow? 0 : "0 0 1px 1px inset #a3a3a3"};
 padding: 5px;
 `;
 
 const TextArea = styled.textarea`
-border: 0;
+border: 1px solid #a3a3a3;
 border-radius: 2px;
-box-shadow: 0 0 1px 1px inset #a3a3a3;
 padding: 5px;
 min-height: 10em;
 `;
@@ -56,6 +54,39 @@ min-height: 10em;
 const Form = styled.form`
 padding: 10px;
 background: #fff;
+
+/* Hide the input and display custom button  */       
+#attach-file {
+    visibility: hidden;
+}
+
+
+label[for="attach-file"] {
+     display: inline-block!important;
+     width: 8rem;     
+     font-size: .8rem;    
+     border: 1px solid #a3a3a3;
+     border-radius: 2px;
+     padding: 5px 8px;
+     cursor: pointer;
+     position:relative;     
+ }
+
+label[for="attach-file"]:hover:before,
+label[for="attach-file"]:focus:before {
+    content: attr(title);
+    position: absolute;
+    display: inline-block;
+    background: #eee;
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    width: 12rem;
+    top: -70px;
+    left: -2px;    
+    tabindex: -1;
+}
 `;
 
 const SubmitButton = styled(Button)`
@@ -81,6 +112,9 @@ transition: 0.25s;
 
 
 const ContactForm = ({ onSuccess }) => {
+    const tooltip = `Our company will start accepting
+documents in the near future,
+when we are fully operational.`;
     const [inputs, setInputs] = useState({
         fname: "",
         lname: "",
@@ -113,9 +147,8 @@ const ContactForm = ({ onSuccess }) => {
     const rules = {
         fname: /(\w.*){2,}/,    // disallow less than 2 characters in the name
         lname: /(\w.*){2,}/,
-        email: /^[^\s\\\/]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
-        tel: /^(\d{3}-\d{3}-\d{4})?$/,          // North American format. Should be revised
-        // tel: /^\d{10}$/,
+        email: /^[^\s\\]+@\w+\.[a-z]{2,3}$/, //disallow spaces and slashes
+        tel: /^(\d{3}-\d{3}-\d{4})?$/,         // North American format. Should be revised        
         subj: /(\w.*){2,}/,     // disallow less than 4 characters in subject or message body
         msg: /(\w.*){8,}/,
     };
@@ -168,10 +201,10 @@ const ContactForm = ({ onSuccess }) => {
     }
 
     const formatPhoneNumber = (str) => {
-        if (str.length == 3){
+        if (str.length === 3){
             str += "-";
         }
-        if (str.length == 7) {
+        if (str.length === 7) {
             str += "-";
         }
         return str;
@@ -302,12 +335,14 @@ const ContactForm = ({ onSuccess }) => {
                     <FormError>{errors.msg}</FormError>
                 </InputControl>                              
             </Row>
+           
             <Row>
-                <InputControl>
-                    <Label>Attach a file: </Label>
-                    <Input type="file" disabled noshadow />
+                 <InputControl>
+                    <Label htmlFor="attach-file" title={tooltip}>+ Attach a file</Label>
+                    <Input type="file"  id="attach-file"  disabled />
                 </InputControl>
-            </Row>
+                
+             </Row>
             <Row><SubmitButton>Send</SubmitButton></Row>
         </Form>
     );

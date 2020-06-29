@@ -6,25 +6,15 @@ hero: certification
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import Ctitle from '../components/ctittle'
+import Title from '../components/title'
+import { Icons as icons } from '../data/assets'
 
 import PaymentComponent from "../components/payment-component";
 import Seals from "../components/seals";
 
 <SEO title="Certification" keywords={['moringa', 'organic', 'standard','safety','transparency','sustainability','scalability']} />
 
-<!-- illustrations imports -->
-import registrationIcon from '../images/icons/certification/70px/registration-icon-70px.svg';
-import verificationIcon from '../images/icons/certification/70px/verification-icon-70px.svg';
-import paymentIcon from '../images/icons/certification/70px/payment-icon-70px.svg';
-import inspectionIcon from '../images/icons/certification/70px/inspection-icon-70px.svg';
-import authorizationIcon from '../images/icons/certification/70px/authorization-icon-70px.svg';
-import certificationIcon from '../images/icons/certification/70px/certification-icon-70px.svg';
-import maintenanceIcon from '../images/icons/certification/70px/maintenance-iocn-70px.svg';
-
-
-
-<h1 className="benefit">Benefits of an Organic Certificate</h1>
+# Benefits of an Organic Certificate
 
 **Safety and Transparency** - With the growing demand for moringa products, there has been an increase of counterfeit products and products of low quality that put consumers of moringa at risk. With an organic certificate, your product will have official proof of following 
 best cultivation and processing practices. 
@@ -36,78 +26,78 @@ least toxic to the environment while maximizing crop yields per land mass.
 
 <Seals />
 
+# Process
 
-<h1 className="certificateLine">Process</h1>
-
-<Ctitle icon={registrationIcon}  heading="1. Registration" />
+<Title icon={icons.registration}  heading="1. Registration" italic />
 
 After reading about the standards required to qualify for an organic certificate on the <Link to="/cultivation">Grow Organic Moringa</Link> page, download the <Link to="/certification">registration forms</Link> at the bottom of this page and send them to our email address - <a href="emailto:certification@coms.com">certification@coms.com.</a>
 
 You can also contact us through the contact page for more information and request an <Link to="/contact">application package</Link>.
 
-<Ctitle icon={verificationIcon}  heading="2. Verification" />
+<Title icon={icons.verification}  heading="2. Verification" italic />
 
 We will send you a verification email of receiving your application and an invoice with the fees that are due. 
 
-<Ctitle icon={paymentIcon}  heading="3. Payment" />
+<Title icon={icons.payment}  heading="3. Payment" italic />
 
 You pay the fees in the payments section of this page. Once payment is received we send you the provision  contract for you to sign. 
 You email it back to us.
 
-<Ctitle icon={inspectionIcon}  heading="4. Inspection" />
+<Title icon={icons.inspection}  heading="4. Inspection" italic />
 
 An inspector will schedule a visit to inspect your facilities and products. The inspector will then send a report to COMS.
 
-<Ctitle icon={authorizationIcon}  heading="5. Authorization" />
+<Title icon={icons.authorization}  heading="5. Authorization" italic />
 
 We will review the inspection report and will authorize the application.
 
-<Ctitle icon={certificationIcon}  heading="6. Certification" />
+<Title icon={icons.certification}  heading="6. Certification" italic />
 
 You inform us of any corrective measures. When in compliance, we issue an organic certificate and send you the COMS seal file to add to your product label.
 
-<Ctitle icon={maintenanceIcon}  heading="7. Maintenance" />
+<Title icon={icons.maintenance}  heading="7. Maintenance" italic />
 
 To maintain the status of an organic product, you will need to annually renew your certificate.  This will include annual update of your organic system and annual fee of inspection. If in compliance, your organic certificate will be renewed for another year.
 
-<h1 className="certificateLine">Fees</h1>
+# Fees
 
-<table className="feeDesign">
-    <tr>
-        <td>
-        <p><b>Administration/Inspection</b></p>
-        <p>NCD 185 system control fee</p>
-        <p>NCD 55 file management fee</p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <p><b>Travel:</b></p>
-        <p>Included for annual and surprise inspections</p>        
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <p><b>Crops (base fee):</b></p>
-        <p>NCD700 pre-certification</p>        
-        </td>
-    </tr>
-    <tr>
-        <td>
-        <p><b>Annual renewal:</b></p>
-        <p>NCD350 for crops <b>below</b> 2 acres.</p>
-        <p>NCD550 for crops <b>above </b>2 acres.</p>        
-        </td>
-    </tr>
+<table title="fees">
+    <tbody>
+        <tr>
+            <td>
+            <p><b>Administration/Inspection</b></p>
+            <p>NCD 185 system control fee</p>
+            <p>NCD 55 file management fee</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <p><b>Travel:</b></p>
+            <p>Included for annual and surprise inspections</p>        
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <p><b>Crops (base fee):</b></p>
+            <p>NCD700 pre-certification</p>        
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <p><b>Annual renewal:</b></p>
+            <p>NCD350 for crops <b>below</b> 2 acres.</p>
+            <p>NCD550 for crops <b>above </b>2 acres.</p>        
+            </td>
+        </tr>
+    </tbody>
 </table>
 
-<p className="desaLine">
-<span style="font-weight:500;">Our online payment system only accepts credit card. To pay via bank/wire transfer please </span><Link to="/contact">contact us for details</Link>. </p>
+** Our online payment system only accepts credit card and cryptocurrency. To pay via bank/wire transfer please** <Link to="/contact">contact us for details</Link>. 
 
 <PaymentComponent />
 
-<div style={{ marginTop: 50, paddingTop:20, paddingBottom: 20}}>
+<div title="documents"style={{ marginTop: 50, paddingTop:20, paddingBottom: 20}}>
 <h4>Download documents:</h4>
-<Link>Application form</Link> <br />
-<Link>Renewal form</Link>
+<p><Link to="/documents">Application form</Link></p>
+<p><Link to="/documents">Renewal form</Link></p>
 </div>

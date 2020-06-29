@@ -1,0 +1,83 @@
+/* Layout styles
+----------------- */
+
+/* Ensure minimum page height is the height
+ * of the viewport 
+ */
+.pagewrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Generic horizontal layout */
+.row {
+    display: flex;
+    justify-content: space-between; 
+    padding: 50px 0;   
+}
+
+/* Footer styles
+-----------------*/
+footer {    
+    background-color: #2F5926;
+    height: max-content;      
+}
+
+/* Center everthing within */
+footer > div {
+    margin: 10px 100px;   
+    flex: 1;
+
+    /* line-height: 1.8;     */
+}
+
+/* Contact info */
+footer > div > div:first-child {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 0; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;    
+}
+
+footer .copyright {
+    color: white;
+    font-size: .8rem;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 7px;
+    line-height: 1.2;
+    letter-spacing: .3px;
+    margin-left: 37px;
+}
+
+/* Full width display on smaller screens */
+@media only screen and (max-width: 1200px) {
+    footer > div > div:first-child {        
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 0;       
+    }
+}
+
+/* Align contact info on small screens */
+@media only screen and (max-width: 600px){
+    footer > div {
+        margin:0;
+    }
+
+    footer > div > div:first-child {        
+        /* display: block; */
+        flex-direction: column;
+        align-items: flex-start;
+        
+        /* margin: auto; */
+        padding: 10px 0;
+    }
+
+    footer .copyright {
+	margin-left: 0;
+    }
+}

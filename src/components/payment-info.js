@@ -10,6 +10,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import CryptoForm from './crypto-form';
 
 const Container = styled.div`
     width: 100%;
@@ -142,9 +143,9 @@ const stripeStyle = {
 const elementOptions = {
     fonts: [
         {
-          cssSrc: 'https://fonts.googleapis.com/css2?family=Roboto&family=Rubik'
+            cssSrc: 'https://fonts.googleapis.com/css2?family=Roboto&family=Rubik'
         }
-      ]
+    ]
 }
 
 const PaymentForm = (props) => {
@@ -175,12 +176,12 @@ const PaymentForm = (props) => {
         }
 
         // Do not submit if value does not match a valid email format
-        if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(billingInfo.emailAddress))) {
+        if (!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(billingInfo.emailAddress))) {
             setError("Invalid Email address. ");
             return;
         }
 
-        changeInfo({...billingInfo, isLoading: true})
+        changeInfo({ ...billingInfo, isLoading: true })
 
         // Send billing info to Stripe and return a card info object
         const payload = await stripe.createPaymentMethod({
@@ -191,7 +192,7 @@ const PaymentForm = (props) => {
             type: "card",
             card: elements.getElement(CardNumberElement)
         });
-        changeInfo({...billingInfo, isLoading: false})
+        changeInfo({ ...billingInfo, isLoading: false })
         props.handleCardInfo(payload)
     };
 
@@ -215,25 +216,23 @@ const PaymentForm = (props) => {
             setError(null);
         }
     }
-
-    if (props.progress === 2) {
-        return (
+    return (
         <Container>
             <p>
                 Please provide your payment information below.
             </p>
             <form style={props.progress === 2 ? { display: 'block' } : { display: 'none' }} onSubmit={handleSubmit}>
                 <div className="form-align">
-                    <label for="fullNameInput">Full Name
+                    <label htmlFor="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
                     </label>
-                    <label for="emailInput">Email Address
+                    <label htmlFor="emailInput">Email Address
                     <input onChange={handleInputChange} id="emailInput" type="email" name='email' />
                     </label>
                 </div>
 
                 <div className="form-align">
-                    <label for="cardNumInput" style={{width: 'calc(100% - 20px)'}}>
+                    <label htmlFor="cardNumInput" style={{ width: 'calc(100% - 20px)' }}>
                         Card number
                         <CardNumberElement
                             className="stripeInput"
@@ -243,7 +242,7 @@ const PaymentForm = (props) => {
                         />
                     </label>
                     <div className="form-align-last">
-                        <label for="expiryInput">
+                        <label htmlFor="expiryInput">
                             Expiry
                         <CardExpiryElement
                                 className="stripeInput"
@@ -252,7 +251,7 @@ const PaymentForm = (props) => {
                                 id="expiryInput"
                             />
                         </label>
-                        <label for="cvcInput">
+                        <label htmlFor="cvcInput">
                             CVC
                         <CardCvcElement
                                 className="stripeInput"
@@ -272,18 +271,24 @@ const PaymentForm = (props) => {
                 </div>
             </form>
         </Container>
-        )
-    } else {
-        return null;
-    }
+    )
 }
 
 const PaymentInfo = (props) => {
-    return (
-        <Elements stripe={props.stripePubKey} options={elementOptions}>
-            <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
-        </Elements>
-    )
+    if (props.progress === 2 && props.paymentType === 'card') {
+        return (
+            <Elements stripe={props.stripePubKey} options={elementOptions}>
+                <PaymentForm progress={props.progress} reverseForm={props.reverseForm} handleCardInfo={props.handleCardInfo} />
+            </Elements>
+        )
+    } else if (props.progress === 2 && props.paymentType === 'crypto') {
+        return (
+            <CryptoForm progress={props.progress} handleCryptoTransactionInfo={props.handleCryptoTransactionInfo} totalCost={props.totalCost} reverseForm={props.reverseForm}></CryptoForm>
+        );
+    } else {
+        return null;
+    }
+
 }
 
 export default PaymentInfo;

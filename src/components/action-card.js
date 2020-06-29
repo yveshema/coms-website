@@ -1,44 +1,54 @@
 import React from "react";
 import styled from "styled-components";
 import { navigate } from "@reach/router";
-import { autoShowTooltip } from "aws-amplify";
 
+/* Card component to wrap call-for-action message
+ * Contains icon, text and action button stacked on top
+ * of each other on large and small screens. In tablet 
+ * mode the icon is floated left
+ * */
 const Container = styled.div`
-display: inline-block;
+display: flex;
 flex-direction: column;
-justify-content: space-around;
+justify-content: space-between;
 align-items: center;
 padding: 10px;
 background-color: #fff;
 margin: 0 20px;
 box-shadow: 3px 3px 3px #bfbababa;
 
+/* Give the text area more space */
+>:nth-child(2) {
+    flex:2;    
+}
 
-
-
-@media only screen and (max-width: 1224px) {
+@media only screen and (max-width: 1200px) {
     margin: 20px 0;
 }
 
-@media only screen and (min-width: 769px) and (max-width: 1224px){
+@media only screen and (min-width: 601px) and (max-width: 1200px){
     display:block;
+    padding: 2em;
 
-    > :first-child { 
-        width: 10%;             
+    >:first-child { 
+        width: 4em;             
         float: left;
-        margin-right: 10px;
+        margin-right: 2em;
+        img {
+            width: 100%;
+        }
     }
 
-    > :nth-child(2) {
-        width: 85%;               
+    >:nth-child(2) {
+        width: 60%;               
         float:left;
         margin-bottom: 10px;        
     }
 
-    > :last-child {
+    >:last-child {
         display: block;
         clear:both; 
-        margin-top: 50px;           
+        margin-top: 50px;                  
     }
 }
 `;
@@ -55,43 +65,38 @@ color: #fff;
 margin: 1em 0;
 cursor: pointer;
 line-height:21px;
-<<<<<<< HEAD
 -webkit-transition: 0.25s;
 -moz-transition: 0.25s;
 -o-transition: 0.25s;
 transition: 0.25s;
 
+/* Shift the button by 6em so it aligns with the text. 
+ * 4 + 2 because the icon is 4em wide and has 2em right margin
+ */
+@media only screen and (min-width: 601px) and (max-width: 1200px){
+    margin-left: 6em;
+}
+
 :active, :hover {
     background-color: #E55616;
 }
-=======
-&:hover{
-    background-color: #e55616; 
-    border: 1px solid #e55616;
-}
-
->>>>>>> styling
 
 `;
-
-
-
 
 const Text = styled.p`
 text-align: center;
 font-size: 16px;
 line-height:24px;
 
-@media only screen and (min-width: 769px) and (max-width: 1224px){
+@media only screen and (min-width: 601px) and (max-width: 1200px){
     text-align: left;
     margin-bottom: 0;
 }
 
-
+@media only screen and (max-width: 600px){
+    padding: 0 10px;
+}
 `;
-
-
-
 
 const ActionCard = ({content}) => {
     const handleClick = (e) => {
@@ -100,10 +105,10 @@ const ActionCard = ({content}) => {
     }
 
     return (
-        <Container className="homeContainer">
-            <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} /></div>
-            <div className="fixHeight">{content.text.map((text) => <Text>{text}</Text>)}</div>
-            <div className="buttonClass"><Action onClick={handleClick}>{content.action}</Action></div>     
+        <Container>
+            <div style={{textAlign:"center"}}><img style={{marginBottom:"1rem"}} src={content.icon} alt={`${content.action} icon`} /></div>
+            <div>{content.text.map((text) => <Text>{text}</Text>)}</div>
+            <Action onClick={handleClick}>{content.action}</Action>     
         </Container>
     )
 };

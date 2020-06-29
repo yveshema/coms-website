@@ -10,7 +10,7 @@ import { navigate } from "@reach/router";
 
 const icon = graphql`
 query {
-    search: file(relativePath: { eq: "icons/ui-icons/search-48.png" })
+    search: file(relativePath: { eq: "icons/search-48.png" })
     {
         childImageSharp {
             fixed (height: 20) {
@@ -18,7 +18,7 @@ query {
             }
         }
     }
-    check: file(relativePath: { eq: "icons/ui-icons/checkmark-48.png" })
+    check: file(relativePath: { eq: "icons/checkmark-48.png" })
     {
         childImageSharp {
             fixed (height: 14) {
@@ -75,7 +75,7 @@ const SearchBar = (props) => {
                 />
             </button>
             <button className="languageBtn" onClick={openLanguageOptions}>
-                {props.currLang === 'EN' ? 'ENG' : 'FRA'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
+                {props.currLang === 'FR' ? 'FRA' : 'ENG'} <FontAwesomeIcon icon={searchState.languageDropdownVisible ? faChevronUp : faChevronDown} />
             </button>
             <div className={searchState.languageDropdownVisible ? "languageDropDown languageDropDownOpen languageOptionDiv": "languageDropDown languageOptionDiv"}>
                 <button className={props.currLang === 'EN' ? "languageOptionBtn bookmarkActive" : "languageOptionBtn"} onClick={props.selectLanguage} value='EN'>
