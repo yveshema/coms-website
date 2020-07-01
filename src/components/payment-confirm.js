@@ -290,7 +290,7 @@ const PaymentSummary = (props) => {
                         </svg>
                     </div>
                     <h1 className="thankYouHeader">Thank you!</h1>
-                    <h2 style={{ fontWeight: 'normal', textAlign: 'center' }}>{props.currState.paymentType === 'card' ? 'A confirmation email has been sent to your email' : 'Monitor the status of your payment below'}</h2>
+                    <h2 style={{ fontWeight: 'normal', textAlign: 'center' }}>{props.currState.paymentType === 'card' ? 'A confirmation email has been sent to your email' : 'If your payment has been confirmed, a confirmation email will be sent shortly. Monitor the status of your payment below'}</h2>
                     {props.currState.paymentType === 'card' &&
                     <button className="buttonNext" style={{ marginLeft: '50%', transform: 'translateX(-50%)' }} onClick={props.sendEmail}>Resend Email</button>
                     }
