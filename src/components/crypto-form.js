@@ -287,6 +287,8 @@ const CryptoForm = (props) => {
             return;
         }
 
+        const items = `${props.sysControl ? 'syscontrol ' : ''}${props.fileManage ? 'filemanage ' : ''}${props.recertFee ? 'recert ' : ''}${props.underTwoAcres ? 'undertwo ' : ''}${props.overTwoAcres ? 'overtwo' : ''}`
+
         changeInfo({
             ...billingInfo,
             isLoading: true
@@ -294,7 +296,7 @@ const CryptoForm = (props) => {
 
         const data = {
             url: 'https://www.coinpayments.net/api.php/',
-            request: `version=1&cmd=create_transaction&amount=${(props.totalCost * 0.37).toFixed(2)}&currency1=USD&currency2=${billingInfo.coinType}&key=95a4e2d1694cbd11a361cd03ecb050f0a3c0dcbc545705442969c89f23a6e704`
+            request: `version=1&cmd=create_transaction&amount=${(props.totalCost * 0.37).toFixed(2)}&currency1=USD&currency2=${billingInfo.coinType}&buyer_email=${billingInfo.emailAddress}&buyer_name=${billingInfo.fullName}&item_name=${items}&ipn_url=https://l925h1rxba.execute-api.us-west-2.amazonaws.com/dev/ipn-handler&key=95a4e2d1694cbd11a361cd03ecb050f0a3c0dcbc545705442969c89f23a6e704`
         }
 
         post(data)
