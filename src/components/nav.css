@@ -13,8 +13,7 @@
 
 .bookmarkLink {
     color: #626262;
-    margin: 0 12%;
-    padding: 3px 0;
+    padding: 3px 12%;
     font-size: 18px;
     font-weight: 400;    
     font-family: inherit;
@@ -26,6 +25,7 @@
 
 .bookmarkLink:hover {
     font-weight: 500;
+    background-color: #F8F8F8;
 }
 
 .bookmarkActive {
@@ -121,7 +121,7 @@
 
 .extraNavLink:hover .dropdownSubMenu {
     visibility: visible;
-    width: 255px;
+    width: 265px;
     padding: 15px 2px;
     max-height: 500px;
 }
@@ -135,7 +135,7 @@
 
 .bookmarkLink:hover .desktopSubDropdown {
     visibility: visible;
-    width: 255px;
+    width: 265px;
     padding: 15px 2px;
     max-height: 500px;
 }
