@@ -250,7 +250,18 @@ const PaymentComponent = () => {
         <PayDiv>
             <PayProgress progress={formStates.currProgress} />
             <ItemSelectionForm progress={formStates.currProgress} submitTotal={submitTotal} submitTotalCrypto={submitTotalCrypto} reverseForm={reverseForm} changeCheckedStatus={changeCheckedStatus} totalCost={formStates.totalCost} isLoading={formStates.isLoading} clientSecret={formStates.clientSecret} />
-            <PaymentInfo progress={formStates.currProgress} paymentType={formStates.paymentType} handleCardInfo={handleCardInfo} handleCryptoTransactionInfo={handleCryptoTransactionInfo} reverseForm={reverseForm} totalCost={formStates.totalCost} stripePubKey={stripePromise} />
+            <PaymentInfo progress={formStates.currProgress} 
+            paymentType={formStates.paymentType} 
+            handleCardInfo={handleCardInfo} 
+            handleCryptoTransactionInfo={handleCryptoTransactionInfo} 
+            reverseForm={reverseForm} 
+            totalCost={formStates.totalCost}
+            sysControl={formStates.sysControl}
+            fileManage={formStates.fileManage}
+            recertFee={formStates.recertFee}
+            underTwoAcres={formStates.underTwoAcres}
+            overTwoAcres={formStates.overTwoAcres}
+            stripePubKey={stripePromise} />
             <PaymentConfirm currState={formStates} sendEmail={sendEmail} reverseForm={reverseForm} stripePubKey={stripePromise} finalizePayment={finalizePayment} />
         </PayDiv>
     )
