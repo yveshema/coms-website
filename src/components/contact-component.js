@@ -42,6 +42,7 @@ span {
 
 @media only screen and (max-width: 600px) {
     width: 15em;
+    margin: 16px auto;
 }
 
 // @media only screen and (max-width: 769px) {

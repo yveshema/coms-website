@@ -48,6 +48,7 @@ const PaymentComponent = () => {
     // Recalculate cost whenever any of the billing option states are changed
     useEffect(() => {
         calcCost();
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formStates.sysControl, formStates.fileManage, formStates.recertFee, formStates.underTwoAcres, formStates.overTwoAcres])
 
     const changeCheckedStatus = (val) => {

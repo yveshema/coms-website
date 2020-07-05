@@ -76,4 +76,8 @@ footer .copyright {
         /* margin: auto; */
         padding: 10px 0;
     }
+
+    footer .copyright {
+	margin-left: 0;
+    }
 }

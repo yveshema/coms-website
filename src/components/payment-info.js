@@ -223,16 +223,16 @@ const PaymentForm = (props) => {
             </p>
             <form style={props.progress === 2 ? { display: 'block' } : { display: 'none' }} onSubmit={handleSubmit}>
                 <div className="form-align">
-                    <label for="fullNameInput">Full Name
+                    <label htmlFor="fullNameInput">Full Name
                     <input onChange={handleInputChange} id="fullNameInput" name='fullName' />
                     </label>
-                    <label for="emailInput">Email Address
+                    <label htmlFor="emailInput">Email Address
                     <input onChange={handleInputChange} id="emailInput" type="email" name='email' />
                     </label>
                 </div>
 
                 <div className="form-align">
-                    <label for="cardNumInput" style={{ width: 'calc(100% - 20px)' }}>
+                    <label htmlFor="cardNumInput" style={{ width: 'calc(100% - 20px)' }}>
                         Card number
                         <CardNumberElement
                             className="stripeInput"
@@ -242,7 +242,7 @@ const PaymentForm = (props) => {
                         />
                     </label>
                     <div className="form-align-last">
-                        <label for="expiryInput">
+                        <label htmlFor="expiryInput">
                             Expiry
                         <CardExpiryElement
                                 className="stripeInput"
@@ -251,7 +251,7 @@ const PaymentForm = (props) => {
                                 id="expiryInput"
                             />
                         </label>
-                        <label for="cvcInput">
+                        <label htmlFor="cvcInput">
                             CVC
                         <CardCvcElement
                                 className="stripeInput"

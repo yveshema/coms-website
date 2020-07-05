@@ -27,6 +27,7 @@ const ParallaxHero = (props) => {
         return _ => {
             window.removeEventListener('scroll', handleParallax);
         }
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleParallax = () => {

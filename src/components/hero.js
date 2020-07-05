@@ -68,6 +68,7 @@ const Hero = ({tagline, path}) => {
     // Run once after component mounts to determine current window size
     useEffect(() => {
         handleWindowChange();
+	//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     // Checks if the current window size is tablet or mobile
