@@ -8,7 +8,7 @@ import { Logos as logos } from "../data/assets";
 
 
 const Container = styled.div`
-margin-bottom: 50px;
+margin-bottom: 100px;
 width: 100%;
 display: flex;
 flex-direction: row;
@@ -37,9 +37,14 @@ transition: 0.25s;
 }
 `;
 
-const Title = styled.h3`
-margin-bottom: 2em;
+const Title = styled.h1`
+margin-bottom: 1em;
+margin-top: 1em;
+&:first-child {
+    margin-top: 0;
+}
 text-align: center;
+
 @media only screen and (max-width: 767px){
     font-size: 32px;
 }

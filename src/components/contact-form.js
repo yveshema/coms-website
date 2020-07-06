@@ -115,6 +115,7 @@ const ContactForm = ({ onSuccess }) => {
     const tooltip = `Our company will start accepting
 documents in the near future,
 when we are fully operational.`;
+
     const [inputs, setInputs] = useState({
         fname: "",
         lname: "",
@@ -255,8 +256,7 @@ when we are fully operational.`;
             email = inputs.email;
             name = `${inputs.fname} ${inputs.lname}`;
             subject = inputs.subj;
-            content = inputs.msg;
-            // url = "https://ztfgyay7nh.execute-api.us-west-2.amazonaws.com/dev/email/send";
+            content = inputs.msg;            
             url = "https://qcfd2jvbpc.execute-api.us-west-2.amazonaws.com/dev/email/send";
             forward = false;
 
