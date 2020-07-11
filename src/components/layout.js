@@ -5,14 +5,11 @@ import styled from 'styled-components';
 import '../styles/main.css';
 import Navbar from './navbar';
 import Hero from './hero';
-// import './grid.css';
 import Container from "./content-container";
-
 import Contact from './contact-component';
 import Separator from './separator';
 
 import emailIcon from '../images/icons/envelope.svg';
-// import ContactLocation from '../images/icons/location-icon.svg';
 import phoneIcon from '../images/icons/phone-icon.svg';
 
 // The navbar is fixed positioned, which would cause it to

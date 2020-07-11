@@ -115,14 +115,14 @@ const ContactForm = ({ onSuccess }) => {
     const tooltip = `Our company will start accepting
 documents in the near future,
 when we are fully operational.`;
+
     const [inputs, setInputs] = useState({
         fname: "",
         lname: "",
         email: "",
         tel: "",
         subj: "",
-        msg: "",
-        file: "upload.pdf",
+        msg: "",        
     });
 
     const [errors, setErrors] = useState({
@@ -165,7 +165,7 @@ when we are fully operational.`;
             return rule.test(value);
         }
 
-        for (const key in inputs){             
+        for (const key in inputs){                    
             // Update state with suitable error message if validation fails
             if (!validate(rules[key],inputs[key])){                               
                 setErrors((errors) => ({
@@ -252,19 +252,21 @@ when we are fully operational.`;
         e.preventDefault();
         let validated = validateInputs();
         if (validated) {
-            let email, name, subject, content, data, url;
+            let email, name, subject, content, data, url, forward;
             email = inputs.email;
             name = `${inputs.fname} ${inputs.lname}`;
             subject = inputs.subj;
-            content = inputs.msg;
-            url = "https://ztfgyay7nh.execute-api.us-west-2.amazonaws.com/dev/email/send";
+            content = inputs.msg;            
+            url = "https://qcfd2jvbpc.execute-api.us-west-2.amazonaws.com/dev/email/send";
+            forward = false;
 
             data = {
                 url,
                 email,
                 name,
                 subject,
-                content
+                content,
+                forward
             };
             
 

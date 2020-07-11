@@ -27,9 +27,7 @@ footer {
 /* Center everthing within */
 footer > div {
     margin: 10px 100px;   
-    flex: 1;
-
-    /* line-height: 1.8;     */
+    flex: 1;   
 }
 
 /* Contact info */
@@ -69,11 +67,8 @@ footer .copyright {
     }
 
     footer > div > div:first-child {        
-        /* display: block; */
         flex-direction: column;
-        align-items: flex-start;
-        
-        /* margin: auto; */
+        align-items: flex-start;        
         padding: 10px 0;
     }
 
