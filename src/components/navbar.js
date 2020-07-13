@@ -162,7 +162,7 @@ const Navmenu = (props) => {
 
                     {/* Main Navbar */}
                     {/* Nav renders menu options in a column if desktop options are hidden and the mobile menu is on */}
-                    <Nav className={!windowSize.navBurger ? windowSize.mobileNavActive ? `navMobile navSlideIn` : !windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile` : ''} style={{top: '0'}}>
+                    <Nav className={(!windowSize.navBurger && windowSize.navBurger !== null) ? (windowSize.mobileNavActive ? `navMobile navSlideIn` : (!windowSize.firstLoad ? `navMobile navSlideOut` : `navMobile`)) : ''} style={{top: '0'}}>
                         <Link to="/" className="link" activeClassName="linkActive">Home</Link>
                         <Link to="/about" className="link" activeClassName="linkActive">About Moringa</Link>
                         <Link to="/cultivation" className={windowSize.enableSubMenu ? "link linkActive" : "link"} style={!windowSize.navBurger ? { display: "none" } : {}}>
@@ -288,7 +288,7 @@ const Navmenu = (props) => {
                     <SearchBar currWidth={windowSize.desktop} hideNav={windowSize.hideNav} currLang={props.currLang} selectLanguage={props.selectLanguage} location={props.location} />
                     <button className="hamburgBtn" onClick={changeNavState}>
                         <Img
-                            fixed={windowSize.desktop ? data.hamburger.childImageSharp.fixed : data.hamburgerMobile.childImageSharp.fixed}
+                            fixed={/* windowSize.desktop ? data.hamburger.childImageSharp.fixed : */ data.hamburgerMobile.childImageSharp.fixed}
                             alt="hamburger"
                         />
                     </button>
