@@ -17,6 +17,12 @@ background-color: #fff;
 margin: 0 20px;
 box-shadow: 3px 3px 3px #bfbababa;
 
+/* Give the icon a width in case the
+   inherent size is not read properly */
+>:first-child {
+    width: 4em;
+}
+
 /* Give the text area more space */
 >:nth-child(2) {
     flex:2;    

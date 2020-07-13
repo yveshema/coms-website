@@ -21,7 +21,7 @@ export const Images = {
         drying: require('../images/Illustrations/drying.svg'),            
         draining: require('../images/Illustrations/draining.svg'),            
         petiole: require('../images/Illustrations/petiole.svg'),
-        branch:  require('../images/Illustrations/branch.svg'),             
+        branch:  require('../images/Illustrations/branch.svg'),                    
     },
     mobile: {
         comparison: require('../images/Illustrations/comparison-mobile.svg'),        
@@ -52,13 +52,15 @@ export const Icons = {
     planting: require('../images/icons/planting-icon-70px.svg'),
     care: require('../images/icons/plant-care-icon-70px.svg'),
     pests: require('../images/icons/insects-and-fungi-icon-70px.svg'),
-    registration: require('../images/icons/registration-icon-70px.svg'),
-    verification: require('../images/icons/verification-icon-70px.svg'),
-    payment: require('../images/icons/payment-icon-70px.svg'),
-    inspection: require('../images/icons/inspection-icon-70px.svg'),
-    authorization: require('../images/icons/authorization-icon-70px.svg'),
-    certification: require('../images/icons/certification-icon-70px.svg'),
-    maintenance: require('../images/icons/maintenance-icon-70px.svg')
+    registration: require('../images/icons/registration.svg'),
+    verification: require('../images/icons/verification.svg'),
+    payment: require('../images/icons/payment.svg'),
+    inspection: require('../images/icons/inspection.svg'),
+    authorization: require('../images/icons/authorization.svg'),
+    certification: require('../images/icons/certification.svg'),
+    maintenance: require('../images/icons/maintenance.svg'),
+    learn: require('../images/icons/learn-icon-70px.svg'),
+    invest: require('../images/icons/invest-icon-70px.svg') 
 };
 
 export const Logos = {
