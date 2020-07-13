@@ -21,7 +21,12 @@ export default css`
         font-style: italic;
         margin-top: 50px;
         line-height: 38px;
-    }   
+    }
+    
+    h4 {
+        font-size: 20px;
+        line-height: 28px;
+    }
 
     /* Target only paragraphs that are direct 
      * descendants of the main content area
