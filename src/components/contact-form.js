@@ -77,10 +77,11 @@ label[for="attach-file"]:focus:before {
     content: attr(title);
     position: absolute;
     display: inline-block;
-    background: #eee;
+    background: #fff;
+    box-shadow: 3px 2px 2px #a3a3a3;
     border: 1px solid white;
     padding: 5px;
-    border-radius: 2px;
+    border-radius: 4px;
     font-size: 0.7rem;
     width: 12rem;
     top: -70px;

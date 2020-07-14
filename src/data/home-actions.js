@@ -1,10 +1,8 @@
-import certificationIcon from "../images/icons/certification-icon-70px.svg";
-import investIcon from "../images/icons/invest-icon-70px.svg";
-import learnIcon from "../images/icons/learn-icon-70px.svg";
+import { Icons } from './assets';
 
 export default {
     certification: {
-        icon: certificationIcon,
+        icon: Icons.certification,
         text:[
             "COMS is on a mission to improve moringa leaf farming and processing in order to meet sanitary and nutritional standards.",
             "Apply for your certification today."
@@ -14,7 +12,7 @@ export default {
 
     },
     invest: {
-        icon: learnIcon,
+        icon: Icons.learn,
         text: [
             "Moringa Oleifera is an exceptional resource for developing countries.",
             "This “Superfood” is a nutritionally rich vegetable available in nations with tropical and subtropical climate."
@@ -23,7 +21,7 @@ export default {
         action: "Learn more"
     },
     learn: {
-        icon: investIcon,
+        icon: Icons.invest,
         text: [
             "Moringa leaves were ranked top vegetable by the World Vegetable Center (AVRDC).",
             "The moringa leaf is a new promising source of income, sustainable             agriculture and business growth."
